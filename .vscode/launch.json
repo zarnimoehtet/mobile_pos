@@ -1,0 +1,36 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+               {
+            "name": "Mobo POS Dev (Debug)",
+            "request": "launch",
+            "program": "lib/main_dev.dart",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "Mobo POS Prod (Debug)",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "prod"
+            ]
+        },
+        {
+            "name": "Mobo POS Dev (Release)",
+            "request": "launch",
+            "program": "lib/main_dev.dart",
+            "type": "dart",
+            "args": [
+                "--release",
+                "--flavor",
+                "dev"
+            ]
+        }
+    ]
+}
