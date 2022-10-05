@@ -8,14 +8,14 @@ import '../core/translations/translation.dart';
 import '../flavors.dart';
 import 'app_routes.dart';
 
-class MoboPOSApp extends StatefulWidget {
-  const MoboPOSApp({Key? key}) : super(key: key);
+class YHSMultiPOSApp extends StatefulWidget {
+  const YHSMultiPOSApp({Key? key}) : super(key: key);
 
   @override
-  State<MoboPOSApp> createState() => _MoboPOSAppState();
+  State<YHSMultiPOSApp> createState() => _YHSMultiPOSAppState();
 }
 
-class _MoboPOSAppState extends State<MoboPOSApp> {
+class _YHSMultiPOSAppState extends State<YHSMultiPOSApp> {
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(

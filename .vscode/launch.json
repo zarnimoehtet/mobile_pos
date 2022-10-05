@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
                {
-            "name": "Mobo POS Dev (Debug)",
+            "name": "YHS Multi POS Dev (Debug)",
             "request": "launch",
             "program": "lib/main_dev.dart",
             "type": "dart",
@@ -12,7 +12,7 @@
             ]
         },
         {
-            "name": "Mobo POS Prod (Debug)",
+            "name": "YHS Multi POS Prod (Debug)",
             "request": "launch",
             "program": "lib/main.dart",
             "type": "dart",
@@ -22,7 +22,7 @@
             ]
         },
         {
-            "name": "Mobo POS Dev (Release)",
+            "name": "YHS Multi POS Dev (Release)",
             "request": "launch",
             "program": "lib/main_dev.dart",
             "type": "dart",

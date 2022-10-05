@@ -5,5 +5,5 @@ import 'modules/app_widget.dart';
 
 void main() {
   F.appFlavor = Flavor.PROD;
-  runApp(const MoboPOSApp());
+  runApp(const YHSMultiPOSApp());
 }

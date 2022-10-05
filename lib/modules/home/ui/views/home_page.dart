@@ -20,7 +20,7 @@ class HomePage extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "MOBO POS",
+          "YHS Multi POS",
           style: TextStyle(
             color: Colors.white,
           ),

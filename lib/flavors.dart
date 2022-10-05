@@ -13,9 +13,9 @@ class F {
   static String get title {
     switch (appFlavor) {
       case Flavor.PROD:
-        return 'MoboPOS';
+        return 'YHS Multi POS';
       case Flavor.DEV:
-        return 'MoboPOS Dev';
+        return 'YHS Multi POS Dev';
       default:
         return 'title';
     }
@@ -31,16 +31,4 @@ class F {
         return '';
     }
   }
-
-  // static String get baseURL {
-  //   switch (appFlavor) {
-  //     case Flavor.PROD:
-  //       return dotenv.env["HOST"]!;
-  //     case Flavor.DEV:
-  //       return dotenv.env["HOST"]!;
-  //     default:
-  //       return 'title';
-  //   }
-  // }
-
 }

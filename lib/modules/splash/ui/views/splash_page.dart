@@ -21,7 +21,7 @@ class SplashPage extends GetView<SplashController> {
               child: Container(
                 alignment: Alignment.center,
                 child: const Text(
-                  "MOBO POS",
+                  "YHS Multi POS",
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

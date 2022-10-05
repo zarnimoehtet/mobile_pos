@@ -54,7 +54,8 @@ dependencies:
   logging:
   logger:
   url_launcher:
-
+  #KEYBOARD SHOW/OFF
+  flutter_keyboard_visibility:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -85,18 +86,18 @@ flavorizr:
   flavors:
     prod:
       app:
-        name: "MoboPOS"
+        name: "YHS Multi POS"
       android:
-        applicationId: "com.sm.mobopos"
+        applicationId: "com.sm.yhsmultipos"
       ios:
-        bundleId: "com.sm.mobopos"
+        bundleId: "com.sm.yhsmultipos"
     dev:
       app:
-        name: "MoboPOS Dev"
+        name: "YHS Multi POS Dev"
       android:
-        applicationId: "com.sm.mobopos.dev"
+        applicationId: "com.sm.yhsmultipos.dev"
       ios:
-        bundleId: "com.sm.mobopos.dev"
+        bundleId: "com.sm.yhsmultipos.dev"
 
 # The following section is specific to Flutter packages.
 flutter:
