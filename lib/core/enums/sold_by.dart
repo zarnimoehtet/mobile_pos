@@ -1,0 +1,1 @@
+enum SoldBy { each, weight }

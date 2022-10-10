@@ -25,6 +25,7 @@ class HomePage extends GetView<HomeController> {
             color: Colors.white,
           ),
         ),
+        centerTitle: true,
         actions: [
           IconButton(
               onPressed: () {
