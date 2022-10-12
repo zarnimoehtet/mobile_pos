@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_pos/modules/dashboard/ui/views/dashboard_page.dart';
 import 'package:mobile_pos/modules/employees/ui/views/employees_page.dart';
+import 'package:mobile_pos/modules/expense/ui/view/expense_page.dart';
 import 'package:mobile_pos/modules/home/ui/controllers/home_controller.dart';
 import 'package:mobile_pos/modules/items/ui/views/items_page.dart';
 import 'package:mobile_pos/modules/notification/ui/views/notification_page.dart';
@@ -149,6 +150,17 @@ class HomePage extends GetView<HomeController> {
                   controller.tabIndex.value = 5;
                 },
               ),
+              ListTile(
+                title: const Text("Expenses"),
+                leading: const Icon(Icons.bar_chart_rounded),
+                textColor: POSColor.primaryColorDark,
+                iconColor: POSColor.primaryColorDark,
+                minLeadingWidth: 0,
+                onTap: () {
+                  Get.back();
+                  controller.tabIndex.value = 6;
+                },
+              ),
               Divider(
                 color: POSColor.secondaryColor.withOpacity(0.5),
               ),
@@ -159,6 +171,9 @@ class HomePage extends GetView<HomeController> {
                 iconColor: POSColor.primaryColorDark,
                 minLeadingWidth: 0,
                 onTap: () {},
+              ),
+              Divider(
+                color: POSColor.secondaryColor.withOpacity(0.5),
               ),
               ListTile(
                 title: const Text("Check update"),
@@ -195,7 +210,8 @@ class HomePage extends GetView<HomeController> {
           StockPage(),
           ItemsPage(),
           ReceiptsPage(),
-          EmployeesPage()
+          EmployeesPage(),
+          ExpensePage()
         ]),
       ),
     );

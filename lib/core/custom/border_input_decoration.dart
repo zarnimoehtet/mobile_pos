@@ -32,17 +32,27 @@ InputDecoration borderInputDecoration(Color color,
 
 InputDecoration normalInputDecoration(
     {String? hinttext,
+    Color? color,
     bool alignLabelWithHint = true,
     String? counterText,
     Widget? suffixIcon,
-    EdgeInsetsGeometry? padding}) {
+    EdgeInsetsGeometry? padding,
+    bool enableUnderLine = false}) {
   return InputDecoration(
+      enabledBorder: enableUnderLine
+          ? const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent))
+          : null,
+      focusedBorder: enableUnderLine
+          ? const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent))
+          : null,
       contentPadding: padding ?? const EdgeInsets.all(0),
       alignLabelWithHint: alignLabelWithHint,
       labelText: alignLabelWithHint ? hinttext : null,
       hintText: alignLabelWithHint ? null : hinttext,
       hintStyle: const TextStyle(color: POSColor.blackTextColorOp99),
-      labelStyle: const TextStyle(color: POSColor.primaryColorDark),
+      labelStyle: TextStyle(color: color ?? POSColor.primaryColorDark),
       suffixIcon: suffixIcon,
       counterText: counterText);
 }

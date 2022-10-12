@@ -355,135 +355,143 @@ class ItemAddPage extends GetView<ItemsController> {
                         const SizedBox(
                           height: 10,
                         ),
-                        InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            controller.selectedRepresentationType.value =
-                                Representation.shapeAndColor;
-                          },
-                          child: Obx(() => Row(
-                                children: [
-                                  Radio(
-                                      value: Representation.shapeAndColor,
-                                      groupValue: controller
-                                          .selectedRepresentationType.value,
-                                      activeColor: POSColor.primaryColorDark,
-                                      onChanged: (g) {
-                                        controller.selectedRepresentationType
-                                                .value =
-                                            Representation.shapeAndColor;
-                                      }),
-                                  const Text(
-                                    "Shape and Color",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: POSColor.primaryColorDark),
-                                  ),
-                                ],
-                              )),
-                        ),
-                        InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            controller.selectedRepresentationType.value =
-                                Representation.image;
-                          },
-                          child: Obx(() => Row(
-                                children: [
-                                  Radio(
-                                      value: Representation.image,
-                                      groupValue: controller
-                                          .selectedRepresentationType.value,
-                                      activeColor: POSColor.primaryColorDark,
-                                      onChanged: (g) {
-                                        controller.selectedRepresentationType
-                                            .value = Representation.image;
-                                      }),
-                                  const Text(
-                                    "Image",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: POSColor.primaryColorDark),
-                                  ),
-                                ],
-                              )),
-                        ),
+                        controller.willShowAds.value
+                            ? const SizedBox()
+                            : InkWell(
+                                borderRadius: BorderRadius.circular(10),
+                                onTap: () {
+                                  controller.selectedRepresentationType.value =
+                                      Representation.shapeAndColor;
+                                },
+                                child: Obx(() => Row(
+                                      children: [
+                                        Radio(
+                                            value: Representation.shapeAndColor,
+                                            groupValue: controller
+                                                .selectedRepresentationType
+                                                .value,
+                                            activeColor:
+                                                POSColor.primaryColorDark,
+                                            onChanged: (g) {
+                                              controller
+                                                      .selectedRepresentationType
+                                                      .value =
+                                                  Representation.shapeAndColor;
+                                            }),
+                                        const Text(
+                                          "Shape and Color",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: POSColor.primaryColorDark),
+                                        ),
+                                      ],
+                                    )),
+                              ),
+                        controller.willShowAds.value
+                            ? const SizedBox()
+                            : InkWell(
+                                borderRadius: BorderRadius.circular(10),
+                                onTap: () {
+                                  controller.selectedRepresentationType.value =
+                                      Representation.image;
+                                },
+                                child: Obx(() => Row(
+                                      children: [
+                                        Radio(
+                                            value: Representation.image,
+                                            groupValue: controller
+                                                .selectedRepresentationType
+                                                .value,
+                                            activeColor:
+                                                POSColor.primaryColorDark,
+                                            onChanged: (g) {
+                                              controller
+                                                  .selectedRepresentationType
+                                                  .value = Representation.image;
+                                            }),
+                                        const Text(
+                                          "Image",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: POSColor.primaryColorDark),
+                                        ),
+                                      ],
+                                    )),
+                              ),
                         const SizedBox(
                           height: 20,
                         ),
+                        controller.willShowAds.value
+                            ? const SizedBox()
+                            : Visibility(
+                                visible: controller
+                                        .selectedRepresentationType.value ==
+                                    Representation.shapeAndColor,
+                                child: SizedBox(
+                                  height: 160,
+                                  width: Get.width,
+                                  child: GridView.count(
+                                    crossAxisCount: 4,
+                                    scrollDirection: Axis.vertical,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    crossAxisSpacing: 5,
+                                    mainAxisSpacing: 8.0,
+                                    children: [
+                                      gridViewItem(Colors.grey.shade300,
+                                          Coloring.normal),
+                                      gridViewItem(Colors.deepOrange.shade600,
+                                          Coloring.orange),
+                                      gridViewItem(
+                                          Colors.red.shade600, Coloring.red),
+                                      gridViewItem(Colors.yellow.shade700,
+                                          Coloring.yellow),
+                                      gridViewItem(
+                                          Colors.lightGreen, Coloring.green),
+                                      gridViewItem(
+                                          Colors.green, Coloring.darkgreen),
+                                      gridViewItem(Colors.blue, Coloring.blue),
+                                      gridViewItem(
+                                          Colors.purple, Coloring.purple),
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                        controller.willShowAds.value
+                            ? const SizedBox()
+                            : const SizedBox(
+                                height: 10,
+                              ),
+                        controller.willShowAds.value
+                            ? const SizedBox()
+                            : Visibility(
+                                visible: controller
+                                        .selectedRepresentationType.value ==
+                                    Representation.shapeAndColor,
+                                child: SizedBox(
+                                  height: 80,
+                                  width: Get.width,
+                                  child: GridView.count(
+                                    crossAxisCount: 4,
+                                    scrollDirection: Axis.vertical,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    crossAxisSpacing: 5,
+                                    children: [
+                                      gridViewShapeItem(ShapeType.Circle),
+                                      gridViewShapeItem(ShapeType.Diamond),
+                                      gridViewShapeItem(ShapeType.Pentagon),
+                                      gridViewShapeItem(ShapeType.Hexagon)
+                                    ],
+                                  ),
+                                ),
+                              ),
                         Visibility(
                           visible:
                               controller.selectedRepresentationType.value ==
-                                  Representation.shapeAndColor,
-                          child: SizedBox(
-                            height: 80,
-                            width: Get.width,
-                            child: GridView.count(
-                              crossAxisCount: 4,
-                              scrollDirection: Axis.vertical,
-                              physics: const NeverScrollableScrollPhysics(),
-                              crossAxisSpacing: 5,
-                              children: [
-                                gridViewItem(
-                                    Colors.grey.shade300, Coloring.normal),
-                                gridViewItem(Colors.deepOrange.shade600,
-                                    Coloring.orange),
-                                gridViewItem(Colors.red.shade600, Coloring.red),
-                                gridViewItem(
-                                    Colors.yellow.shade700, Coloring.yellow),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Visibility(
-                          visible:
-                              controller.selectedRepresentationType.value ==
-                                  Representation.shapeAndColor,
-                          child: SizedBox(
-                            height: 80,
-                            width: Get.width,
-                            child: GridView.count(
-                              crossAxisCount: 4,
-                              scrollDirection: Axis.vertical,
-                              physics: const NeverScrollableScrollPhysics(),
-                              crossAxisSpacing: 5,
-                              children: [
-                                gridViewItem(Colors.lightGreen, Coloring.green),
-                                gridViewItem(Colors.green, Coloring.darkgreen),
-                                gridViewItem(Colors.blue, Coloring.blue),
-                                gridViewItem(Colors.purple, Coloring.purple),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Visibility(
-                          visible:
-                              controller.selectedRepresentationType.value ==
-                                  Representation.shapeAndColor,
-                          child: SizedBox(
-                            height: 80,
-                            width: Get.width,
-                            child: GridView.count(
-                              crossAxisCount: 4,
-                              scrollDirection: Axis.vertical,
-                              physics: const NeverScrollableScrollPhysics(),
-                              crossAxisSpacing: 5,
-                              children: [
-                                gridViewShapeItem(ShapeType.Circle),
-                                gridViewShapeItem(ShapeType.Diamond),
-                                gridViewShapeItem(ShapeType.Pentagon),
-                                gridViewShapeItem(ShapeType.Hexagon)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Visibility(
-                          visible:
-                              controller.selectedRepresentationType.value ==
-                                  Representation.image,
+                                      Representation.image ||
+                                  controller.willShowAds.value,
                           child: SizedBox(
                             height: 110,
                             width: Get.width,
@@ -500,25 +508,25 @@ class ItemAddPage extends GetView<ItemsController> {
                             ),
                           ),
                         ),
-                        Visibility(
-                            visible:
-                                controller.selectedRepresentationType.value ==
-                                    Representation.image,
-                            child: SizedBox(
-                              height: 110,
-                              width: Get.width,
-                              child: GridView.count(
-                                crossAxisCount: 3,
-                                scrollDirection: Axis.vertical,
-                                physics: const NeverScrollableScrollPhysics(),
-                                crossAxisSpacing: 5,
-                                children: [
-                                  imageGridViewItem(""),
-                                  imageGridViewItem(""),
-                                  imageGridViewItem(""),
-                                ],
-                              ),
-                            )),
+                        // Visibility(
+                        //     visible:
+                        //         controller.selectedRepresentationType.value ==
+                        //             Representation.image,
+                        //     child: SizedBox(
+                        //       height: 110,
+                        //       width: Get.width,
+                        //       child: GridView.count(
+                        //         crossAxisCount: 3,
+                        //         scrollDirection: Axis.vertical,
+                        //         physics: const NeverScrollableScrollPhysics(),
+                        //         crossAxisSpacing: 5,
+                        //         children: [
+                        //           imageGridViewItem(""),
+                        //           imageGridViewItem(""),
+                        //           imageGridViewItem(""),
+                        //         ],
+                        //       ),
+                        //     )),
                         const SizedBox(
                           height: 20,
                         ),

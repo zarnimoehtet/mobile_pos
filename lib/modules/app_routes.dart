@@ -7,6 +7,8 @@ import 'package:mobile_pos/modules/dashboard/binding/dashboard_binding.dart';
 import 'package:mobile_pos/modules/dashboard/ui/views/dashboard_page.dart';
 import 'package:mobile_pos/modules/employees/binding/employees_binding.dart';
 import 'package:mobile_pos/modules/employees/ui/views/employees_page.dart';
+import 'package:mobile_pos/modules/expense/binding/expense_binding.dart';
+import 'package:mobile_pos/modules/expense/ui/view/expense_page.dart';
 import 'package:mobile_pos/modules/home/binding/home_binding.dart';
 import 'package:mobile_pos/modules/home/ui/views/home_page.dart';
 import 'package:mobile_pos/modules/items/binding/items_binding.dart';
@@ -23,6 +25,7 @@ import 'package:mobile_pos/modules/receipts/binding/receipts_binding.dart';
 import 'package:mobile_pos/modules/receipts/ui/views/receipts_page.dart';
 import 'package:mobile_pos/modules/sales/binding/sales_binding.dart';
 import 'package:mobile_pos/modules/sales/ui/views/sales_page.dart';
+import 'package:mobile_pos/modules/sales/ui/views/vouncher_page.dart';
 import 'package:mobile_pos/modules/stock/binding/stock_binding.dart';
 import 'package:mobile_pos/modules/stock/ui/views/stock_page.dart';
 
@@ -49,7 +52,17 @@ class AppRoutes {
         ),
         GetPage(
             name: HomePage.route,
-            binding: HomeBinding(),
+            bindings: [
+              HomeBinding(),
+              DashboardBinding(),
+              SalesBinding(),
+              StockBinding(),
+              ItemsBinding(),
+              ReceiptsBinding(),
+              EmployeesBinding(),
+              NotificationBinding(),
+              ExpenseBinding()
+            ],
             page: () => const HomePage(),
             children: [
               GetPage(
@@ -58,10 +71,16 @@ class AppRoutes {
                 page: () => const DashboardPage(),
               ),
               GetPage(
-                name: SalesPage.route,
-                binding: SalesBinding(),
-                page: () => const SalesPage(),
-              ),
+                  name: SalesPage.route,
+                  binding: SalesBinding(),
+                  page: () => const SalesPage(),
+                  children: [
+                    GetPage(
+                      name: VouncherPage.route,
+                      binding: SalesBinding(),
+                      page: () => const VouncherPage(),
+                    ),
+                  ]),
               GetPage(
                 name: StockPage.route,
                 binding: StockBinding(),
@@ -117,6 +136,11 @@ class AppRoutes {
                 name: NotificationPage.route,
                 binding: NotificationBinding(),
                 page: () => const NotificationPage(),
+              ),
+              GetPage(
+                name: ExpensePage.route,
+                binding: ExpenseBinding(),
+                page: () => const ExpensePage(),
               ),
             ]),
       ];

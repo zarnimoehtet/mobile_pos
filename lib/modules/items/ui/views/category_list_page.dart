@@ -40,7 +40,10 @@ class CategoryListPage extends StatelessWidget {
           child: ListView.separated(
               itemCount: 2,
               itemBuilder: (context, index) {
-                return categoryItem();
+                return categoryItem(
+                  index == 0 ? "Drink" : "Soup",
+                  index == 0 ? "Drink" : "Soup",
+                );
               },
               separatorBuilder: (context, index) {
                 return Padding(
@@ -54,32 +57,32 @@ class CategoryListPage extends StatelessWidget {
         ));
   }
 
-  Widget categoryItem() {
+  Widget categoryItem(String title, String desc) {
     return ListTile(
       onTap: () {},
       contentPadding: const EdgeInsets.only(left: 15, right: 15),
-      title: const Text(
-        "Drink",
-        style: TextStyle(color: POSColor.textColor),
+      title: Text(
+        title,
+        style: const TextStyle(color: POSColor.textColor),
       ),
-      subtitle: const Text(
-        "Drink",
-        style: TextStyle(
+      subtitle: Text(
+        desc,
+        style: const TextStyle(
           color: POSColor.blackTextColorOp99,
         ),
       ),
       leading: CircleAvatar(
         radius: 24,
         backgroundColor: Colors.red.shade600,
-        child: const Center(
+        child: Center(
           child: Text(
-            "D",
-            style: TextStyle(color: Colors.white),
+            title.substring(0, 1),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       ),
       trailing: const Text(
-        "0 item",
+        "1 item",
         style: TextStyle(color: POSColor.blackTextColorOp99),
       ),
     );

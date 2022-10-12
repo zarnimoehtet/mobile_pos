@@ -77,30 +77,19 @@ class CategoryAddPage extends GetView<ItemsController> {
                 height: 10,
               ),
               SizedBox(
-                height: 80,
+                height: 160,
                 width: Get.width,
                 child: GridView.count(
                   crossAxisCount: 4,
                   scrollDirection: Axis.vertical,
                   physics: const NeverScrollableScrollPhysics(),
                   crossAxisSpacing: 5,
+                  mainAxisSpacing: 8.0,
                   children: [
                     gridViewItem(Colors.grey.shade300, Coloring.normal),
                     gridViewItem(Colors.deepOrange.shade600, Coloring.orange),
                     gridViewItem(Colors.red.shade600, Coloring.red),
                     gridViewItem(Colors.yellow.shade700, Coloring.yellow),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 80,
-                width: Get.width,
-                child: GridView.count(
-                  crossAxisCount: 4,
-                  scrollDirection: Axis.vertical,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisSpacing: 5,
-                  children: [
                     gridViewItem(Colors.lightGreen, Coloring.green),
                     gridViewItem(Colors.green, Coloring.darkgreen),
                     gridViewItem(Colors.blue, Coloring.blue),
