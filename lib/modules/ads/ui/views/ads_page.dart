@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_pos/core/constants/colors.dart';
-import 'package:mobile_pos/modules/auth/ui/views/login_page.dart';
 
+import '../../../auth/views/login_page.dart';
 import '../controllers/ads_controller.dart';
 
 class AdsPage extends GetView<AdsController> {

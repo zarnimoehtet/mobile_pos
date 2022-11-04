@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_pos/core/temp/temp_data.dart';
-import 'package:mobile_pos/modules/home/ui/views/home_page.dart';
 import 'package:mobile_pos/modules/sales/ui/controllers/sales_controller.dart';
 import 'package:mobile_pos/modules/sales/ui/views/vouncher_page.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/custom/border_input_decoration.dart';
+import '../../../home/views/home_page.dart';
 
 class SalesPage extends GetView<SalesController> {
   static const String route = "/sales";

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:mobile_pos/modules/items/ui/controllers/items_controller.dart';
+
+import '../controllers/items_controller.dart';
 
 class ItemsBinding extends Bindings {
   @override

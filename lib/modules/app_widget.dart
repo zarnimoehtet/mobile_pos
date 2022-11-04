@@ -39,10 +39,18 @@ class _YHSMultiPOSAppState extends State<YHSMultiPOSApp> {
             logger.d(message),
         theme: ThemeData(
           fontFamily: Get.locale == const Locale("my", "MM")
-              ? "Pyidaungsu"
-              : GoogleFonts.roboto().fontFamily,
+              ? GoogleFonts.notoSansMyanmar().fontFamily
+              : GoogleFonts.poppins().fontFamily,
           scaffoldBackgroundColor: const Color(0xFFf2f2f2),
           toggleableActiveColor: POSColor.primaryColorDark,
+          appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.white,
+              actionsIconTheme: IconThemeData(color: POSColor.primaryColorDark),
+              titleTextStyle: TextStyle(
+                color: POSColor.primaryColorDark,
+                fontSize: 18,
+              ),
+              iconTheme: IconThemeData(color: POSColor.primaryColorDark)),
           primaryColor: POSColor.primaryColorDark,
           colorScheme: const ColorScheme.light().copyWith(
             secondary: POSColor.secondaryColor,

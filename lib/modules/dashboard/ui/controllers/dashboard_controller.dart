@@ -1,4 +1,4 @@
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 class DashBoardController extends GetxController {
   List<String> title = [
@@ -14,4 +14,7 @@ class DashBoardController extends GetxController {
     "Net profit",
     "Credit"
   ];
+
+  RxBool isShowAll = RxBool(false);
+  RxBool isShowMainData = RxBool(false);
 }

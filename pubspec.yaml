@@ -56,6 +56,9 @@ dependencies:
   url_launcher:
   dotted_border:
   flutter_shapes:
+  fl_chart: ^0.55.2
+  numeric_keyboard: ^1.1.0
+  grouped_list:
   #KEYBOARD SHOW/OFF
   flutter_keyboard_visibility:
   # The following adds the Cupertino Icons font to your application.
@@ -114,6 +117,7 @@ flutter:
     - assets/fonts/
     - assets/logos/
     - assets/lotties/
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -126,17 +130,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Pyidaungsu
-      fonts:
-        - asset: assets/fonts/Pyidaungsu-2.5_Regular.ttf
-        - asset: assets/fonts/Pyidaungsu-2.5_Bold.ttf
-          weight: 700
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto_Regular.ttf
-        - asset: assets/fonts/Roboto_Bold.ttf
-          weight: 700
+  # fonts:
+  #   - family: Pyidaungsu
+  #     fonts:
+  #       - asset: assets/fonts/Pyidaungsu-2.5_Regular.ttf
+  #       - asset: assets/fonts/Pyidaungsu-2.5_Bold.ttf
+  #         weight: 700
 
   #
   # For details regarding fonts from package dependencies,

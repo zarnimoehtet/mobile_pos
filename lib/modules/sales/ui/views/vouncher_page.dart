@@ -19,13 +19,11 @@ class VouncherPage extends GetView<SalesController> {
               onPressed: () {},
               icon: const Icon(
                 Icons.person_add,
-                color: Colors.white,
               )),
           IconButton(
               onPressed: () {},
               icon: const Icon(
                 Icons.close,
-                color: Colors.white,
               ))
         ],
       ),
@@ -39,8 +37,10 @@ class VouncherPage extends GetView<SalesController> {
   }
 
   Widget itemListArea() {
-    return Expanded(
+    return Padding(
+      padding: EdgeInsets.only(bottom: Get.width * 0.22),
       child: ListView.builder(
+        shrinkWrap: true,
         itemCount: 2,
         itemBuilder: (context, index) {
           return VouncherItem(index == 0 ? "Coffee" : "Milk");

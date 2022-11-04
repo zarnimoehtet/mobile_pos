@@ -2,23 +2,17 @@ import 'package:get/get.dart';
 import 'package:mobile_pos/modules/ads/binding/ads_binding.dart';
 import 'package:mobile_pos/modules/ads/ui/views/ads_page.dart';
 import 'package:mobile_pos/modules/auth/binding/login_binding.dart';
-import 'package:mobile_pos/modules/auth/ui/views/login_page.dart';
 import 'package:mobile_pos/modules/dashboard/binding/dashboard_binding.dart';
 import 'package:mobile_pos/modules/dashboard/ui/views/dashboard_page.dart';
 import 'package:mobile_pos/modules/employees/binding/employees_binding.dart';
-import 'package:mobile_pos/modules/employees/ui/views/employees_page.dart';
+import 'package:mobile_pos/modules/employees/views/employee_add_page.dart';
+import 'package:mobile_pos/modules/employees/views/employee_edit_page.dart';
+import 'package:mobile_pos/modules/employees/views/employees_page.dart';
 import 'package:mobile_pos/modules/expense/binding/expense_binding.dart';
 import 'package:mobile_pos/modules/expense/ui/view/expense_page.dart';
 import 'package:mobile_pos/modules/home/binding/home_binding.dart';
-import 'package:mobile_pos/modules/home/ui/views/home_page.dart';
 import 'package:mobile_pos/modules/items/binding/items_binding.dart';
-import 'package:mobile_pos/modules/items/ui/views/category_add_page.dart';
-import 'package:mobile_pos/modules/items/ui/views/category_list_page.dart';
-import 'package:mobile_pos/modules/items/ui/views/discount_add_page.dart';
-import 'package:mobile_pos/modules/items/ui/views/discount_list_page.dart';
-import 'package:mobile_pos/modules/items/ui/views/item_add_page.dart';
-import 'package:mobile_pos/modules/items/ui/views/items_list_page.dart';
-import 'package:mobile_pos/modules/items/ui/views/items_page.dart';
+import 'package:mobile_pos/modules/items/views/category_edit_page.dart';
 import 'package:mobile_pos/modules/notification/binding/notification_binding.dart';
 import 'package:mobile_pos/modules/notification/ui/views/notification_page.dart';
 import 'package:mobile_pos/modules/receipts/binding/receipts_binding.dart';
@@ -26,11 +20,22 @@ import 'package:mobile_pos/modules/receipts/ui/views/receipts_page.dart';
 import 'package:mobile_pos/modules/sales/binding/sales_binding.dart';
 import 'package:mobile_pos/modules/sales/ui/views/sales_page.dart';
 import 'package:mobile_pos/modules/sales/ui/views/vouncher_page.dart';
+import 'package:mobile_pos/modules/shop/views/shop_login_page.dart';
+import 'package:mobile_pos/modules/splash/views/splash_page.dart';
 import 'package:mobile_pos/modules/stock/binding/stock_binding.dart';
 import 'package:mobile_pos/modules/stock/ui/views/stock_page.dart';
 
+import 'auth/views/login_page.dart';
+import 'home/views/home_page.dart';
+import 'items/views/category_add_page.dart';
+import 'items/views/category_list_page.dart';
+import 'items/views/discount_add_page.dart';
+import 'items/views/discount_list_page.dart';
+import 'items/views/item_add_page.dart';
+import 'items/views/items_list_page.dart';
+import 'items/views/items_page.dart';
+import 'shop/binding/shop_login_binding.dart';
 import 'splash/binding/splash_binding.dart';
-import 'splash/ui/views/splash_page.dart';
 
 class AppRoutes {
   static String get initialRoute => SplashPage.route;
@@ -49,6 +54,11 @@ class AppRoutes {
           name: LoginPage.route,
           binding: LoginBinding(),
           page: () => const LoginPage(),
+        ),
+        GetPage(
+          name: ShopLoginPage.route,
+          binding: ShopLoginBinding(),
+          page: () => const ShopLoginPage(),
         ),
         GetPage(
             name: HomePage.route,
@@ -121,6 +131,11 @@ class AppRoutes {
                       binding: ItemsBinding(),
                       page: () => const ItemAddPage(),
                     ),
+                    GetPage(
+                      name: CategoryEditPage.route,
+                      binding: ItemsBinding(),
+                      page: () => const CategoryEditPage(),
+                    ),
                   ]),
               GetPage(
                 name: ReceiptsPage.route,
@@ -128,10 +143,21 @@ class AppRoutes {
                 page: () => const ReceiptsPage(),
               ),
               GetPage(
-                name: EmployeesPage.route,
-                binding: EmployeesBinding(),
-                page: () => const EmployeesPage(),
-              ),
+                  name: EmployeesPage.route,
+                  binding: EmployeesBinding(),
+                  page: () => const EmployeesPage(),
+                  children: [
+                    GetPage(
+                      name: EmployeeAddPage.route,
+                      binding: EmployeesBinding(),
+                      page: () => const EmployeeAddPage(),
+                    ),
+                    GetPage(
+                      name: EmployeeEditPage.route,
+                      binding: EmployeesBinding(),
+                      page: () => const EmployeeEditPage(),
+                    ),
+                  ]),
               GetPage(
                 name: NotificationPage.route,
                 binding: NotificationBinding(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_pos/core/constants/colors.dart';
 import 'package:mobile_pos/modules/dashboard/ui/controllers/dashboard_controller.dart';
+import 'package:mobile_pos/modules/dashboard/ui/views/custom/linechart.dart';
 
 class DashboardPage extends GetView<DashBoardController> {
   static const String route = "/dashboard";
@@ -19,7 +20,15 @@ class DashboardPage extends GetView<DashBoardController> {
             height: 1,
             color: Colors.grey.shade300,
           ),
-          dashBoardItems()
+          header(),
+          dashBoardItems(),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Divider(
+              color: Colors.grey.shade400,
+            ),
+          ),
+          lineChart(),
         ],
       ),
     ));
@@ -79,23 +88,23 @@ class DashboardPage extends GetView<DashBoardController> {
   Widget dashBoardItems() {
     return Padding(
       padding: const EdgeInsets.all(5),
-      child: GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: controller.title.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 2 / 1,
-            crossAxisCount: 2,
-            crossAxisSpacing: 2.0,
-            mainAxisSpacing: 2.0),
-        itemBuilder: (BuildContext context, int index) {
-          return dashboardDetialItem(
-              controller.title[index],
-              (index == 5 || index == 7) ? "0 item" : "MMK 0",
-              (index == 5 || index == 8 || index == 10),
-              () {});
-        },
-      ),
+      child: Obx(() => GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: controller.isShowAll.value ? controller.title.length : 4,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 2 / 1,
+                crossAxisCount: 2,
+                crossAxisSpacing: 2.0,
+                mainAxisSpacing: 2.0),
+            itemBuilder: (BuildContext context, int index) {
+              return dashboardDetialItem(
+                  controller.title[index],
+                  (index == 5 || index == 7) ? "0 item" : "MMK 0",
+                  (index == 5 || index == 8 || index == 10),
+                  () {});
+            },
+          )),
     );
   }
 
@@ -140,6 +149,97 @@ class DashboardPage extends GetView<DashBoardController> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget header() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            "",
+            style: TextStyle(color: POSColor.blackTextColorOp99),
+          ),
+          Obx(() => InkWell(
+                onTap: () {
+                  controller.isShowAll.value = !controller.isShowAll.value;
+                },
+                borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    controller.isShowAll.value ? "Show Less" : "Show All",
+                    style: const TextStyle(
+                        color: POSColor.secondaryColor, fontSize: 14),
+                  ),
+                ),
+              )),
+        ],
+      ),
+    );
+  }
+
+  Widget lineChart() {
+    return AspectRatio(
+      aspectRatio: 1.23,
+      child: Stack(
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              const SizedBox(
+                height: 37,
+              ),
+              const Text(
+                'Unfold Shop 2018',
+                style: TextStyle(
+                  color: POSColor.primaryColorDark,
+                  fontSize: 16,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              const Text(
+                'Monthly Sales',
+                style: TextStyle(
+                  color: POSColor.textColor,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 37,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 6),
+                  child: Obx(() => FirstLineChart(
+                      isShowingMainData: controller.isShowMainData.value)),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.refresh,
+              color: POSColor.primaryColorDark,
+            ),
+            onPressed: () {
+              controller.isShowMainData.value =
+                  !controller.isShowMainData.value;
+            },
+          )
+        ],
       ),
     );
   }
