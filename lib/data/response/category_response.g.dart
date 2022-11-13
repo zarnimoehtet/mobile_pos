@@ -11,6 +11,9 @@ _$CategoryListResponseFail _$$CategoryListResponseFailFromJson(
     _$CategoryListResponseFail(
       json['status'] as String,
       json['message'] as String?,
+      (json['data'] as List<dynamic>)
+          .map((e) => Category.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$CategoryListResponseFailToJson(
@@ -18,6 +21,7 @@ Map<String, dynamic> _$$CategoryListResponseFailToJson(
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
+      'data': instance.categoryList,
     };
 
 _$CategoryListResponseError _$$CategoryListResponseErrorFromJson(

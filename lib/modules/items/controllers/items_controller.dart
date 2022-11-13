@@ -8,9 +8,12 @@ import 'package:mobile_pos/core/enums/representation.dart';
 import 'package:mobile_pos/core/enums/sold_by.dart';
 import 'package:mobile_pos/data/model/category.dart';
 import 'package:mobile_pos/viewmodels/category_vm.dart';
+import 'package:mobile_pos/viewmodels/unit_vm.dart';
 
 import '../../../core/custom/state_dialog.dart';
 import '../../../core/helpers/state.dart';
+
+import '../../../data/model/unit.dart';
 import '../../../data/model/user.dart';
 import '../../../viewmodels/profile_vm.dart';
 
@@ -19,6 +22,7 @@ class ItemsController extends GetxController {
   TextEditingController categoryNameController = TextEditingController();
   TextEditingController categoryDetailController = TextEditingController();
   Rx<int> selectedIndex = Rx<int>(0);
+  RxList<Category> categoryList = RxList();
 
   Rxn<Category> editCategory = Rxn<Category>();
 
@@ -26,11 +30,12 @@ class ItemsController extends GetxController {
   TextEditingController categoryDetailEditController = TextEditingController();
   Rx<int> selectedEditIndex = Rx<int>(0);
 
-  //Discount
+  //Unit
   TextEditingController discountNameController = TextEditingController();
   TextEditingController discountDetailController = TextEditingController();
   TextEditingController discountAmountController = TextEditingController();
   Rx<DiscountType> selectedType = Rx<DiscountType>(DiscountType.percent);
+  RxList<Unit> unitList = RxList();
 
   //Items
   TextEditingController itemsNameController = TextEditingController();
@@ -54,8 +59,8 @@ class ItemsController extends GetxController {
 
   final CategoryViewModel categoryViewModel = Get.find();
   final ProfileViewModel profileVM = Get.find();
+  final UnitViewModel unitVM = Get.find();
 
-  RxList<Category> categoryList = RxList();
   Rxn<User> currentUser = Rxn<User>();
 
   List<String> colors = [
@@ -76,7 +81,7 @@ class ItemsController extends GetxController {
     _subscribeAddCategoryState();
     _subscribeEditCategoryState();
     _subscribeDeleteCategoryState();
-    fetchCategory(0);
+    _subscribeUnits();
 
     super.onInit();
   }
@@ -186,6 +191,24 @@ class ItemsController extends GetxController {
             child: Text("delete".tr.toUpperCase())),
       ],
     ));
+  }
+
+  void _subscribeUnits() {
+    unitVM.fetchUnitStream.listen((event) {
+      isLoading.value = event is StateLoading<List<Unit>>;
+      if (event is StateSuccess<List<Unit>>) {
+        unitList.value = event.data;
+      }
+      if (event is StateError<List<Unit>>) {
+        error.value = event.error.toString();
+      } else {
+        error.value = null;
+      }
+    });
+  }
+
+  Future fetchUnit(int page) async {
+    await unitVM.fetchUnit(page, currentUser.value?.id ?? "");
   }
 
   @override

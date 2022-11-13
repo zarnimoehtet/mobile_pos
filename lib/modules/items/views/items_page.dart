@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/constants/colors.dart';
+import '../../../core/utils/my_p_o_s_icons.dart';
 import '../../home/views/home_page.dart';
 import '../controllers/items_controller.dart';
 import 'category_list_page.dart';
-import 'discount_list_page.dart';
+import 'unit_list_page.dart';
 import 'items_list_page.dart';
 
 class ItemsPage extends GetView<ItemsController> {
@@ -26,15 +27,15 @@ class ItemsPage extends GetView<ItemsController> {
           Get.toNamed(
               HomePage.route + ItemsPage.route + CategoryListPage.route);
         }),
-        itemsInputCard(Icons.discount_outlined, "Discounts", () {
-          Get.toNamed(
-              HomePage.route + ItemsPage.route + DiscountListPage.route);
-        }),
+        itemsInputCard(Icons.interests_outlined, "Units", () {
+          Get.toNamed(HomePage.route + ItemsPage.route + UnitListPage.route);
+        }, isIcon: false, image: "assets/images/weight.png"),
       ],
     ));
   }
 
-  Widget itemsInputCard(IconData icon, String name, Function() onClick) {
+  Widget itemsInputCard(IconData icon, String name, Function() onClick,
+      {bool isIcon = true, String image = ""}) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
@@ -48,11 +49,17 @@ class ItemsPage extends GetView<ItemsController> {
           padding: const EdgeInsets.all(10),
           child: Row(
             children: [
-              Icon(
-                icon,
-                size: 30,
-                color: POSColor.primaryColorDark,
-              ),
+              isIcon
+                  ? Icon(
+                      icon,
+                      size: 30,
+                      color: POSColor.primaryColorDark,
+                    )
+                  : Image.asset(
+                      image,
+                      width: 39,
+                      height: 30,
+                    ),
               const SizedBox(width: 20),
               Text(
                 name,

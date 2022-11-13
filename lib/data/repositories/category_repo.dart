@@ -47,6 +47,12 @@ class CategoryRepositoryImpl implements CategoryRepository {
       }
       await local.saveCategory(response.categoryList);
       return local.getAllCategory(ownerId);
+    } else if (response is CategoryListResponseFail) {
+      if (response.categoryList.isEmpty) {
+        await local.clearCategory();
+      }
+      await local.saveCategory(response.categoryList);
+      return local.getAllCategory(ownerId);
     } else {
       throw response.message ?? "";
     }

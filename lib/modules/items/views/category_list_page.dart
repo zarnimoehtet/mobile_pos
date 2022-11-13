@@ -16,6 +16,7 @@ class CategoryListPage extends GetView<ItemsController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.fetchCategory(0);
     return Scaffold(
         appBar: AppBar(
           title: const Text("Categories"),

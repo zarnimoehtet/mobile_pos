@@ -29,8 +29,7 @@ import 'auth/views/login_page.dart';
 import 'home/views/home_page.dart';
 import 'items/views/category_add_page.dart';
 import 'items/views/category_list_page.dart';
-import 'items/views/discount_add_page.dart';
-import 'items/views/discount_list_page.dart';
+import 'items/views/unit_list_page.dart';
 import 'items/views/item_add_page.dart';
 import 'items/views/items_list_page.dart';
 import 'items/views/items_page.dart';
@@ -112,19 +111,14 @@ class AppRoutes {
                       page: () => const CategoryListPage(),
                     ),
                     GetPage(
-                      name: DiscountListPage.route,
+                      name: UnitListPage.route,
                       binding: ItemsBinding(),
-                      page: () => const DiscountListPage(),
+                      page: () => const UnitListPage(),
                     ),
                     GetPage(
                       name: CategoryAddPage.route,
                       binding: ItemsBinding(),
                       page: () => const CategoryAddPage(),
-                    ),
-                    GetPage(
-                      name: DiscountAddPage.route,
-                      binding: ItemsBinding(),
-                      page: () => const DiscountAddPage(),
                     ),
                     GetPage(
                       name: ItemAddPage.route,

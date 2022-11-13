@@ -46,4 +46,8 @@ main() async {
   test("Category Delete Test", () async {
     await apiService.deleteCategory("635ca21247b22b2bda690f2a");
   });
+
+  test("Unit List Test", () async {
+    await apiService.loadUnitList(ownerid: "635abf9647b22b2bda690829");
+  });
 }

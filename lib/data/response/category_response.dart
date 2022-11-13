@@ -10,6 +10,7 @@ class CategoryListResponse with _$CategoryListResponse {
   const factory CategoryListResponse.FAIL(
     String status,
     String? message,
+    @JsonKey(name: "data") List<Category> categoryList,
   ) = CategoryListResponseFail;
   const factory CategoryListResponse.ERROR(
     String status,

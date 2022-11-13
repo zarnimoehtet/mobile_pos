@@ -3,6 +3,7 @@ import 'package:mobile_pos/data/request/employee_add_request.dart';
 import 'package:mobile_pos/data/response/category_response.dart';
 import 'package:mobile_pos/data/response/employee_response.dart';
 import 'package:mobile_pos/data/response/item_response.dart';
+import 'package:mobile_pos/data/response/unit_response.dart';
 import 'package:retrofit/retrofit.dart' as retrofit;
 
 import '../../request/category_add_request.dart';
@@ -69,4 +70,10 @@ abstract class APIService {
 
   @retrofit.DELETE("/api/product_item/{id}")
   Future<ItemDeleteResponse> deleteItem(@retrofit.Path() String id);
+
+  @retrofit.GET("/api/units")
+  Future<UnitListResponse> loadUnitList({
+    @retrofit.Query("status") bool? status = true,
+    @retrofit.Query("ownerid") String? ownerid,
+  });
 }

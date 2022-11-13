@@ -1,6 +1,8 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobile_pos/data/model/category.dart';
 import 'package:mobile_pos/data/model/employee.dart';
+import 'package:mobile_pos/data/model/item.dart';
+import 'package:mobile_pos/data/model/unit.dart';
 import 'package:mobile_pos/data/model/user.dart';
 
 class HiveUtils {
@@ -13,6 +15,11 @@ class HiveUtils {
     _register<Owner>(4, OwnerAdapter());
     _register<CategoryItem>(5, CategoryItemAdapter());
     _register<EmployeeItem>(6, EmployeeItemAdapter());
+    _register<Item>(7, ItemAdapter());
+    _register<Presentation>(8, PresentationAdapter());
+    _register<ItemRes>(9, ItemResAdapter());
+    _register<Unit>(10, UnitAdapter());
+    _register<UnitItem>(11, UnitItemAdapter());
   }
 }
 

@@ -19,6 +19,7 @@ class POSTranslation extends Translations {
           "cancel": "Cancel",
           "logout": "Logout",
           "ask_delete_employee": 'Are you sure to delete "@valve"?',
+          "no_unit_found": "No unit found",
         },
         "my_MM": {
           "inactive_user": "Your account was deleted",
@@ -36,6 +37,7 @@ class POSTranslation extends Translations {
           "cancel": "Cancel",
           "logout": "Logout",
           "ask_delete_employee": 'Are you sure to delete "@valve"?',
+          "no_unit_found": "No unit found",
         }
       };
 }

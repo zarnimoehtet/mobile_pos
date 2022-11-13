@@ -130,12 +130,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Pyidaungsu
-  #     fonts:
-  #       - asset: assets/fonts/Pyidaungsu-2.5_Regular.ttf
-  #       - asset: assets/fonts/Pyidaungsu-2.5_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: MyPOSIcons
+      fonts:
+        - asset: assets/fonts/MyPOS.ttf
 
   #
   # For details regarding fonts from package dependencies,
