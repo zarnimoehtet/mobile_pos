@@ -59,8 +59,8 @@ class CategoryViewModel {
   late Stream<MyState<CategoryItem>> addCategoryStream;
   StreamSubscription? _addCategorySubscription;
 
-  void addNewCategory(
-      String ownerId, String name, String desc, String color) async {
+  void addNewCategory(String ownerId, String name, String desc, String color,
+      bool status) async {
     _addCategoryStateController.sink.add(MyState.loading());
 
     if (name.isEmpty) {
@@ -69,7 +69,7 @@ class CategoryViewModel {
     } else {
       try {
         var addNewCategory =
-            CategoryAddRequest(ownerId, name, color, desc, true);
+            CategoryAddRequest(ownerId, name, color, desc, status);
         _addCategorySubscription?.cancel();
         _addCategorySubscription = _categoryRepository
             .addCategory(addNewCategory)
@@ -91,9 +91,9 @@ class CategoryViewModel {
   late Stream<MyState<CategoryItem>> editCategoryStream;
   StreamSubscription? _editCategorySubscription;
 
-  void editCategory(
-      String id, String ownerId, String name, String desc, String color) async {
-    var req = CategoryAddRequest(ownerId, name, color, desc, true);
+  void editCategory(String id, String ownerId, String name, String desc,
+      String color, bool status) async {
+    var req = CategoryAddRequest(ownerId, name, color, desc, status);
     try {
       _editCategoryStateController.sink.add(MyState.loading());
       await _editCategorySubscription?.cancel();

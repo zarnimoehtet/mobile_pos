@@ -30,8 +30,7 @@ class LocalUnitServiceImpl implements LocalUnitService {
   List<Unit> _filterAndSort() {
     var b = Hive.box<Unit>("unit");
     var list = b.values.toList();
-    list.sort(
-        ((a, b) => a.name!.toLowerCase().compareTo(b.name!.toLowerCase())));
+    list.sort((a, b) => a.createdAt!.compareTo(b.createdAt!));
     return list;
   }
 
@@ -56,7 +55,7 @@ class LocalUnitServiceImpl implements LocalUnitService {
         .values
         .where((element) => element.owner?.id == ownerId)
         .toList();
-    list.sort((a, b) => a.name!.toLowerCase().compareTo(b.name!.toLowerCase()));
+    list.sort((a, b) => a.createdAt!.compareTo(b.createdAt!));
     return list;
   }
 

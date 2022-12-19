@@ -14,7 +14,7 @@ class HomeController extends GetxController {
     _subscribeCurrentEmp();
     _subscribeEmpLogoutState();
   }
-  RxInt tabIndex = RxInt(0);
+  RxInt tabIndex = RxInt(1);
   Rxn<User> currentUser = Rxn<User>();
   Rxn<Employee> currentEmp = Rxn<Employee>();
   final ProfileViewModel profileVM = Get.find();

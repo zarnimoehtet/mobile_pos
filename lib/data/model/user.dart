@@ -21,6 +21,11 @@ class User with _$User {
     @JsonKey(name: "updated_at") @HiveField(10) String? updatedAt,
     @JsonKey(name: "__v") @HiveField(11) int? version,
     @JsonKey(name: "shop") @HiveField(12) Shop? shop,
+    @JsonKey(name: "address") @HiveField(13) String? address,
+    @JsonKey(name: "cityid") @HiveField(14) String? cityId,
+    @JsonKey(name: "email") @HiveField(15) String? email,
+    @JsonKey(name: "ownertype") @HiveField(16) String? ownerType,
+    @JsonKey(name: "phone") @HiveField(17) String? phone,
   ) = _User;
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

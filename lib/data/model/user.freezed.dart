@@ -59,6 +59,21 @@ mixin _$User {
   @JsonKey(name: "shop")
   @HiveField(12)
   Shop? get shop => throw _privateConstructorUsedError;
+  @JsonKey(name: "address")
+  @HiveField(13)
+  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: "cityid")
+  @HiveField(14)
+  String? get cityId => throw _privateConstructorUsedError;
+  @JsonKey(name: "email")
+  @HiveField(15)
+  String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: "ownertype")
+  @HiveField(16)
+  String? get ownerType => throw _privateConstructorUsedError;
+  @JsonKey(name: "phone")
+  @HiveField(17)
+  String? get phone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -82,7 +97,12 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: "created_at") @HiveField(9) String? createdAt,
       @JsonKey(name: "updated_at") @HiveField(10) String? updatedAt,
       @JsonKey(name: "__v") @HiveField(11) int? version,
-      @JsonKey(name: "shop") @HiveField(12) Shop? shop});
+      @JsonKey(name: "shop") @HiveField(12) Shop? shop,
+      @JsonKey(name: "address") @HiveField(13) String? address,
+      @JsonKey(name: "cityid") @HiveField(14) String? cityId,
+      @JsonKey(name: "email") @HiveField(15) String? email,
+      @JsonKey(name: "ownertype") @HiveField(16) String? ownerType,
+      @JsonKey(name: "phone") @HiveField(17) String? phone});
 
   $ShopCopyWith<$Res>? get shop;
 }
@@ -110,6 +130,11 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? updatedAt = freezed,
     Object? version = freezed,
     Object? shop = freezed,
+    Object? address = freezed,
+    Object? cityId = freezed,
+    Object? email = freezed,
+    Object? ownerType = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_value.copyWith(
       theme: theme == freezed
@@ -164,6 +189,26 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
               as Shop?,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cityId: cityId == freezed
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerType: ownerType == freezed
+          ? _value.ownerType
+          : ownerType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -197,7 +242,12 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: "created_at") @HiveField(9) String? createdAt,
       @JsonKey(name: "updated_at") @HiveField(10) String? updatedAt,
       @JsonKey(name: "__v") @HiveField(11) int? version,
-      @JsonKey(name: "shop") @HiveField(12) Shop? shop});
+      @JsonKey(name: "shop") @HiveField(12) Shop? shop,
+      @JsonKey(name: "address") @HiveField(13) String? address,
+      @JsonKey(name: "cityid") @HiveField(14) String? cityId,
+      @JsonKey(name: "email") @HiveField(15) String? email,
+      @JsonKey(name: "ownertype") @HiveField(16) String? ownerType,
+      @JsonKey(name: "phone") @HiveField(17) String? phone});
 
   @override
   $ShopCopyWith<$Res>? get shop;
@@ -227,6 +277,11 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? updatedAt = freezed,
     Object? version = freezed,
     Object? shop = freezed,
+    Object? address = freezed,
+    Object? cityId = freezed,
+    Object? email = freezed,
+    Object? ownerType = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_$_User(
       theme == freezed
@@ -281,6 +336,26 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
               as Shop?,
+      address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cityId == freezed
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerType == freezed
+          ? _value.ownerType
+          : ownerType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -302,7 +377,12 @@ class _$_User implements _User {
       @JsonKey(name: "created_at") @HiveField(9) this.createdAt,
       @JsonKey(name: "updated_at") @HiveField(10) this.updatedAt,
       @JsonKey(name: "__v") @HiveField(11) this.version,
-      @JsonKey(name: "shop") @HiveField(12) this.shop)
+      @JsonKey(name: "shop") @HiveField(12) this.shop,
+      @JsonKey(name: "address") @HiveField(13) this.address,
+      @JsonKey(name: "cityid") @HiveField(14) this.cityId,
+      @JsonKey(name: "email") @HiveField(15) this.email,
+      @JsonKey(name: "ownertype") @HiveField(16) this.ownerType,
+      @JsonKey(name: "phone") @HiveField(17) this.phone)
       : _employees = employees;
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -366,10 +446,30 @@ class _$_User implements _User {
   @JsonKey(name: "shop")
   @HiveField(12)
   final Shop? shop;
+  @override
+  @JsonKey(name: "address")
+  @HiveField(13)
+  final String? address;
+  @override
+  @JsonKey(name: "cityid")
+  @HiveField(14)
+  final String? cityId;
+  @override
+  @JsonKey(name: "email")
+  @HiveField(15)
+  final String? email;
+  @override
+  @JsonKey(name: "ownertype")
+  @HiveField(16)
+  final String? ownerType;
+  @override
+  @JsonKey(name: "phone")
+  @HiveField(17)
+  final String? phone;
 
   @override
   String toString() {
-    return 'User(theme: $theme, employees: $employees, status: $status, id: $id, logo: $logo, userName: $userName, password: $password, mobilePassword: $mobilePassword, role: $role, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, shop: $shop)';
+    return 'User(theme: $theme, employees: $employees, status: $status, id: $id, logo: $logo, userName: $userName, password: $password, mobilePassword: $mobilePassword, role: $role, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, shop: $shop, address: $address, cityId: $cityId, email: $email, ownerType: $ownerType, phone: $phone)';
   }
 
   @override
@@ -391,7 +491,12 @@ class _$_User implements _User {
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
             const DeepCollectionEquality().equals(other.version, version) &&
-            const DeepCollectionEquality().equals(other.shop, shop));
+            const DeepCollectionEquality().equals(other.shop, shop) &&
+            const DeepCollectionEquality().equals(other.address, address) &&
+            const DeepCollectionEquality().equals(other.cityId, cityId) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.ownerType, ownerType) &&
+            const DeepCollectionEquality().equals(other.phone, phone));
   }
 
   @JsonKey(ignore: true)
@@ -410,7 +515,12 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(updatedAt),
       const DeepCollectionEquality().hash(version),
-      const DeepCollectionEquality().hash(shop));
+      const DeepCollectionEquality().hash(shop),
+      const DeepCollectionEquality().hash(address),
+      const DeepCollectionEquality().hash(cityId),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(ownerType),
+      const DeepCollectionEquality().hash(phone));
 
   @JsonKey(ignore: true)
   @override
@@ -465,7 +575,22 @@ abstract class _User implements User {
           final int? version,
       @JsonKey(name: "shop")
       @HiveField(12)
-          final Shop? shop) = _$_User;
+          final Shop? shop,
+      @JsonKey(name: "address")
+      @HiveField(13)
+          final String? address,
+      @JsonKey(name: "cityid")
+      @HiveField(14)
+          final String? cityId,
+      @JsonKey(name: "email")
+      @HiveField(15)
+          final String? email,
+      @JsonKey(name: "ownertype")
+      @HiveField(16)
+          final String? ownerType,
+      @JsonKey(name: "phone")
+      @HiveField(17)
+          final String? phone) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -521,6 +646,26 @@ abstract class _User implements User {
   @JsonKey(name: "shop")
   @HiveField(12)
   Shop? get shop;
+  @override
+  @JsonKey(name: "address")
+  @HiveField(13)
+  String? get address;
+  @override
+  @JsonKey(name: "cityid")
+  @HiveField(14)
+  String? get cityId;
+  @override
+  @JsonKey(name: "email")
+  @HiveField(15)
+  String? get email;
+  @override
+  @JsonKey(name: "ownertype")
+  @HiveField(16)
+  String? get ownerType;
+  @override
+  @JsonKey(name: "phone")
+  @HiveField(17)
+  String? get phone;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

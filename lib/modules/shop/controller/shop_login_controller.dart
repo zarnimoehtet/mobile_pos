@@ -26,6 +26,7 @@ class ShopLoginController extends GetxController {
   ShopLoginController() {
     _subscribeCurrentUser();
     _subscribeLoginState();
+    _fetchEmp();
     _subscribeCurrentEmp();
     _subscribeEmployees();
     _subscribeLogoutState();
@@ -41,6 +42,10 @@ class ShopLoginController extends GetxController {
 
   _subscribeCurrentUser() {
     currentUser.value = profileVM.currentUser;
+  }
+
+  _fetchEmp() {
+    empVM.fetchEmployees(0, currentUser.value?.id ?? "");
   }
 
   void _subscribeEmployees() {

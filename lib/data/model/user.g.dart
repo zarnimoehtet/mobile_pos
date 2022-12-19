@@ -30,13 +30,18 @@ class UserAdapter extends TypeAdapter<_$_User> {
       fields[10] as String?,
       fields[11] as int?,
       fields[12] as Shop?,
+      fields[13] as String?,
+      fields[14] as String?,
+      fields[15] as String?,
+      fields[16] as String?,
+      fields[17] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_User obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(18)
       ..writeByte(0)
       ..write(obj.theme)
       ..writeByte(2)
@@ -61,6 +66,16 @@ class UserAdapter extends TypeAdapter<_$_User> {
       ..write(obj.version)
       ..writeByte(12)
       ..write(obj.shop)
+      ..writeByte(13)
+      ..write(obj.address)
+      ..writeByte(14)
+      ..write(obj.cityId)
+      ..writeByte(15)
+      ..write(obj.email)
+      ..writeByte(16)
+      ..write(obj.ownerType)
+      ..writeByte(17)
+      ..write(obj.phone)
       ..writeByte(1)
       ..write(obj.employees);
   }
@@ -226,6 +241,11 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       json['shop'] == null
           ? null
           : Shop.fromJson(json['shop'] as Map<String, dynamic>),
+      json['address'] as String?,
+      json['cityid'] as String?,
+      json['email'] as String?,
+      json['ownertype'] as String?,
+      json['phone'] as String?,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -242,6 +262,11 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'updated_at': instance.updatedAt,
       '__v': instance.version,
       'shop': instance.shop,
+      'address': instance.address,
+      'cityid': instance.cityId,
+      'email': instance.email,
+      'ownertype': instance.ownerType,
+      'phone': instance.phone,
     };
 
 _$_Employee _$$_EmployeeFromJson(Map<String, dynamic> json) => _$_Employee(

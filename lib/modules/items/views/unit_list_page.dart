@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_pos/core/constants/colors.dart';
 import 'package:mobile_pos/modules/items/controllers/items_controller.dart';
+import 'package:mobile_pos/modules/items/views/items_page.dart';
+import 'package:mobile_pos/modules/items/views/unit_add_page.dart';
 import '../../../data/model/unit.dart';
 import '../../home/views/home_page.dart';
-import 'items_page.dart';
 
 class UnitListPage extends GetView<ItemsController> {
   static const String route = "/unit_list";
@@ -20,8 +21,9 @@ class UnitListPage extends GetView<ItemsController> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Get.toNamed(
-            //     HomePage.route + ItemsPage.route + DiscountAddPage.route);
+            controller.editUnit.value = null;
+            controller.isEditUnit.value = false;
+            Get.toNamed(HomePage.route + ItemsPage.route + UnitAddPage.route);
           },
           backgroundColor: POSColor.primaryColorDark,
           child: const Icon(
@@ -45,7 +47,8 @@ class UnitListPage extends GetView<ItemsController> {
               return Container(
                 width: MediaQuery.of(context).size.width,
                 alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(vertical: 40),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
                 child: Text(
                   controller.error.value.toString(),
                   textAlign: TextAlign.center,
@@ -53,6 +56,7 @@ class UnitListPage extends GetView<ItemsController> {
               );
             } else {
               return ListView.builder(
+                controller: controller.unitScrollController,
                 itemCount: controller.unitList.length,
                 itemBuilder: (context, index) {
                   return unitItems(controller.unitList[index]);
@@ -68,15 +72,22 @@ class UnitListPage extends GetView<ItemsController> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 5),
         child: ListTile(
+          onTap: () {
+            controller.editUnit.value = unit;
+            controller.isEditUnit.value = true;
+            Get.toNamed(HomePage.route + ItemsPage.route + UnitAddPage.route);
+          },
           title: Text(
             unit.name ?? "",
-            style: const TextStyle(color: POSColor.textColor, fontSize: 16),
+            style:
+                const TextStyle(color: POSColor.primaryColorDark, fontSize: 16),
           ),
           subtitle: Text(
             unit.desc ?? "",
-            style: const TextStyle(color: POSColor.textColor, fontSize: 12),
+            style:
+                const TextStyle(color: POSColor.primaryColorDark, fontSize: 12),
           ),
         ));
   }

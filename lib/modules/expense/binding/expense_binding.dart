@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:mobile_pos/modules/expense/ui/controller/expense_controller.dart';
+import 'package:mobile_pos/modules/expense/controller/expense_controller.dart';
 
 class ExpenseBinding extends Bindings {
   @override

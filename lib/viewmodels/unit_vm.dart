@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:mobile_pos/data/model/unit.dart';
 import 'package:mobile_pos/data/repositories/unit_repo.dart';
+import 'package:mobile_pos/data/request/unit_add_resquest.dart';
 
 import '../core/helpers/state.dart';
 import '../core/helpers/throwif.dart';
@@ -12,11 +13,11 @@ class UnitViewModel {
   static final UnitViewModel _singleton = UnitViewModel._internal();
   factory UnitViewModel() => _singleton;
   UnitViewModel._internal() {
-    // addCategoryStream = _addCategoryStateController.stream;
+    addUnitStream = _addUnitStateController.stream;
     unitListStream = _unitListController.stream;
     fetchUnitStream = _fetchUnitController.stream;
-    // editCategoryStream = _editCategoryStateController.stream;
-    // deleteCategoryStateStream = _deleteCategoryStateController.stream;
+    editUnitStream = _editUnitStateController.stream;
+    deleteUnitStateStream = _deleteUnitStateController.stream;
   }
 
   final UnitRepository _unitRepository = Get.find();
@@ -52,76 +53,79 @@ class UnitViewModel {
     }
   }
 
-//   //ADD NEW
-//   final StreamController<MyState<CategoryItem>> _addCategoryStateController =
-//       StreamController<MyState<CategoryItem>>.broadcast();
-//   late Stream<MyState<CategoryItem>> addCategoryStream;
-//   StreamSubscription? _addCategorySubscription;
+  //ADD NEW
+  final StreamController<MyState<UnitItem>> _addUnitStateController =
+      StreamController<MyState<UnitItem>>.broadcast();
+  late Stream<MyState<UnitItem>> addUnitStream;
+  StreamSubscription? _addUnitSubscription;
 
-//   void addNewCategory(
-//       String ownerId, String name, String desc, String color) async {
-//     _addCategoryStateController.sink.add(MyState.loading());
+  void addNewUnit(
+      String ownerId, String name, String desc, String status) async {
+    _addUnitStateController.sink.add(MyState.loading());
 
-//     if (name.isEmpty) {
-//       _addCategoryStateController.sink
-//           .add(MyState.failed("enter_category_name".tr));
-//     } else {
-//       try {
-//         var addNewCategory =
-//             CategoryAddRequest(ownerId, name, color, desc, true);
-//         _addCategorySubscription?.cancel();
-//         _addCategorySubscription = _categoryRepository
-//             .addCategory(addNewCategory)
-//             .handleError(
-//                 (e) => _addCategoryStateController.sink.add(MyState.failed(e)))
-//             .listen((cate) =>
-//                 _addCategoryStateController.sink.add(MyState.success(cate)));
-//       } on DioError catch (e) {
-//         _addCategoryStateController.sink.add(MyState.failed(e.message));
-//       } catch (e) {
-//         _addCategoryStateController.sink.add(MyState.failed(e));
-//       }
-//     }
-//   }
+    if (name.isEmpty) {
+      _addUnitStateController.sink.add(MyState.failed("enter_unit_name".tr));
+    } else {
+      try {
+        var addNewUnit = UnitAddRequest(ownerId, name, desc, status);
+        _addUnitSubscription?.cancel();
+        _addUnitSubscription = _unitRepository
+            .addUnit(addNewUnit)
+            .handleError(
+                (e) => _addUnitStateController.sink.add(MyState.failed(e)))
+            .listen((cate) =>
+                _addUnitStateController.sink.add(MyState.success(cate)));
+      } on DioError catch (e) {
+        _addUnitStateController.sink.add(MyState.failed(e.message));
+      } catch (e) {
+        _addUnitStateController.sink.add(MyState.failed(e));
+      }
+    }
+  }
 
-// //UPDATE
-//   final StreamController<MyState<CategoryItem>> _editCategoryStateController =
-//       StreamController<MyState<CategoryItem>>.broadcast();
-//   late Stream<MyState<CategoryItem>> editCategoryStream;
-//   StreamSubscription? _editCategorySubscription;
+//UPDATE
+  final StreamController<MyState<UnitItem>> _editUnitStateController =
+      StreamController<MyState<UnitItem>>.broadcast();
+  late Stream<MyState<UnitItem>> editUnitStream;
+  StreamSubscription? _editUnitSubscription;
 
-//   void editCategory(
-//       String id, String ownerId, String name, String desc, String color) async {
-//     var req = CategoryAddRequest(ownerId, name, color, desc, true);
-//     try {
-//       _editCategoryStateController.sink.add(MyState.loading());
-//       await _editCategorySubscription?.cancel();
-//       _editCategorySubscription = _categoryRepository
-//           .updateCategory(id, req)
-//           .handleError((error) =>
-//               _editCategoryStateController.sink.add(MyState.failed(error)))
-//           .listen((cate) =>
-//               _editCategoryStateController.sink.add(MyState.success(cate)));
-//     } catch (e) {
-//       _editCategoryStateController.sink.add(MyState.failed(e));
-//     }
-//   }
+  void editUnit(
+    String id,
+    String ownerId,
+    String name,
+    String desc,
+    String status,
+  ) async {
+    var req = UnitAddRequest(ownerId, name, desc, status);
+    try {
+      _editUnitStateController.sink.add(MyState.loading());
+      await _editUnitSubscription?.cancel();
+      _editUnitSubscription = _unitRepository
+          .updateUnit(id, req)
+          .handleError((error) =>
+              _editUnitStateController.sink.add(MyState.failed(error)))
+          .listen((cate) =>
+              _editUnitStateController.sink.add(MyState.success(cate)));
+    } catch (e) {
+      _editUnitStateController.sink.add(MyState.failed(e));
+    }
+  }
 
-// //DELETE
-//   final StreamController<MyState<bool>> _deleteCategoryStateController =
-//       StreamController<MyState<bool>>.broadcast();
-//   late Stream<MyState<bool>> deleteCategoryStateStream;
+//DELETE
+  final StreamController<MyState<bool>> _deleteUnitStateController =
+      StreamController<MyState<bool>>.broadcast();
+  late Stream<MyState<bool>> deleteUnitStateStream;
 
-//   void deleteCategory(String id) {
-//     _deleteCategoryStateController.sink.add(MyState.loading());
-//     _categoryRepository.deleteCategory(id).then((_) {
-//       _deleteCategoryStateController.sink.add(MyState.success(true));
-//     }).catchError((e) {
-//       if (e is DioError) {
-//         _deleteCategoryStateController.sink.add(MyState.failed(e.message));
-//       } else {
-//         _deleteCategoryStateController.sink.add(MyState.failed(e.toString()));
-//       }
-//     });
-//   }
+  void deleteUnit(String id) {
+    _deleteUnitStateController.sink.add(MyState.loading());
+    _unitRepository.deleteUnit(id).then((_) {
+      _deleteUnitStateController.sink.add(MyState.success(true));
+    }).catchError((e) {
+      if (e is DioError) {
+        _deleteUnitStateController.sink.add(MyState.failed(e.message));
+      } else {
+        _deleteUnitStateController.sink.add(MyState.failed(e.toString()));
+      }
+    });
+  }
 }

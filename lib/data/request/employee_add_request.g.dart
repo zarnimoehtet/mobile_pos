@@ -16,6 +16,11 @@ _$_EmployeeRequest _$$_EmployeeRequestFromJson(Map<String, dynamic> json) =>
       json['status'] as String?,
       json['ownerid'] as String?,
       json['pincode'] as String?,
+      json['nrc'] as String?,
+      json['father_name'] as String?,
+      json['dob'] as String?,
+      json['daily_percent'] as int?,
+      json['salary'] as int?,
     );
 
 Map<String, dynamic> _$$_EmployeeRequestToJson(_$_EmployeeRequest instance) =>
@@ -28,4 +33,9 @@ Map<String, dynamic> _$$_EmployeeRequestToJson(_$_EmployeeRequest instance) =>
       'status': instance.status,
       'ownerid': instance.ownerId,
       'pincode': instance.pincode,
+      'nrc': instance.nrc,
+      'father_name': instance.fatherName,
+      'dob': instance.dob,
+      'daily_percent': instance.dailyPercentage,
+      'salary': instance.salary,
     };

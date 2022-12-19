@@ -38,24 +38,24 @@ mixin _$ItemAddRequest {
   String? get discount => throw _privateConstructorUsedError;
   @JsonKey(name: "status")
   String? get status => throw _privateConstructorUsedError;
-  @JsonKey(name: "_id")
-  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "ownerid")
   String? get ownerid => throw _privateConstructorUsedError;
   @JsonKey(name: "name")
   String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: "categoryid")
-  String? get category => throw _privateConstructorUsedError;
+  String? get categoryId => throw _privateConstructorUsedError;
   @JsonKey(name: "sku")
   String? get sku => throw _privateConstructorUsedError;
   @JsonKey(name: "barcode")
   String? get barcode => throw _privateConstructorUsedError;
   @JsonKey(name: "variant")
-  List<String>? get variant => throw _privateConstructorUsedError;
-  @JsonKey(name: "created_at")
-  String? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: "updated_at")
-  String? get updatedAt => throw _privateConstructorUsedError;
+  List<Varient>? get variant => throw _privateConstructorUsedError;
+  @JsonKey(name: "expired_date")
+  String? get expDate => throw _privateConstructorUsedError;
+  @JsonKey(name: "unitid")
+  String? get unitId => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_stock")
+  String? get isStock => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -78,15 +78,15 @@ abstract class $ItemAddRequestCopyWith<$Res> {
       @JsonKey(name: "discount_type") String? discountType,
       @JsonKey(name: "discount") String? discount,
       @JsonKey(name: "status") String? status,
-      @JsonKey(name: "_id") String? id,
       @JsonKey(name: "ownerid") String? ownerid,
       @JsonKey(name: "name") String? name,
-      @JsonKey(name: "categoryid") String? category,
+      @JsonKey(name: "categoryid") String? categoryId,
       @JsonKey(name: "sku") String? sku,
       @JsonKey(name: "barcode") String? barcode,
-      @JsonKey(name: "variant") List<String>? variant,
-      @JsonKey(name: "created_at") String? createdAt,
-      @JsonKey(name: "updated_at") String? updatedAt});
+      @JsonKey(name: "variant") List<Varient>? variant,
+      @JsonKey(name: "expired_date") String? expDate,
+      @JsonKey(name: "unitid") String? unitId,
+      @JsonKey(name: "is_stock") String? isStock});
 
   $PresentationRequestCopyWith<$Res>? get presentation;
 }
@@ -111,15 +111,15 @@ class _$ItemAddRequestCopyWithImpl<$Res>
     Object? discountType = freezed,
     Object? discount = freezed,
     Object? status = freezed,
-    Object? id = freezed,
     Object? ownerid = freezed,
     Object? name = freezed,
-    Object? category = freezed,
+    Object? categoryId = freezed,
     Object? sku = freezed,
     Object? barcode = freezed,
     Object? variant = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? expDate = freezed,
+    Object? unitId = freezed,
+    Object? isStock = freezed,
   }) {
     return _then(_value.copyWith(
       presentation: presentation == freezed
@@ -158,10 +158,6 @@ class _$ItemAddRequestCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
       ownerid: ownerid == freezed
           ? _value.ownerid
           : ownerid // ignore: cast_nullable_to_non_nullable
@@ -170,9 +166,9 @@ class _$ItemAddRequestCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String?,
       sku: sku == freezed
           ? _value.sku
@@ -185,14 +181,18 @@ class _$ItemAddRequestCopyWithImpl<$Res>
       variant: variant == freezed
           ? _value.variant
           : variant // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+              as List<Varient>?,
+      expDate: expDate == freezed
+          ? _value.expDate
+          : expDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      unitId: unitId == freezed
+          ? _value.unitId
+          : unitId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isStock: isStock == freezed
+          ? _value.isStock
+          : isStock // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -226,15 +226,15 @@ abstract class _$$_ItemAddRequestCopyWith<$Res>
       @JsonKey(name: "discount_type") String? discountType,
       @JsonKey(name: "discount") String? discount,
       @JsonKey(name: "status") String? status,
-      @JsonKey(name: "_id") String? id,
       @JsonKey(name: "ownerid") String? ownerid,
       @JsonKey(name: "name") String? name,
-      @JsonKey(name: "categoryid") String? category,
+      @JsonKey(name: "categoryid") String? categoryId,
       @JsonKey(name: "sku") String? sku,
       @JsonKey(name: "barcode") String? barcode,
-      @JsonKey(name: "variant") List<String>? variant,
-      @JsonKey(name: "created_at") String? createdAt,
-      @JsonKey(name: "updated_at") String? updatedAt});
+      @JsonKey(name: "variant") List<Varient>? variant,
+      @JsonKey(name: "expired_date") String? expDate,
+      @JsonKey(name: "unitid") String? unitId,
+      @JsonKey(name: "is_stock") String? isStock});
 
   @override
   $PresentationRequestCopyWith<$Res>? get presentation;
@@ -262,15 +262,15 @@ class __$$_ItemAddRequestCopyWithImpl<$Res>
     Object? discountType = freezed,
     Object? discount = freezed,
     Object? status = freezed,
-    Object? id = freezed,
     Object? ownerid = freezed,
     Object? name = freezed,
-    Object? category = freezed,
+    Object? categoryId = freezed,
     Object? sku = freezed,
     Object? barcode = freezed,
     Object? variant = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? expDate = freezed,
+    Object? unitId = freezed,
+    Object? isStock = freezed,
   }) {
     return _then(_$_ItemAddRequest(
       presentation == freezed
@@ -309,10 +309,6 @@ class __$$_ItemAddRequestCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
       ownerid == freezed
           ? _value.ownerid
           : ownerid // ignore: cast_nullable_to_non_nullable
@@ -321,9 +317,9 @@ class __$$_ItemAddRequestCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+      categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String?,
       sku == freezed
           ? _value.sku
@@ -336,14 +332,18 @@ class __$$_ItemAddRequestCopyWithImpl<$Res>
       variant == freezed
           ? _value._variant
           : variant // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+              as List<Varient>?,
+      expDate == freezed
+          ? _value.expDate
+          : expDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      unitId == freezed
+          ? _value.unitId
+          : unitId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isStock == freezed
+          ? _value.isStock
+          : isStock // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -362,15 +362,15 @@ class _$_ItemAddRequest implements _ItemAddRequest {
       @JsonKey(name: "discount_type") this.discountType,
       @JsonKey(name: "discount") this.discount,
       @JsonKey(name: "status") this.status,
-      @JsonKey(name: "_id") this.id,
       @JsonKey(name: "ownerid") this.ownerid,
       @JsonKey(name: "name") this.name,
-      @JsonKey(name: "categoryid") this.category,
+      @JsonKey(name: "categoryid") this.categoryId,
       @JsonKey(name: "sku") this.sku,
       @JsonKey(name: "barcode") this.barcode,
-      @JsonKey(name: "variant") final List<String>? variant,
-      @JsonKey(name: "created_at") this.createdAt,
-      @JsonKey(name: "updated_at") this.updatedAt)
+      @JsonKey(name: "variant") final List<Varient>? variant,
+      @JsonKey(name: "expired_date") this.expDate,
+      @JsonKey(name: "unitid") this.unitId,
+      @JsonKey(name: "is_stock") this.isStock)
       : _variant = variant;
 
   factory _$_ItemAddRequest.fromJson(Map<String, dynamic> json) =>
@@ -404,9 +404,6 @@ class _$_ItemAddRequest implements _ItemAddRequest {
   @JsonKey(name: "status")
   final String? status;
   @override
-  @JsonKey(name: "_id")
-  final String? id;
-  @override
   @JsonKey(name: "ownerid")
   final String? ownerid;
   @override
@@ -414,17 +411,17 @@ class _$_ItemAddRequest implements _ItemAddRequest {
   final String? name;
   @override
   @JsonKey(name: "categoryid")
-  final String? category;
+  final String? categoryId;
   @override
   @JsonKey(name: "sku")
   final String? sku;
   @override
   @JsonKey(name: "barcode")
   final String? barcode;
-  final List<String>? _variant;
+  final List<Varient>? _variant;
   @override
   @JsonKey(name: "variant")
-  List<String>? get variant {
+  List<Varient>? get variant {
     final value = _variant;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
@@ -432,15 +429,18 @@ class _$_ItemAddRequest implements _ItemAddRequest {
   }
 
   @override
-  @JsonKey(name: "created_at")
-  final String? createdAt;
+  @JsonKey(name: "expired_date")
+  final String? expDate;
   @override
-  @JsonKey(name: "updated_at")
-  final String? updatedAt;
+  @JsonKey(name: "unitid")
+  final String? unitId;
+  @override
+  @JsonKey(name: "is_stock")
+  final String? isStock;
 
   @override
   String toString() {
-    return 'ItemAddRequest(presentation: $presentation, price: $price, cost: $cost, stock: $stock, desc: $desc, isDiscount: $isDiscount, discountType: $discountType, discount: $discount, status: $status, id: $id, ownerid: $ownerid, name: $name, category: $category, sku: $sku, barcode: $barcode, variant: $variant, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ItemAddRequest(presentation: $presentation, price: $price, cost: $cost, stock: $stock, desc: $desc, isDiscount: $isDiscount, discountType: $discountType, discount: $discount, status: $status, ownerid: $ownerid, name: $name, categoryId: $categoryId, sku: $sku, barcode: $barcode, variant: $variant, expDate: $expDate, unitId: $unitId, isStock: $isStock)';
   }
 
   @override
@@ -460,15 +460,16 @@ class _$_ItemAddRequest implements _ItemAddRequest {
                 .equals(other.discountType, discountType) &&
             const DeepCollectionEquality().equals(other.discount, discount) &&
             const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.ownerid, ownerid) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryId, categoryId) &&
             const DeepCollectionEquality().equals(other.sku, sku) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other._variant, _variant) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+            const DeepCollectionEquality().equals(other.expDate, expDate) &&
+            const DeepCollectionEquality().equals(other.unitId, unitId) &&
+            const DeepCollectionEquality().equals(other.isStock, isStock));
   }
 
   @JsonKey(ignore: true)
@@ -484,15 +485,15 @@ class _$_ItemAddRequest implements _ItemAddRequest {
       const DeepCollectionEquality().hash(discountType),
       const DeepCollectionEquality().hash(discount),
       const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(ownerid),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(categoryId),
       const DeepCollectionEquality().hash(sku),
       const DeepCollectionEquality().hash(barcode),
       const DeepCollectionEquality().hash(_variant),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt));
+      const DeepCollectionEquality().hash(expDate),
+      const DeepCollectionEquality().hash(unitId),
+      const DeepCollectionEquality().hash(isStock));
 
   @JsonKey(ignore: true)
   @override
@@ -518,15 +519,15 @@ abstract class _ItemAddRequest implements ItemAddRequest {
       @JsonKey(name: "discount_type") final String? discountType,
       @JsonKey(name: "discount") final String? discount,
       @JsonKey(name: "status") final String? status,
-      @JsonKey(name: "_id") final String? id,
       @JsonKey(name: "ownerid") final String? ownerid,
       @JsonKey(name: "name") final String? name,
-      @JsonKey(name: "categoryid") final String? category,
+      @JsonKey(name: "categoryid") final String? categoryId,
       @JsonKey(name: "sku") final String? sku,
       @JsonKey(name: "barcode") final String? barcode,
-      @JsonKey(name: "variant") final List<String>? variant,
-      @JsonKey(name: "created_at") final String? createdAt,
-      @JsonKey(name: "updated_at") final String? updatedAt) = _$_ItemAddRequest;
+      @JsonKey(name: "variant") final List<Varient>? variant,
+      @JsonKey(name: "expired_date") final String? expDate,
+      @JsonKey(name: "unitid") final String? unitId,
+      @JsonKey(name: "is_stock") final String? isStock) = _$_ItemAddRequest;
 
   factory _ItemAddRequest.fromJson(Map<String, dynamic> json) =
       _$_ItemAddRequest.fromJson;
@@ -559,9 +560,6 @@ abstract class _ItemAddRequest implements ItemAddRequest {
   @JsonKey(name: "status")
   String? get status;
   @override
-  @JsonKey(name: "_id")
-  String? get id;
-  @override
   @JsonKey(name: "ownerid")
   String? get ownerid;
   @override
@@ -569,7 +567,7 @@ abstract class _ItemAddRequest implements ItemAddRequest {
   String? get name;
   @override
   @JsonKey(name: "categoryid")
-  String? get category;
+  String? get categoryId;
   @override
   @JsonKey(name: "sku")
   String? get sku;
@@ -578,13 +576,16 @@ abstract class _ItemAddRequest implements ItemAddRequest {
   String? get barcode;
   @override
   @JsonKey(name: "variant")
-  List<String>? get variant;
+  List<Varient>? get variant;
   @override
-  @JsonKey(name: "created_at")
-  String? get createdAt;
+  @JsonKey(name: "expired_date")
+  String? get expDate;
   @override
-  @JsonKey(name: "updated_at")
-  String? get updatedAt;
+  @JsonKey(name: "unitid")
+  String? get unitId;
+  @override
+  @JsonKey(name: "is_stock")
+  String? get isStock;
   @override
   @JsonKey(ignore: true)
   _$$_ItemAddRequestCopyWith<_$_ItemAddRequest> get copyWith =>

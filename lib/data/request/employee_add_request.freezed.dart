@@ -36,6 +36,16 @@ mixin _$EmployeeRequest {
   String? get ownerId => throw _privateConstructorUsedError;
   @JsonKey(name: "pincode")
   String? get pincode => throw _privateConstructorUsedError;
+  @JsonKey(name: "nrc")
+  String? get nrc => throw _privateConstructorUsedError;
+  @JsonKey(name: "father_name")
+  String? get fatherName => throw _privateConstructorUsedError;
+  @JsonKey(name: "dob")
+  String? get dob => throw _privateConstructorUsedError;
+  @JsonKey(name: "daily_percent")
+  int? get dailyPercentage => throw _privateConstructorUsedError;
+  @JsonKey(name: "salary")
+  int? get salary => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +66,12 @@ abstract class $EmployeeRequestCopyWith<$Res> {
       @JsonKey(name: "description") String? description,
       @JsonKey(name: "status") String? status,
       @JsonKey(name: "ownerid") String? ownerId,
-      @JsonKey(name: "pincode") String? pincode});
+      @JsonKey(name: "pincode") String? pincode,
+      @JsonKey(name: "nrc") String? nrc,
+      @JsonKey(name: "father_name") String? fatherName,
+      @JsonKey(name: "dob") String? dob,
+      @JsonKey(name: "daily_percent") int? dailyPercentage,
+      @JsonKey(name: "salary") int? salary});
 }
 
 /// @nodoc
@@ -78,6 +93,11 @@ class _$EmployeeRequestCopyWithImpl<$Res>
     Object? status = freezed,
     Object? ownerId = freezed,
     Object? pincode = freezed,
+    Object? nrc = freezed,
+    Object? fatherName = freezed,
+    Object? dob = freezed,
+    Object? dailyPercentage = freezed,
+    Object? salary = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -112,6 +132,26 @@ class _$EmployeeRequestCopyWithImpl<$Res>
           ? _value.pincode
           : pincode // ignore: cast_nullable_to_non_nullable
               as String?,
+      nrc: nrc == freezed
+          ? _value.nrc
+          : nrc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fatherName: fatherName == freezed
+          ? _value.fatherName
+          : fatherName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dob: dob == freezed
+          ? _value.dob
+          : dob // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dailyPercentage: dailyPercentage == freezed
+          ? _value.dailyPercentage
+          : dailyPercentage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      salary: salary == freezed
+          ? _value.salary
+          : salary // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -131,7 +171,12 @@ abstract class _$$_EmployeeRequestCopyWith<$Res>
       @JsonKey(name: "description") String? description,
       @JsonKey(name: "status") String? status,
       @JsonKey(name: "ownerid") String? ownerId,
-      @JsonKey(name: "pincode") String? pincode});
+      @JsonKey(name: "pincode") String? pincode,
+      @JsonKey(name: "nrc") String? nrc,
+      @JsonKey(name: "father_name") String? fatherName,
+      @JsonKey(name: "dob") String? dob,
+      @JsonKey(name: "daily_percent") int? dailyPercentage,
+      @JsonKey(name: "salary") int? salary});
 }
 
 /// @nodoc
@@ -155,6 +200,11 @@ class __$$_EmployeeRequestCopyWithImpl<$Res>
     Object? status = freezed,
     Object? ownerId = freezed,
     Object? pincode = freezed,
+    Object? nrc = freezed,
+    Object? fatherName = freezed,
+    Object? dob = freezed,
+    Object? dailyPercentage = freezed,
+    Object? salary = freezed,
   }) {
     return _then(_$_EmployeeRequest(
       name == freezed
@@ -189,6 +239,26 @@ class __$$_EmployeeRequestCopyWithImpl<$Res>
           ? _value.pincode
           : pincode // ignore: cast_nullable_to_non_nullable
               as String?,
+      nrc == freezed
+          ? _value.nrc
+          : nrc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fatherName == freezed
+          ? _value.fatherName
+          : fatherName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dob == freezed
+          ? _value.dob
+          : dob // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dailyPercentage == freezed
+          ? _value.dailyPercentage
+          : dailyPercentage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      salary == freezed
+          ? _value.salary
+          : salary // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -204,7 +274,12 @@ class _$_EmployeeRequest implements _EmployeeRequest {
       @JsonKey(name: "description") this.description,
       @JsonKey(name: "status") this.status,
       @JsonKey(name: "ownerid") this.ownerId,
-      @JsonKey(name: "pincode") this.pincode);
+      @JsonKey(name: "pincode") this.pincode,
+      @JsonKey(name: "nrc") this.nrc,
+      @JsonKey(name: "father_name") this.fatherName,
+      @JsonKey(name: "dob") this.dob,
+      @JsonKey(name: "daily_percent") this.dailyPercentage,
+      @JsonKey(name: "salary") this.salary);
 
   factory _$_EmployeeRequest.fromJson(Map<String, dynamic> json) =>
       _$$_EmployeeRequestFromJson(json);
@@ -233,10 +308,25 @@ class _$_EmployeeRequest implements _EmployeeRequest {
   @override
   @JsonKey(name: "pincode")
   final String? pincode;
+  @override
+  @JsonKey(name: "nrc")
+  final String? nrc;
+  @override
+  @JsonKey(name: "father_name")
+  final String? fatherName;
+  @override
+  @JsonKey(name: "dob")
+  final String? dob;
+  @override
+  @JsonKey(name: "daily_percent")
+  final int? dailyPercentage;
+  @override
+  @JsonKey(name: "salary")
+  final int? salary;
 
   @override
   String toString() {
-    return 'EmployeeRequest(name: $name, email: $email, phone: $phone, role: $role, description: $description, status: $status, ownerId: $ownerId, pincode: $pincode)';
+    return 'EmployeeRequest(name: $name, email: $email, phone: $phone, role: $role, description: $description, status: $status, ownerId: $ownerId, pincode: $pincode, nrc: $nrc, fatherName: $fatherName, dob: $dob, dailyPercentage: $dailyPercentage, salary: $salary)';
   }
 
   @override
@@ -252,7 +342,14 @@ class _$_EmployeeRequest implements _EmployeeRequest {
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
-            const DeepCollectionEquality().equals(other.pincode, pincode));
+            const DeepCollectionEquality().equals(other.pincode, pincode) &&
+            const DeepCollectionEquality().equals(other.nrc, nrc) &&
+            const DeepCollectionEquality()
+                .equals(other.fatherName, fatherName) &&
+            const DeepCollectionEquality().equals(other.dob, dob) &&
+            const DeepCollectionEquality()
+                .equals(other.dailyPercentage, dailyPercentage) &&
+            const DeepCollectionEquality().equals(other.salary, salary));
   }
 
   @JsonKey(ignore: true)
@@ -266,7 +363,12 @@ class _$_EmployeeRequest implements _EmployeeRequest {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(ownerId),
-      const DeepCollectionEquality().hash(pincode));
+      const DeepCollectionEquality().hash(pincode),
+      const DeepCollectionEquality().hash(nrc),
+      const DeepCollectionEquality().hash(fatherName),
+      const DeepCollectionEquality().hash(dob),
+      const DeepCollectionEquality().hash(dailyPercentage),
+      const DeepCollectionEquality().hash(salary));
 
   @JsonKey(ignore: true)
   @override
@@ -290,7 +392,12 @@ abstract class _EmployeeRequest implements EmployeeRequest {
       @JsonKey(name: "description") final String? description,
       @JsonKey(name: "status") final String? status,
       @JsonKey(name: "ownerid") final String? ownerId,
-      @JsonKey(name: "pincode") final String? pincode) = _$_EmployeeRequest;
+      @JsonKey(name: "pincode") final String? pincode,
+      @JsonKey(name: "nrc") final String? nrc,
+      @JsonKey(name: "father_name") final String? fatherName,
+      @JsonKey(name: "dob") final String? dob,
+      @JsonKey(name: "daily_percent") final int? dailyPercentage,
+      @JsonKey(name: "salary") final int? salary) = _$_EmployeeRequest;
 
   factory _EmployeeRequest.fromJson(Map<String, dynamic> json) =
       _$_EmployeeRequest.fromJson;
@@ -319,6 +426,21 @@ abstract class _EmployeeRequest implements EmployeeRequest {
   @override
   @JsonKey(name: "pincode")
   String? get pincode;
+  @override
+  @JsonKey(name: "nrc")
+  String? get nrc;
+  @override
+  @JsonKey(name: "father_name")
+  String? get fatherName;
+  @override
+  @JsonKey(name: "dob")
+  String? get dob;
+  @override
+  @JsonKey(name: "daily_percent")
+  int? get dailyPercentage;
+  @override
+  @JsonKey(name: "salary")
+  int? get salary;
   @override
   @JsonKey(ignore: true)
   _$$_EmployeeRequestCopyWith<_$_EmployeeRequest> get copyWith =>

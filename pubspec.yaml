@@ -50,6 +50,7 @@ dependencies:
   #ICON
   material_design_icons_flutter:
   #OTHER
+  flutter_svg:
   google_fonts:
   logging:
   logger:
@@ -59,8 +60,23 @@ dependencies:
   fl_chart: ^0.55.2
   numeric_keyboard: ^1.1.0
   grouped_list:
+  flutter_image_compress:
+  image_picker:
+  wechat_assets_picker: ^8.1.1
+  permission_handler: ^10.1.0
+  app_settings: ^4.1.8
+  path_provider:
+  collection:
+  dotted_line: ^3.1.0
+  qr_flutter: ^4.0.0
+  screenshot: ^1.2.3
+  open_file: ^3.2.1
+  share_plus:
   #KEYBOARD SHOW/OFF
   flutter_keyboard_visibility:
+  #CALENDAR
+  syncfusion_flutter_datepicker: ^20.2.36
+  intl: ^0.17.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -117,6 +133,7 @@ flutter:
     - assets/fonts/
     - assets/logos/
     - assets/lotties/
+    - assets/svg/
     - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see

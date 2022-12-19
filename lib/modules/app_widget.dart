@@ -33,7 +33,7 @@ class _YHSMultiPOSAppState extends State<YHSMultiPOSApp> {
         initialRoute: AppRoutes.initialRoute,
         getPages: AppRoutes.pages,
         translations: POSTranslation(),
-        locale: Get.locale,
+        locale: Get.locale ?? const Locale("en"),
         fallbackLocale: const Locale("en", "UK"),
         logWriterCallback: (message, {bool isError = false}) =>
             logger.d(message),
@@ -43,14 +43,19 @@ class _YHSMultiPOSAppState extends State<YHSMultiPOSApp> {
               : GoogleFonts.poppins().fontFamily,
           scaffoldBackgroundColor: const Color(0xFFf2f2f2),
           toggleableActiveColor: POSColor.primaryColorDark,
-          appBarTheme: const AppBarTheme(
+          appBarTheme: AppBarTheme(
               backgroundColor: Colors.white,
-              actionsIconTheme: IconThemeData(color: POSColor.primaryColorDark),
+              actionsIconTheme:
+                  const IconThemeData(color: POSColor.primaryColorDark),
               titleTextStyle: TextStyle(
+                fontFamily: Get.locale == const Locale("my", "MM")
+                    ? GoogleFonts.notoSansMyanmar().fontFamily
+                    : GoogleFonts.poppins().fontFamily,
                 color: POSColor.primaryColorDark,
+                fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
-              iconTheme: IconThemeData(color: POSColor.primaryColorDark)),
+              iconTheme: const IconThemeData(color: POSColor.primaryColorDark)),
           primaryColor: POSColor.primaryColorDark,
           colorScheme: const ColorScheme.light().copyWith(
             secondary: POSColor.secondaryColor,

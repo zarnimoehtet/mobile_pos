@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../ui/controllers/receipts_controller.dart';
+import '../controllers/receipts_controller.dart';
 
 class ReceiptsBinding extends Bindings {
   @override

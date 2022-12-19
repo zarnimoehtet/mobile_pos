@@ -24,25 +24,29 @@ class ItemAdapter extends TypeAdapter<_$_Item> {
       fields[4] as String?,
       fields[5] as String?,
       fields[6] as String?,
-      fields[7] as String?,
+      fields[7] as int?,
       fields[8] as bool?,
       fields[9] as String?,
       fields[10] as Owner?,
       fields[11] as String?,
-      fields[12] as Category?,
+      fields[12] as CategoryItem?,
       fields[13] as String?,
       fields[14] as String?,
-      (fields[15] as List?)?.cast<String>(),
+      (fields[15] as List?)?.cast<Varient>(),
       fields[16] as String?,
       fields[17] as String?,
-      fields[19] as int?,
+      fields[18] as String?,
+      fields[19] as UnitItem?,
+      fields[20] as int?,
+      fields[21] as String?,
+      fields[22] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_Item obj) {
     writer
-      ..writeByte(19)
+      ..writeByte(23)
       ..writeByte(0)
       ..write(obj.presentation)
       ..writeByte(1)
@@ -77,8 +81,16 @@ class ItemAdapter extends TypeAdapter<_$_Item> {
       ..write(obj.createdAt)
       ..writeByte(17)
       ..write(obj.updatedAt)
+      ..writeByte(18)
+      ..write(obj.expDate)
       ..writeByte(19)
+      ..write(obj.unit)
+      ..writeByte(20)
       ..write(obj.version)
+      ..writeByte(21)
+      ..write(obj.isStock)
+      ..writeByte(22)
+      ..write(obj.count)
       ..writeByte(15)
       ..write(obj.variant);
   }
@@ -152,7 +164,7 @@ class ItemResAdapter extends TypeAdapter<_$_ItemRes> {
       fields[4] as String?,
       fields[5] as String?,
       fields[6] as String?,
-      fields[7] as String?,
+      fields[7] as int?,
       fields[8] as bool?,
       fields[9] as String?,
       fields[10] as String?,
@@ -160,17 +172,20 @@ class ItemResAdapter extends TypeAdapter<_$_ItemRes> {
       fields[12] as String?,
       fields[13] as String?,
       fields[14] as String?,
-      (fields[15] as List?)?.cast<String>(),
+      (fields[15] as List?)?.cast<Varient>(),
       fields[16] as String?,
       fields[17] as String?,
-      fields[19] as int?,
+      fields[18] as String?,
+      fields[19] as String?,
+      fields[20] as int?,
+      fields[21] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_ItemRes obj) {
     writer
-      ..writeByte(19)
+      ..writeByte(22)
       ..writeByte(0)
       ..write(obj.presentation)
       ..writeByte(1)
@@ -196,7 +211,7 @@ class ItemResAdapter extends TypeAdapter<_$_ItemRes> {
       ..writeByte(11)
       ..write(obj.name)
       ..writeByte(12)
-      ..write(obj.category)
+      ..write(obj.categoryId)
       ..writeByte(13)
       ..write(obj.sku)
       ..writeByte(14)
@@ -205,8 +220,14 @@ class ItemResAdapter extends TypeAdapter<_$_ItemRes> {
       ..write(obj.createdAt)
       ..writeByte(17)
       ..write(obj.updatedAt)
+      ..writeByte(18)
+      ..write(obj.expDate)
       ..writeByte(19)
+      ..write(obj.unitId)
+      ..writeByte(20)
       ..write(obj.version)
+      ..writeByte(21)
+      ..write(obj.isStock)
       ..writeByte(15)
       ..write(obj.variant);
   }
@@ -218,6 +239,46 @@ class ItemResAdapter extends TypeAdapter<_$_ItemRes> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is ItemResAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class VarientAdapter extends TypeAdapter<_$_Varient> {
+  @override
+  final int typeId = 12;
+
+  @override
+  _$_Varient read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return _$_Varient(
+      fields[0] as String?,
+      fields[1] as String?,
+      fields[2] as String?,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, _$_Varient obj) {
+    writer
+      ..writeByte(3)
+      ..writeByte(0)
+      ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.value)
+      ..writeByte(2)
+      ..write(obj.id);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is VarientAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -236,7 +297,7 @@ _$_Item _$$_ItemFromJson(Map<String, dynamic> json) => _$_Item(
       json['description'] as String?,
       json['is_discount'] as String?,
       json['discount_type'] as String?,
-      json['discount'] as String?,
+      json['discount'] as int?,
       json['status'] as bool?,
       json['_id'] as String?,
       json['ownerid'] == null
@@ -245,13 +306,21 @@ _$_Item _$$_ItemFromJson(Map<String, dynamic> json) => _$_Item(
       json['name'] as String?,
       json['categoryid'] == null
           ? null
-          : Category.fromJson(json['categoryid'] as Map<String, dynamic>),
+          : CategoryItem.fromJson(json['categoryid'] as Map<String, dynamic>),
       json['sku'] as String?,
       json['barcode'] as String?,
-      (json['variant'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      (json['variant'] as List<dynamic>?)
+          ?.map((e) => Varient.fromJson(e as Map<String, dynamic>))
+          .toList(),
       json['created_at'] as String?,
       json['updated_at'] as String?,
+      json['expired_date'] as String?,
+      json['unitid'] == null
+          ? null
+          : UnitItem.fromJson(json['unitid'] as Map<String, dynamic>),
       json['__v'] as int?,
+      json['is_stock'] as String?,
+      json['count'] as int?,
     );
 
 Map<String, dynamic> _$$_ItemToJson(_$_Item instance) => <String, dynamic>{
@@ -273,7 +342,11 @@ Map<String, dynamic> _$$_ItemToJson(_$_Item instance) => <String, dynamic>{
       'variant': instance.variant,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
+      'expired_date': instance.expDate,
+      'unitid': instance.unit,
       '__v': instance.version,
+      'is_stock': instance.isStock,
+      'count': instance.count,
     };
 
 _$_Presentation _$$_PresentationFromJson(Map<String, dynamic> json) =>
@@ -304,7 +377,7 @@ _$_ItemRes _$$_ItemResFromJson(Map<String, dynamic> json) => _$_ItemRes(
       json['description'] as String?,
       json['is_discount'] as String?,
       json['discount_type'] as String?,
-      json['discount'] as String?,
+      json['discount'] as int?,
       json['status'] as bool?,
       json['_id'] as String?,
       json['ownerid'] as String?,
@@ -312,10 +385,15 @@ _$_ItemRes _$$_ItemResFromJson(Map<String, dynamic> json) => _$_ItemRes(
       json['categoryid'] as String?,
       json['sku'] as String?,
       json['barcode'] as String?,
-      (json['variant'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      (json['variant'] as List<dynamic>?)
+          ?.map((e) => Varient.fromJson(e as Map<String, dynamic>))
+          .toList(),
       json['created_at'] as String?,
       json['updated_at'] as String?,
+      json['expired_date'] as String?,
+      json['unitid'] as String?,
       json['__v'] as int?,
+      json['is_stock'] as String?,
     );
 
 Map<String, dynamic> _$$_ItemResToJson(_$_ItemRes instance) =>
@@ -332,11 +410,27 @@ Map<String, dynamic> _$$_ItemResToJson(_$_ItemRes instance) =>
       '_id': instance.id,
       'ownerid': instance.ownerid,
       'name': instance.name,
-      'categoryid': instance.category,
+      'categoryid': instance.categoryId,
       'sku': instance.sku,
       'barcode': instance.barcode,
       'variant': instance.variant,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
+      'expired_date': instance.expDate,
+      'unitid': instance.unitId,
       '__v': instance.version,
+      'is_stock': instance.isStock,
+    };
+
+_$_Varient _$$_VarientFromJson(Map<String, dynamic> json) => _$_Varient(
+      json['option_name'] as String?,
+      json['option_value'] as String?,
+      json['_id'] as String?,
+    );
+
+Map<String, dynamic> _$$_VarientToJson(_$_Varient instance) =>
+    <String, dynamic>{
+      'option_name': instance.name,
+      'option_value': instance.value,
+      '_id': instance.id,
     };

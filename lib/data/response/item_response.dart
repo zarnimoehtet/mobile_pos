@@ -22,8 +22,11 @@ class ItemAddResponse with _$ItemAddResponse {
 
 @Freezed(unionKey: "status")
 class ItemListResponse with _$ItemListResponse {
-  const factory ItemListResponse.FAIL(String status, String? message) =
-      ItemListResponseFail;
+  const factory ItemListResponse.FAIL(
+    String status,
+    String? message,
+    @JsonKey(name: "data") List<Item> itemList,
+  ) = ItemListResponseFail;
   const factory ItemListResponse.ERROR(String status, String? message) =
       ItemListResponseError;
   const factory ItemListResponse.SUCCESS(

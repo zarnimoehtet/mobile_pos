@@ -705,7 +705,9 @@ mixin _$ItemListResponse {
   String? get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String status, String? message) FAIL,
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)
+        FAIL,
     required TResult Function(String status, String? message) ERROR,
     required TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)
@@ -714,7 +716,9 @@ mixin _$ItemListResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String status, String? message)? FAIL,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)?
+        FAIL,
     TResult Function(String status, String? message)? ERROR,
     TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)?
@@ -723,7 +727,9 @@ mixin _$ItemListResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String status, String? message)? FAIL,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)?
+        FAIL,
     TResult Function(String status, String? message)? ERROR,
     TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)?
@@ -801,7 +807,10 @@ abstract class _$$ItemListResponseFailCopyWith<$Res>
           $Res Function(_$ItemListResponseFail) then) =
       __$$ItemListResponseFailCopyWithImpl<$Res>;
   @override
-  $Res call({String status, String? message});
+  $Res call(
+      {String status,
+      String? message,
+      @JsonKey(name: "data") List<Item> itemList});
 }
 
 /// @nodoc
@@ -819,6 +828,7 @@ class __$$ItemListResponseFailCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? message = freezed,
+    Object? itemList = freezed,
   }) {
     return _then(_$ItemListResponseFail(
       status == freezed
@@ -829,6 +839,10 @@ class __$$ItemListResponseFailCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      itemList == freezed
+          ? _value._itemList
+          : itemList // ignore: cast_nullable_to_non_nullable
+              as List<Item>,
     ));
   }
 }
@@ -836,7 +850,9 @@ class __$$ItemListResponseFailCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ItemListResponseFail implements ItemListResponseFail {
-  const _$ItemListResponseFail(this.status, this.message);
+  const _$ItemListResponseFail(this.status, this.message,
+      @JsonKey(name: "data") final List<Item> itemList)
+      : _itemList = itemList;
 
   factory _$ItemListResponseFail.fromJson(Map<String, dynamic> json) =>
       _$$ItemListResponseFailFromJson(json);
@@ -845,10 +861,17 @@ class _$ItemListResponseFail implements ItemListResponseFail {
   final String status;
   @override
   final String? message;
+  final List<Item> _itemList;
+  @override
+  @JsonKey(name: "data")
+  List<Item> get itemList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_itemList);
+  }
 
   @override
   String toString() {
-    return 'ItemListResponse.FAIL(status: $status, message: $message)';
+    return 'ItemListResponse.FAIL(status: $status, message: $message, itemList: $itemList)';
   }
 
   @override
@@ -857,7 +880,8 @@ class _$ItemListResponseFail implements ItemListResponseFail {
         (other.runtimeType == runtimeType &&
             other is _$ItemListResponseFail &&
             const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.message, message));
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other._itemList, _itemList));
   }
 
   @JsonKey(ignore: true)
@@ -865,7 +889,8 @@ class _$ItemListResponseFail implements ItemListResponseFail {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(message));
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(_itemList));
 
   @JsonKey(ignore: true)
   @override
@@ -876,31 +901,37 @@ class _$ItemListResponseFail implements ItemListResponseFail {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String status, String? message) FAIL,
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)
+        FAIL,
     required TResult Function(String status, String? message) ERROR,
     required TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)
         SUCCESS,
   }) {
-    return FAIL(status, message);
+    return FAIL(status, message, itemList);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String status, String? message)? FAIL,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)?
+        FAIL,
     TResult Function(String status, String? message)? ERROR,
     TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)?
         SUCCESS,
   }) {
-    return FAIL?.call(status, message);
+    return FAIL?.call(status, message, itemList);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String status, String? message)? FAIL,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)?
+        FAIL,
     TResult Function(String status, String? message)? ERROR,
     TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)?
@@ -908,7 +939,7 @@ class _$ItemListResponseFail implements ItemListResponseFail {
     required TResult orElse(),
   }) {
     if (FAIL != null) {
-      return FAIL(status, message);
+      return FAIL(status, message, itemList);
     }
     return orElse();
   }
@@ -956,8 +987,9 @@ class _$ItemListResponseFail implements ItemListResponseFail {
 }
 
 abstract class ItemListResponseFail implements ItemListResponse {
-  const factory ItemListResponseFail(
-      final String status, final String? message) = _$ItemListResponseFail;
+  const factory ItemListResponseFail(final String status, final String? message,
+          @JsonKey(name: "data") final List<Item> itemList) =
+      _$ItemListResponseFail;
 
   factory ItemListResponseFail.fromJson(Map<String, dynamic> json) =
       _$ItemListResponseFail.fromJson;
@@ -966,6 +998,8 @@ abstract class ItemListResponseFail implements ItemListResponse {
   String get status;
   @override
   String? get message;
+  @JsonKey(name: "data")
+  List<Item> get itemList;
   @override
   @JsonKey(ignore: true)
   _$$ItemListResponseFailCopyWith<_$ItemListResponseFail> get copyWith =>
@@ -1054,7 +1088,9 @@ class _$ItemListResponseError implements ItemListResponseError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String status, String? message) FAIL,
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)
+        FAIL,
     required TResult Function(String status, String? message) ERROR,
     required TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)
@@ -1066,7 +1102,9 @@ class _$ItemListResponseError implements ItemListResponseError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String status, String? message)? FAIL,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)?
+        FAIL,
     TResult Function(String status, String? message)? ERROR,
     TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)?
@@ -1078,7 +1116,9 @@ class _$ItemListResponseError implements ItemListResponseError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String status, String? message)? FAIL,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)?
+        FAIL,
     TResult Function(String status, String? message)? ERROR,
     TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)?
@@ -1252,7 +1292,9 @@ class _$ItemListResponseSuccess implements ItemListResponseSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String status, String? message) FAIL,
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)
+        FAIL,
     required TResult Function(String status, String? message) ERROR,
     required TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)
@@ -1264,7 +1306,9 @@ class _$ItemListResponseSuccess implements ItemListResponseSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String status, String? message)? FAIL,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)?
+        FAIL,
     TResult Function(String status, String? message)? ERROR,
     TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)?
@@ -1276,7 +1320,9 @@ class _$ItemListResponseSuccess implements ItemListResponseSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String status, String? message)? FAIL,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Item> itemList)?
+        FAIL,
     TResult Function(String status, String? message)? ERROR,
     TResult Function(String status, String? message,
             @JsonKey(name: "data") List<Item> itemList)?

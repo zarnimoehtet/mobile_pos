@@ -60,8 +60,20 @@ class EmployeeViewModel {
   late Stream<MyState<Employee>> addEmployeeStream;
   StreamSubscription? _addEmployeeSubscription;
 
-  void addNewEmployee(String ownerId, String name, String desc, String email,
-      String phone, String role, String status, String pincode) async {
+  void addNewEmployee(
+      String ownerId,
+      String name,
+      String desc,
+      String email,
+      String phone,
+      String role,
+      String status,
+      String pincode,
+      String nrc,
+      String dob,
+      String fname,
+      int percent,
+      int salary) async {
     _addEmployeeStateController.sink.add(MyState.loading());
 
     if (name.isEmpty) {
@@ -69,8 +81,8 @@ class EmployeeViewModel {
           .add(MyState.failed("enter_Employee_name".tr));
     } else {
       try {
-        var addNewEmployee = EmployeeRequest(
-            name, email, phone, role, desc, status, ownerId, pincode);
+        var addNewEmployee = EmployeeRequest(name, email, phone, role, desc,
+            status, ownerId, pincode, nrc, fname, dob, percent, salary);
         _addEmployeeSubscription?.cancel();
         _addEmployeeSubscription = _employeeRepository
             .addEmployee(addNewEmployee)
@@ -101,9 +113,14 @@ class EmployeeViewModel {
       String phone,
       String role,
       String status,
-      String pincode) async {
-    var req = EmployeeRequest(
-        name, email, phone, role, desc, status, ownerId, pincode);
+      String pincode,
+      String nrc,
+      String dob,
+      String fname,
+      int percent,
+      int salary) async {
+    var req = EmployeeRequest(name, email, phone, role, desc, status, ownerId,
+        pincode, nrc, fname, dob, percent, salary);
     try {
       _editEmployeeStateController.sink.add(MyState.loading());
       await _editEmployeeSubscription?.cancel();

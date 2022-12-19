@@ -20,15 +20,17 @@ _$_ItemAddRequest _$$_ItemAddRequestFromJson(Map<String, dynamic> json) =>
       json['discount_type'] as String?,
       json['discount'] as String?,
       json['status'] as String?,
-      json['_id'] as String?,
       json['ownerid'] as String?,
       json['name'] as String?,
       json['categoryid'] as String?,
       json['sku'] as String?,
       json['barcode'] as String?,
-      (json['variant'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      json['created_at'] as String?,
-      json['updated_at'] as String?,
+      (json['variant'] as List<dynamic>?)
+          ?.map((e) => Varient.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      json['expired_date'] as String?,
+      json['unitid'] as String?,
+      json['is_stock'] as String?,
     );
 
 Map<String, dynamic> _$$_ItemAddRequestToJson(_$_ItemAddRequest instance) =>
@@ -42,15 +44,15 @@ Map<String, dynamic> _$$_ItemAddRequestToJson(_$_ItemAddRequest instance) =>
       'discount_type': instance.discountType,
       'discount': instance.discount,
       'status': instance.status,
-      '_id': instance.id,
       'ownerid': instance.ownerid,
       'name': instance.name,
-      'categoryid': instance.category,
+      'categoryid': instance.categoryId,
       'sku': instance.sku,
       'barcode': instance.barcode,
       'variant': instance.variant,
-      'created_at': instance.createdAt,
-      'updated_at': instance.updatedAt,
+      'expired_date': instance.expDate,
+      'unitid': instance.unitId,
+      'is_stock': instance.isStock,
     };
 
 _$_PresentationRequest _$$_PresentationRequestFromJson(

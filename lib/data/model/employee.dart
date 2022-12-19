@@ -22,7 +22,12 @@ class EmployeeItem with _$EmployeeItem {
     @JsonKey(name: "pincode") @HiveField(8) String? pincode,
     @JsonKey(name: "created_at") @HiveField(9) String? createdAt,
     @JsonKey(name: "updated_at") @HiveField(10) String? updatedAt,
-    @JsonKey(name: "__v") @HiveField(11) int? version,
+    @JsonKey(name: "father_name") @HiveField(11) String? fatherName,
+    @JsonKey(name: "nrc") @HiveField(12) String? nrc,
+    @JsonKey(name: "salary") @HiveField(13) String? salary,
+    @JsonKey(name: "daily_percent") @HiveField(14) int? dailyPercent,
+    @JsonKey(name: "dob") @HiveField(15) String? dob,
+    @JsonKey(name: "__v") @HiveField(16) int? version,
   ) = _EmployeeItem;
   factory EmployeeItem.fromJson(Map<String, dynamic> json) =>
       _$EmployeeItemFromJson(json);

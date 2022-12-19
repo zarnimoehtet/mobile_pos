@@ -55,6 +55,9 @@ _$ItemListResponseFail _$$ItemListResponseFailFromJson(
     _$ItemListResponseFail(
       json['status'] as String,
       json['message'] as String?,
+      (json['data'] as List<dynamic>)
+          .map((e) => Item.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$ItemListResponseFailToJson(
@@ -62,6 +65,7 @@ Map<String, dynamic> _$$ItemListResponseFailToJson(
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
+      'data': instance.itemList,
     };
 
 _$ItemListResponseError _$$ItemListResponseErrorFromJson(

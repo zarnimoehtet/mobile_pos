@@ -15,6 +15,11 @@ class EmployeeRequest with _$EmployeeRequest {
     @JsonKey(name: "status") String? status,
     @JsonKey(name: "ownerid") String? ownerId,
     @JsonKey(name: "pincode") String? pincode,
+    @JsonKey(name: "nrc") String? nrc,
+    @JsonKey(name: "father_name") String? fatherName,
+    @JsonKey(name: "dob") String? dob,
+    @JsonKey(name: "daily_percent") int? dailyPercentage,
+    @JsonKey(name: "salary") int? salary,
   ) = _EmployeeRequest;
   factory EmployeeRequest.fromJson(Map<String, dynamic> json) =>
       _$EmployeeRequestFromJson(json);

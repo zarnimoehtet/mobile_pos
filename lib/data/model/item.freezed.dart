@@ -43,7 +43,7 @@ mixin _$Item {
   String? get discountType => throw _privateConstructorUsedError;
   @JsonKey(name: "discount")
   @HiveField(7)
-  String? get discount => throw _privateConstructorUsedError;
+  int? get discount => throw _privateConstructorUsedError;
   @JsonKey(name: "status")
   @HiveField(8)
   bool? get status => throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ mixin _$Item {
   String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: "categoryid")
   @HiveField(12)
-  Category? get category => throw _privateConstructorUsedError;
+  CategoryItem? get category => throw _privateConstructorUsedError;
   @JsonKey(name: "sku")
   @HiveField(13)
   String? get sku => throw _privateConstructorUsedError;
@@ -67,16 +67,27 @@ mixin _$Item {
   String? get barcode => throw _privateConstructorUsedError;
   @JsonKey(name: "variant")
   @HiveField(15)
-  List<String>? get variant => throw _privateConstructorUsedError;
+  List<Varient>? get variant => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
   @HiveField(16)
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: "updated_at")
   @HiveField(17)
   String? get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: "__v")
+  @JsonKey(name: "expired_date")
+  @HiveField(18)
+  String? get expDate => throw _privateConstructorUsedError;
+  @JsonKey(name: "unitid")
   @HiveField(19)
+  UnitItem? get unit => throw _privateConstructorUsedError;
+  @JsonKey(name: "__v")
+  @HiveField(20)
   int? get version => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_stock")
+  @HiveField(21)
+  String? get isStock => throw _privateConstructorUsedError;
+  @HiveField(22)
+  int? get count => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -95,22 +106,27 @@ abstract class $ItemCopyWith<$Res> {
       @JsonKey(name: "description") @HiveField(4) String? desc,
       @JsonKey(name: "is_discount") @HiveField(5) String? isDiscount,
       @JsonKey(name: "discount_type") @HiveField(6) String? discountType,
-      @JsonKey(name: "discount") @HiveField(7) String? discount,
+      @JsonKey(name: "discount") @HiveField(7) int? discount,
       @JsonKey(name: "status") @HiveField(8) bool? status,
       @JsonKey(name: "_id") @HiveField(9) String? id,
       @JsonKey(name: "ownerid") @HiveField(10) Owner? owner,
       @JsonKey(name: "name") @HiveField(11) String? name,
-      @JsonKey(name: "categoryid") @HiveField(12) Category? category,
+      @JsonKey(name: "categoryid") @HiveField(12) CategoryItem? category,
       @JsonKey(name: "sku") @HiveField(13) String? sku,
       @JsonKey(name: "barcode") @HiveField(14) String? barcode,
-      @JsonKey(name: "variant") @HiveField(15) List<String>? variant,
+      @JsonKey(name: "variant") @HiveField(15) List<Varient>? variant,
       @JsonKey(name: "created_at") @HiveField(16) String? createdAt,
       @JsonKey(name: "updated_at") @HiveField(17) String? updatedAt,
-      @JsonKey(name: "__v") @HiveField(19) int? version});
+      @JsonKey(name: "expired_date") @HiveField(18) String? expDate,
+      @JsonKey(name: "unitid") @HiveField(19) UnitItem? unit,
+      @JsonKey(name: "__v") @HiveField(20) int? version,
+      @JsonKey(name: "is_stock") @HiveField(21) String? isStock,
+      @HiveField(22) int? count});
 
   $PresentationCopyWith<$Res>? get presentation;
   $OwnerCopyWith<$Res>? get owner;
-  $CategoryCopyWith<$Res>? get category;
+  $CategoryItemCopyWith<$Res>? get category;
+  $UnitItemCopyWith<$Res>? get unit;
 }
 
 /// @nodoc
@@ -141,7 +157,11 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
     Object? variant = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? expDate = freezed,
+    Object? unit = freezed,
     Object? version = freezed,
+    Object? isStock = freezed,
+    Object? count = freezed,
   }) {
     return _then(_value.copyWith(
       presentation: presentation == freezed
@@ -175,7 +195,7 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
       discount: discount == freezed
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -195,7 +215,7 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as Category?,
+              as CategoryItem?,
       sku: sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
@@ -207,7 +227,7 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
       variant: variant == freezed
           ? _value.variant
           : variant // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<Varient>?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -216,9 +236,25 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      expDate: expDate == freezed
+          ? _value.expDate
+          : expDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unit: unit == freezed
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as UnitItem?,
       version: version == freezed
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isStock: isStock == freezed
+          ? _value.isStock
+          : isStock // ignore: cast_nullable_to_non_nullable
+              as String?,
+      count: count == freezed
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -246,13 +282,24 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
   }
 
   @override
-  $CategoryCopyWith<$Res>? get category {
+  $CategoryItemCopyWith<$Res>? get category {
     if (_value.category == null) {
       return null;
     }
 
-    return $CategoryCopyWith<$Res>(_value.category!, (value) {
+    return $CategoryItemCopyWith<$Res>(_value.category!, (value) {
       return _then(_value.copyWith(category: value));
+    });
+  }
+
+  @override
+  $UnitItemCopyWith<$Res>? get unit {
+    if (_value.unit == null) {
+      return null;
+    }
+
+    return $UnitItemCopyWith<$Res>(_value.unit!, (value) {
+      return _then(_value.copyWith(unit: value));
     });
   }
 }
@@ -270,25 +317,31 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
       @JsonKey(name: "description") @HiveField(4) String? desc,
       @JsonKey(name: "is_discount") @HiveField(5) String? isDiscount,
       @JsonKey(name: "discount_type") @HiveField(6) String? discountType,
-      @JsonKey(name: "discount") @HiveField(7) String? discount,
+      @JsonKey(name: "discount") @HiveField(7) int? discount,
       @JsonKey(name: "status") @HiveField(8) bool? status,
       @JsonKey(name: "_id") @HiveField(9) String? id,
       @JsonKey(name: "ownerid") @HiveField(10) Owner? owner,
       @JsonKey(name: "name") @HiveField(11) String? name,
-      @JsonKey(name: "categoryid") @HiveField(12) Category? category,
+      @JsonKey(name: "categoryid") @HiveField(12) CategoryItem? category,
       @JsonKey(name: "sku") @HiveField(13) String? sku,
       @JsonKey(name: "barcode") @HiveField(14) String? barcode,
-      @JsonKey(name: "variant") @HiveField(15) List<String>? variant,
+      @JsonKey(name: "variant") @HiveField(15) List<Varient>? variant,
       @JsonKey(name: "created_at") @HiveField(16) String? createdAt,
       @JsonKey(name: "updated_at") @HiveField(17) String? updatedAt,
-      @JsonKey(name: "__v") @HiveField(19) int? version});
+      @JsonKey(name: "expired_date") @HiveField(18) String? expDate,
+      @JsonKey(name: "unitid") @HiveField(19) UnitItem? unit,
+      @JsonKey(name: "__v") @HiveField(20) int? version,
+      @JsonKey(name: "is_stock") @HiveField(21) String? isStock,
+      @HiveField(22) int? count});
 
   @override
   $PresentationCopyWith<$Res>? get presentation;
   @override
   $OwnerCopyWith<$Res>? get owner;
   @override
-  $CategoryCopyWith<$Res>? get category;
+  $CategoryItemCopyWith<$Res>? get category;
+  @override
+  $UnitItemCopyWith<$Res>? get unit;
 }
 
 /// @nodoc
@@ -320,7 +373,11 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
     Object? variant = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? expDate = freezed,
+    Object? unit = freezed,
     Object? version = freezed,
+    Object? isStock = freezed,
+    Object? count = freezed,
   }) {
     return _then(_$_Item(
       presentation == freezed
@@ -354,7 +411,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
       discount == freezed
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -374,7 +431,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
       category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as Category?,
+              as CategoryItem?,
       sku == freezed
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
@@ -386,7 +443,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
       variant == freezed
           ? _value._variant
           : variant // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<Varient>?,
       createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -395,9 +452,25 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      expDate == freezed
+          ? _value.expDate
+          : expDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unit == freezed
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as UnitItem?,
       version == freezed
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isStock == freezed
+          ? _value.isStock
+          : isStock // ignore: cast_nullable_to_non_nullable
+              as String?,
+      count == freezed
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -423,10 +496,14 @@ class _$_Item implements _Item {
       @JsonKey(name: "categoryid") @HiveField(12) this.category,
       @JsonKey(name: "sku") @HiveField(13) this.sku,
       @JsonKey(name: "barcode") @HiveField(14) this.barcode,
-      @JsonKey(name: "variant") @HiveField(15) final List<String>? variant,
+      @JsonKey(name: "variant") @HiveField(15) final List<Varient>? variant,
       @JsonKey(name: "created_at") @HiveField(16) this.createdAt,
       @JsonKey(name: "updated_at") @HiveField(17) this.updatedAt,
-      @JsonKey(name: "__v") @HiveField(19) this.version)
+      @JsonKey(name: "expired_date") @HiveField(18) this.expDate,
+      @JsonKey(name: "unitid") @HiveField(19) this.unit,
+      @JsonKey(name: "__v") @HiveField(20) this.version,
+      @JsonKey(name: "is_stock") @HiveField(21) this.isStock,
+      @HiveField(22) this.count)
       : _variant = variant;
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
@@ -462,7 +539,7 @@ class _$_Item implements _Item {
   @override
   @JsonKey(name: "discount")
   @HiveField(7)
-  final String? discount;
+  final int? discount;
   @override
   @JsonKey(name: "status")
   @HiveField(8)
@@ -482,7 +559,7 @@ class _$_Item implements _Item {
   @override
   @JsonKey(name: "categoryid")
   @HiveField(12)
-  final Category? category;
+  final CategoryItem? category;
   @override
   @JsonKey(name: "sku")
   @HiveField(13)
@@ -491,11 +568,11 @@ class _$_Item implements _Item {
   @JsonKey(name: "barcode")
   @HiveField(14)
   final String? barcode;
-  final List<String>? _variant;
+  final List<Varient>? _variant;
   @override
   @JsonKey(name: "variant")
   @HiveField(15)
-  List<String>? get variant {
+  List<Varient>? get variant {
     final value = _variant;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
@@ -511,13 +588,28 @@ class _$_Item implements _Item {
   @HiveField(17)
   final String? updatedAt;
   @override
-  @JsonKey(name: "__v")
+  @JsonKey(name: "expired_date")
+  @HiveField(18)
+  final String? expDate;
+  @override
+  @JsonKey(name: "unitid")
   @HiveField(19)
+  final UnitItem? unit;
+  @override
+  @JsonKey(name: "__v")
+  @HiveField(20)
   final int? version;
+  @override
+  @JsonKey(name: "is_stock")
+  @HiveField(21)
+  final String? isStock;
+  @override
+  @HiveField(22)
+  final int? count;
 
   @override
   String toString() {
-    return 'Item(presentation: $presentation, price: $price, cost: $cost, stock: $stock, desc: $desc, isDiscount: $isDiscount, discountType: $discountType, discount: $discount, status: $status, id: $id, owner: $owner, name: $name, category: $category, sku: $sku, barcode: $barcode, variant: $variant, createdAt: $createdAt, updatedAt: $updatedAt, version: $version)';
+    return 'Item(presentation: $presentation, price: $price, cost: $cost, stock: $stock, desc: $desc, isDiscount: $isDiscount, discountType: $discountType, discount: $discount, status: $status, id: $id, owner: $owner, name: $name, category: $category, sku: $sku, barcode: $barcode, variant: $variant, createdAt: $createdAt, updatedAt: $updatedAt, expDate: $expDate, unit: $unit, version: $version, isStock: $isStock, count: $count)';
   }
 
   @override
@@ -546,7 +638,11 @@ class _$_Item implements _Item {
             const DeepCollectionEquality().equals(other._variant, _variant) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
-            const DeepCollectionEquality().equals(other.version, version));
+            const DeepCollectionEquality().equals(other.expDate, expDate) &&
+            const DeepCollectionEquality().equals(other.unit, unit) &&
+            const DeepCollectionEquality().equals(other.version, version) &&
+            const DeepCollectionEquality().equals(other.isStock, isStock) &&
+            const DeepCollectionEquality().equals(other.count, count));
   }
 
   @JsonKey(ignore: true)
@@ -571,7 +667,11 @@ class _$_Item implements _Item {
         const DeepCollectionEquality().hash(_variant),
         const DeepCollectionEquality().hash(createdAt),
         const DeepCollectionEquality().hash(updatedAt),
-        const DeepCollectionEquality().hash(version)
+        const DeepCollectionEquality().hash(expDate),
+        const DeepCollectionEquality().hash(unit),
+        const DeepCollectionEquality().hash(version),
+        const DeepCollectionEquality().hash(isStock),
+        const DeepCollectionEquality().hash(count)
       ]);
 
   @JsonKey(ignore: true)
@@ -612,7 +712,7 @@ abstract class _Item implements Item {
           final String? discountType,
       @JsonKey(name: "discount")
       @HiveField(7)
-          final String? discount,
+          final int? discount,
       @JsonKey(name: "status")
       @HiveField(8)
           final bool? status,
@@ -627,7 +727,7 @@ abstract class _Item implements Item {
           final String? name,
       @JsonKey(name: "categoryid")
       @HiveField(12)
-          final Category? category,
+          final CategoryItem? category,
       @JsonKey(name: "sku")
       @HiveField(13)
           final String? sku,
@@ -636,16 +736,27 @@ abstract class _Item implements Item {
           final String? barcode,
       @JsonKey(name: "variant")
       @HiveField(15)
-          final List<String>? variant,
+          final List<Varient>? variant,
       @JsonKey(name: "created_at")
       @HiveField(16)
           final String? createdAt,
       @JsonKey(name: "updated_at")
       @HiveField(17)
           final String? updatedAt,
-      @JsonKey(name: "__v")
+      @JsonKey(name: "expired_date")
+      @HiveField(18)
+          final String? expDate,
+      @JsonKey(name: "unitid")
       @HiveField(19)
-          final int? version) = _$_Item;
+          final UnitItem? unit,
+      @JsonKey(name: "__v")
+      @HiveField(20)
+          final int? version,
+      @JsonKey(name: "is_stock")
+      @HiveField(21)
+          final String? isStock,
+      @HiveField(22)
+          final int? count) = _$_Item;
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
 
@@ -680,7 +791,7 @@ abstract class _Item implements Item {
   @override
   @JsonKey(name: "discount")
   @HiveField(7)
-  String? get discount;
+  int? get discount;
   @override
   @JsonKey(name: "status")
   @HiveField(8)
@@ -700,7 +811,7 @@ abstract class _Item implements Item {
   @override
   @JsonKey(name: "categoryid")
   @HiveField(12)
-  Category? get category;
+  CategoryItem? get category;
   @override
   @JsonKey(name: "sku")
   @HiveField(13)
@@ -712,7 +823,7 @@ abstract class _Item implements Item {
   @override
   @JsonKey(name: "variant")
   @HiveField(15)
-  List<String>? get variant;
+  List<Varient>? get variant;
   @override
   @JsonKey(name: "created_at")
   @HiveField(16)
@@ -722,9 +833,24 @@ abstract class _Item implements Item {
   @HiveField(17)
   String? get updatedAt;
   @override
-  @JsonKey(name: "__v")
+  @JsonKey(name: "expired_date")
+  @HiveField(18)
+  String? get expDate;
+  @override
+  @JsonKey(name: "unitid")
   @HiveField(19)
+  UnitItem? get unit;
+  @override
+  @JsonKey(name: "__v")
+  @HiveField(20)
   int? get version;
+  @override
+  @JsonKey(name: "is_stock")
+  @HiveField(21)
+  String? get isStock;
+  @override
+  @HiveField(22)
+  int? get count;
   @override
   @JsonKey(ignore: true)
   _$$_ItemCopyWith<_$_Item> get copyWith => throw _privateConstructorUsedError;
@@ -980,7 +1106,7 @@ mixin _$ItemRes {
   String? get discountType => throw _privateConstructorUsedError;
   @JsonKey(name: "discount")
   @HiveField(7)
-  String? get discount => throw _privateConstructorUsedError;
+  int? get discount => throw _privateConstructorUsedError;
   @JsonKey(name: "status")
   @HiveField(8)
   bool? get status => throw _privateConstructorUsedError;
@@ -995,7 +1121,7 @@ mixin _$ItemRes {
   String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: "categoryid")
   @HiveField(12)
-  String? get category => throw _privateConstructorUsedError;
+  String? get categoryId => throw _privateConstructorUsedError;
   @JsonKey(name: "sku")
   @HiveField(13)
   String? get sku => throw _privateConstructorUsedError;
@@ -1004,16 +1130,25 @@ mixin _$ItemRes {
   String? get barcode => throw _privateConstructorUsedError;
   @JsonKey(name: "variant")
   @HiveField(15)
-  List<String>? get variant => throw _privateConstructorUsedError;
+  List<Varient>? get variant => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
   @HiveField(16)
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: "updated_at")
   @HiveField(17)
   String? get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: "__v")
+  @JsonKey(name: "expired_date")
+  @HiveField(18)
+  String? get expDate => throw _privateConstructorUsedError;
+  @JsonKey(name: "unitid")
   @HiveField(19)
+  String? get unitId => throw _privateConstructorUsedError;
+  @JsonKey(name: "__v")
+  @HiveField(20)
   int? get version => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_stock")
+  @HiveField(21)
+  String? get isStock => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1032,18 +1167,21 @@ abstract class $ItemResCopyWith<$Res> {
       @JsonKey(name: "description") @HiveField(4) String? desc,
       @JsonKey(name: "is_discount") @HiveField(5) String? isDiscount,
       @JsonKey(name: "discount_type") @HiveField(6) String? discountType,
-      @JsonKey(name: "discount") @HiveField(7) String? discount,
+      @JsonKey(name: "discount") @HiveField(7) int? discount,
       @JsonKey(name: "status") @HiveField(8) bool? status,
       @JsonKey(name: "_id") @HiveField(9) String? id,
       @JsonKey(name: "ownerid") @HiveField(10) String? ownerid,
       @JsonKey(name: "name") @HiveField(11) String? name,
-      @JsonKey(name: "categoryid") @HiveField(12) String? category,
+      @JsonKey(name: "categoryid") @HiveField(12) String? categoryId,
       @JsonKey(name: "sku") @HiveField(13) String? sku,
       @JsonKey(name: "barcode") @HiveField(14) String? barcode,
-      @JsonKey(name: "variant") @HiveField(15) List<String>? variant,
+      @JsonKey(name: "variant") @HiveField(15) List<Varient>? variant,
       @JsonKey(name: "created_at") @HiveField(16) String? createdAt,
       @JsonKey(name: "updated_at") @HiveField(17) String? updatedAt,
-      @JsonKey(name: "__v") @HiveField(19) int? version});
+      @JsonKey(name: "expired_date") @HiveField(18) String? expDate,
+      @JsonKey(name: "unitid") @HiveField(19) String? unitId,
+      @JsonKey(name: "__v") @HiveField(20) int? version,
+      @JsonKey(name: "is_stock") @HiveField(21) String? isStock});
 
   $PresentationCopyWith<$Res>? get presentation;
 }
@@ -1070,13 +1208,16 @@ class _$ItemResCopyWithImpl<$Res> implements $ItemResCopyWith<$Res> {
     Object? id = freezed,
     Object? ownerid = freezed,
     Object? name = freezed,
-    Object? category = freezed,
+    Object? categoryId = freezed,
     Object? sku = freezed,
     Object? barcode = freezed,
     Object? variant = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? expDate = freezed,
+    Object? unitId = freezed,
     Object? version = freezed,
+    Object? isStock = freezed,
   }) {
     return _then(_value.copyWith(
       presentation: presentation == freezed
@@ -1110,7 +1251,7 @@ class _$ItemResCopyWithImpl<$Res> implements $ItemResCopyWith<$Res> {
       discount: discount == freezed
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -1127,9 +1268,9 @@ class _$ItemResCopyWithImpl<$Res> implements $ItemResCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String?,
       sku: sku == freezed
           ? _value.sku
@@ -1142,7 +1283,7 @@ class _$ItemResCopyWithImpl<$Res> implements $ItemResCopyWith<$Res> {
       variant: variant == freezed
           ? _value.variant
           : variant // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<Varient>?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -1151,10 +1292,22 @@ class _$ItemResCopyWithImpl<$Res> implements $ItemResCopyWith<$Res> {
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      expDate: expDate == freezed
+          ? _value.expDate
+          : expDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitId: unitId == freezed
+          ? _value.unitId
+          : unitId // ignore: cast_nullable_to_non_nullable
+              as String?,
       version: version == freezed
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as int?,
+      isStock: isStock == freezed
+          ? _value.isStock
+          : isStock // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -1184,18 +1337,21 @@ abstract class _$$_ItemResCopyWith<$Res> implements $ItemResCopyWith<$Res> {
       @JsonKey(name: "description") @HiveField(4) String? desc,
       @JsonKey(name: "is_discount") @HiveField(5) String? isDiscount,
       @JsonKey(name: "discount_type") @HiveField(6) String? discountType,
-      @JsonKey(name: "discount") @HiveField(7) String? discount,
+      @JsonKey(name: "discount") @HiveField(7) int? discount,
       @JsonKey(name: "status") @HiveField(8) bool? status,
       @JsonKey(name: "_id") @HiveField(9) String? id,
       @JsonKey(name: "ownerid") @HiveField(10) String? ownerid,
       @JsonKey(name: "name") @HiveField(11) String? name,
-      @JsonKey(name: "categoryid") @HiveField(12) String? category,
+      @JsonKey(name: "categoryid") @HiveField(12) String? categoryId,
       @JsonKey(name: "sku") @HiveField(13) String? sku,
       @JsonKey(name: "barcode") @HiveField(14) String? barcode,
-      @JsonKey(name: "variant") @HiveField(15) List<String>? variant,
+      @JsonKey(name: "variant") @HiveField(15) List<Varient>? variant,
       @JsonKey(name: "created_at") @HiveField(16) String? createdAt,
       @JsonKey(name: "updated_at") @HiveField(17) String? updatedAt,
-      @JsonKey(name: "__v") @HiveField(19) int? version});
+      @JsonKey(name: "expired_date") @HiveField(18) String? expDate,
+      @JsonKey(name: "unitid") @HiveField(19) String? unitId,
+      @JsonKey(name: "__v") @HiveField(20) int? version,
+      @JsonKey(name: "is_stock") @HiveField(21) String? isStock});
 
   @override
   $PresentationCopyWith<$Res>? get presentation;
@@ -1224,13 +1380,16 @@ class __$$_ItemResCopyWithImpl<$Res> extends _$ItemResCopyWithImpl<$Res>
     Object? id = freezed,
     Object? ownerid = freezed,
     Object? name = freezed,
-    Object? category = freezed,
+    Object? categoryId = freezed,
     Object? sku = freezed,
     Object? barcode = freezed,
     Object? variant = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? expDate = freezed,
+    Object? unitId = freezed,
     Object? version = freezed,
+    Object? isStock = freezed,
   }) {
     return _then(_$_ItemRes(
       presentation == freezed
@@ -1264,7 +1423,7 @@ class __$$_ItemResCopyWithImpl<$Res> extends _$ItemResCopyWithImpl<$Res>
       discount == freezed
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -1281,9 +1440,9 @@ class __$$_ItemResCopyWithImpl<$Res> extends _$ItemResCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
+      categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String?,
       sku == freezed
           ? _value.sku
@@ -1296,7 +1455,7 @@ class __$$_ItemResCopyWithImpl<$Res> extends _$ItemResCopyWithImpl<$Res>
       variant == freezed
           ? _value._variant
           : variant // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<Varient>?,
       createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -1305,10 +1464,22 @@ class __$$_ItemResCopyWithImpl<$Res> extends _$ItemResCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      expDate == freezed
+          ? _value.expDate
+          : expDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitId == freezed
+          ? _value.unitId
+          : unitId // ignore: cast_nullable_to_non_nullable
+              as String?,
       version == freezed
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as int?,
+      isStock == freezed
+          ? _value.isStock
+          : isStock // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1330,13 +1501,16 @@ class _$_ItemRes implements _ItemRes {
       @JsonKey(name: "_id") @HiveField(9) this.id,
       @JsonKey(name: "ownerid") @HiveField(10) this.ownerid,
       @JsonKey(name: "name") @HiveField(11) this.name,
-      @JsonKey(name: "categoryid") @HiveField(12) this.category,
+      @JsonKey(name: "categoryid") @HiveField(12) this.categoryId,
       @JsonKey(name: "sku") @HiveField(13) this.sku,
       @JsonKey(name: "barcode") @HiveField(14) this.barcode,
-      @JsonKey(name: "variant") @HiveField(15) final List<String>? variant,
+      @JsonKey(name: "variant") @HiveField(15) final List<Varient>? variant,
       @JsonKey(name: "created_at") @HiveField(16) this.createdAt,
       @JsonKey(name: "updated_at") @HiveField(17) this.updatedAt,
-      @JsonKey(name: "__v") @HiveField(19) this.version)
+      @JsonKey(name: "expired_date") @HiveField(18) this.expDate,
+      @JsonKey(name: "unitid") @HiveField(19) this.unitId,
+      @JsonKey(name: "__v") @HiveField(20) this.version,
+      @JsonKey(name: "is_stock") @HiveField(21) this.isStock)
       : _variant = variant;
 
   factory _$_ItemRes.fromJson(Map<String, dynamic> json) =>
@@ -1373,7 +1547,7 @@ class _$_ItemRes implements _ItemRes {
   @override
   @JsonKey(name: "discount")
   @HiveField(7)
-  final String? discount;
+  final int? discount;
   @override
   @JsonKey(name: "status")
   @HiveField(8)
@@ -1393,7 +1567,7 @@ class _$_ItemRes implements _ItemRes {
   @override
   @JsonKey(name: "categoryid")
   @HiveField(12)
-  final String? category;
+  final String? categoryId;
   @override
   @JsonKey(name: "sku")
   @HiveField(13)
@@ -1402,11 +1576,11 @@ class _$_ItemRes implements _ItemRes {
   @JsonKey(name: "barcode")
   @HiveField(14)
   final String? barcode;
-  final List<String>? _variant;
+  final List<Varient>? _variant;
   @override
   @JsonKey(name: "variant")
   @HiveField(15)
-  List<String>? get variant {
+  List<Varient>? get variant {
     final value = _variant;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
@@ -1422,13 +1596,25 @@ class _$_ItemRes implements _ItemRes {
   @HiveField(17)
   final String? updatedAt;
   @override
-  @JsonKey(name: "__v")
+  @JsonKey(name: "expired_date")
+  @HiveField(18)
+  final String? expDate;
+  @override
+  @JsonKey(name: "unitid")
   @HiveField(19)
+  final String? unitId;
+  @override
+  @JsonKey(name: "__v")
+  @HiveField(20)
   final int? version;
+  @override
+  @JsonKey(name: "is_stock")
+  @HiveField(21)
+  final String? isStock;
 
   @override
   String toString() {
-    return 'ItemRes(presentation: $presentation, price: $price, cost: $cost, stock: $stock, desc: $desc, isDiscount: $isDiscount, discountType: $discountType, discount: $discount, status: $status, id: $id, ownerid: $ownerid, name: $name, category: $category, sku: $sku, barcode: $barcode, variant: $variant, createdAt: $createdAt, updatedAt: $updatedAt, version: $version)';
+    return 'ItemRes(presentation: $presentation, price: $price, cost: $cost, stock: $stock, desc: $desc, isDiscount: $isDiscount, discountType: $discountType, discount: $discount, status: $status, id: $id, ownerid: $ownerid, name: $name, categoryId: $categoryId, sku: $sku, barcode: $barcode, variant: $variant, createdAt: $createdAt, updatedAt: $updatedAt, expDate: $expDate, unitId: $unitId, version: $version, isStock: $isStock)';
   }
 
   @override
@@ -1451,13 +1637,17 @@ class _$_ItemRes implements _ItemRes {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.ownerid, ownerid) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality()
+                .equals(other.categoryId, categoryId) &&
             const DeepCollectionEquality().equals(other.sku, sku) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other._variant, _variant) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
-            const DeepCollectionEquality().equals(other.version, version));
+            const DeepCollectionEquality().equals(other.expDate, expDate) &&
+            const DeepCollectionEquality().equals(other.unitId, unitId) &&
+            const DeepCollectionEquality().equals(other.version, version) &&
+            const DeepCollectionEquality().equals(other.isStock, isStock));
   }
 
   @JsonKey(ignore: true)
@@ -1476,13 +1666,16 @@ class _$_ItemRes implements _ItemRes {
         const DeepCollectionEquality().hash(id),
         const DeepCollectionEquality().hash(ownerid),
         const DeepCollectionEquality().hash(name),
-        const DeepCollectionEquality().hash(category),
+        const DeepCollectionEquality().hash(categoryId),
         const DeepCollectionEquality().hash(sku),
         const DeepCollectionEquality().hash(barcode),
         const DeepCollectionEquality().hash(_variant),
         const DeepCollectionEquality().hash(createdAt),
         const DeepCollectionEquality().hash(updatedAt),
-        const DeepCollectionEquality().hash(version)
+        const DeepCollectionEquality().hash(expDate),
+        const DeepCollectionEquality().hash(unitId),
+        const DeepCollectionEquality().hash(version),
+        const DeepCollectionEquality().hash(isStock)
       ]);
 
   @JsonKey(ignore: true)
@@ -1523,7 +1716,7 @@ abstract class _ItemRes implements ItemRes {
           final String? discountType,
       @JsonKey(name: "discount")
       @HiveField(7)
-          final String? discount,
+          final int? discount,
       @JsonKey(name: "status")
       @HiveField(8)
           final bool? status,
@@ -1538,7 +1731,7 @@ abstract class _ItemRes implements ItemRes {
           final String? name,
       @JsonKey(name: "categoryid")
       @HiveField(12)
-          final String? category,
+          final String? categoryId,
       @JsonKey(name: "sku")
       @HiveField(13)
           final String? sku,
@@ -1547,16 +1740,25 @@ abstract class _ItemRes implements ItemRes {
           final String? barcode,
       @JsonKey(name: "variant")
       @HiveField(15)
-          final List<String>? variant,
+          final List<Varient>? variant,
       @JsonKey(name: "created_at")
       @HiveField(16)
           final String? createdAt,
       @JsonKey(name: "updated_at")
       @HiveField(17)
           final String? updatedAt,
-      @JsonKey(name: "__v")
+      @JsonKey(name: "expired_date")
+      @HiveField(18)
+          final String? expDate,
+      @JsonKey(name: "unitid")
       @HiveField(19)
-          final int? version) = _$_ItemRes;
+          final String? unitId,
+      @JsonKey(name: "__v")
+      @HiveField(20)
+          final int? version,
+      @JsonKey(name: "is_stock")
+      @HiveField(21)
+          final String? isStock) = _$_ItemRes;
 
   factory _ItemRes.fromJson(Map<String, dynamic> json) = _$_ItemRes.fromJson;
 
@@ -1591,7 +1793,7 @@ abstract class _ItemRes implements ItemRes {
   @override
   @JsonKey(name: "discount")
   @HiveField(7)
-  String? get discount;
+  int? get discount;
   @override
   @JsonKey(name: "status")
   @HiveField(8)
@@ -1611,7 +1813,7 @@ abstract class _ItemRes implements ItemRes {
   @override
   @JsonKey(name: "categoryid")
   @HiveField(12)
-  String? get category;
+  String? get categoryId;
   @override
   @JsonKey(name: "sku")
   @HiveField(13)
@@ -1623,7 +1825,7 @@ abstract class _ItemRes implements ItemRes {
   @override
   @JsonKey(name: "variant")
   @HiveField(15)
-  List<String>? get variant;
+  List<Varient>? get variant;
   @override
   @JsonKey(name: "created_at")
   @HiveField(16)
@@ -1633,11 +1835,216 @@ abstract class _ItemRes implements ItemRes {
   @HiveField(17)
   String? get updatedAt;
   @override
-  @JsonKey(name: "__v")
+  @JsonKey(name: "expired_date")
+  @HiveField(18)
+  String? get expDate;
+  @override
+  @JsonKey(name: "unitid")
   @HiveField(19)
+  String? get unitId;
+  @override
+  @JsonKey(name: "__v")
+  @HiveField(20)
   int? get version;
+  @override
+  @JsonKey(name: "is_stock")
+  @HiveField(21)
+  String? get isStock;
   @override
   @JsonKey(ignore: true)
   _$$_ItemResCopyWith<_$_ItemRes> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Varient _$VarientFromJson(Map<String, dynamic> json) {
+  return _Varient.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Varient {
+  @JsonKey(name: "option_name")
+  @HiveField(0)
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: "option_value")
+  @HiveField(1)
+  String? get value => throw _privateConstructorUsedError;
+  @JsonKey(name: "_id")
+  @HiveField(2)
+  String? get id => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $VarientCopyWith<Varient> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $VarientCopyWith<$Res> {
+  factory $VarientCopyWith(Varient value, $Res Function(Varient) then) =
+      _$VarientCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: "option_name") @HiveField(0) String? name,
+      @JsonKey(name: "option_value") @HiveField(1) String? value,
+      @JsonKey(name: "_id") @HiveField(2) String? id});
+}
+
+/// @nodoc
+class _$VarientCopyWithImpl<$Res> implements $VarientCopyWith<$Res> {
+  _$VarientCopyWithImpl(this._value, this._then);
+
+  final Varient _value;
+  // ignore: unused_field
+  final $Res Function(Varient) _then;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? value = freezed,
+    Object? id = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_VarientCopyWith<$Res> implements $VarientCopyWith<$Res> {
+  factory _$$_VarientCopyWith(
+          _$_Varient value, $Res Function(_$_Varient) then) =
+      __$$_VarientCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: "option_name") @HiveField(0) String? name,
+      @JsonKey(name: "option_value") @HiveField(1) String? value,
+      @JsonKey(name: "_id") @HiveField(2) String? id});
+}
+
+/// @nodoc
+class __$$_VarientCopyWithImpl<$Res> extends _$VarientCopyWithImpl<$Res>
+    implements _$$_VarientCopyWith<$Res> {
+  __$$_VarientCopyWithImpl(_$_Varient _value, $Res Function(_$_Varient) _then)
+      : super(_value, (v) => _then(v as _$_Varient));
+
+  @override
+  _$_Varient get _value => super._value as _$_Varient;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? value = freezed,
+    Object? id = freezed,
+  }) {
+    return _then(_$_Varient(
+      name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@HiveType(typeId: 12)
+class _$_Varient implements _Varient {
+  const _$_Varient(
+      @JsonKey(name: "option_name") @HiveField(0) this.name,
+      @JsonKey(name: "option_value") @HiveField(1) this.value,
+      @JsonKey(name: "_id") @HiveField(2) this.id);
+
+  factory _$_Varient.fromJson(Map<String, dynamic> json) =>
+      _$$_VarientFromJson(json);
+
+  @override
+  @JsonKey(name: "option_name")
+  @HiveField(0)
+  final String? name;
+  @override
+  @JsonKey(name: "option_value")
+  @HiveField(1)
+  final String? value;
+  @override
+  @JsonKey(name: "_id")
+  @HiveField(2)
+  final String? id;
+
+  @override
+  String toString() {
+    return 'Varient(name: $name, value: $value, id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Varient &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.value, value) &&
+            const DeepCollectionEquality().equals(other.id, id));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(value),
+      const DeepCollectionEquality().hash(id));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_VarientCopyWith<_$_Varient> get copyWith =>
+      __$$_VarientCopyWithImpl<_$_Varient>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_VarientToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Varient implements Varient {
+  const factory _Varient(
+      @JsonKey(name: "option_name") @HiveField(0) final String? name,
+      @JsonKey(name: "option_value") @HiveField(1) final String? value,
+      @JsonKey(name: "_id") @HiveField(2) final String? id) = _$_Varient;
+
+  factory _Varient.fromJson(Map<String, dynamic> json) = _$_Varient.fromJson;
+
+  @override
+  @JsonKey(name: "option_name")
+  @HiveField(0)
+  String? get name;
+  @override
+  @JsonKey(name: "option_value")
+  @HiveField(1)
+  String? get value;
+  @override
+  @JsonKey(name: "_id")
+  @HiveField(2)
+  String? get id;
+  @override
+  @JsonKey(ignore: true)
+  _$$_VarientCopyWith<_$_Varient> get copyWith =>
       throw _privateConstructorUsedError;
 }

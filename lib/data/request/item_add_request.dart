@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mobile_pos/data/model/item.dart';
 
 part 'item_add_request.freezed.dart';
 part 'item_add_request.g.dart';
@@ -16,15 +17,15 @@ class ItemAddRequest with _$ItemAddRequest {
     @JsonKey(name: "discount_type") String? discountType,
     @JsonKey(name: "discount") String? discount,
     @JsonKey(name: "status") String? status,
-    @JsonKey(name: "_id") String? id,
     @JsonKey(name: "ownerid") String? ownerid,
     @JsonKey(name: "name") String? name,
-    @JsonKey(name: "categoryid") String? category,
+    @JsonKey(name: "categoryid") String? categoryId,
     @JsonKey(name: "sku") String? sku,
     @JsonKey(name: "barcode") String? barcode,
-    @JsonKey(name: "variant") List<String>? variant,
-    @JsonKey(name: "created_at") String? createdAt,
-    @JsonKey(name: "updated_at") String? updatedAt,
+    @JsonKey(name: "variant") List<Varient>? variant,
+    @JsonKey(name: "expired_date") String? expDate,
+    @JsonKey(name: "unitid") String? unitId,
+    @JsonKey(name: "is_stock") String? isStock,
   ) = _ItemAddRequest;
   factory ItemAddRequest.fromJson(Map<String, dynamic> json) =>
       _$ItemAddRequestFromJson(json);

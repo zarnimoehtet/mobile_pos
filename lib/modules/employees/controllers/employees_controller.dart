@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:mobile_pos/core/extensions/extension_collection.dart';
 import 'package:mobile_pos/data/model/employee.dart';
 import 'package:mobile_pos/viewmodels/employee_vm.dart';
 
@@ -16,6 +18,9 @@ class EmployeesController extends GetxController {
 
   Rxn<EmployeeItem> editEmployee = Rxn<EmployeeItem>();
 
+  RxBool isEmpEdit = RxBool(false);
+  RxBool empStatus = RxBool(true);
+
   RxBool isLoading = RxBool(false);
   RxnString error = RxnString();
 
@@ -28,18 +33,21 @@ class EmployeesController extends GetxController {
   TextEditingController employeeemailController = TextEditingController();
   TextEditingController employeePinCodeController = TextEditingController();
   TextEditingController employeeDescriptionController = TextEditingController();
+  TextEditingController employeeFnameController = TextEditingController();
+  TextEditingController employeeDobController = TextEditingController();
+  TextEditingController employeePercentController = TextEditingController();
+  TextEditingController employeeNrcController = TextEditingController();
+  TextEditingController employeeSalaryController = TextEditingController();
 
-  //Edit Employee
-  TextEditingController employeeNameEditController = TextEditingController();
-  TextEditingController employeePhoneEditController = TextEditingController();
-  TextEditingController employeeemailEditController = TextEditingController();
-  TextEditingController employeePinCodeEditController = TextEditingController();
-  TextEditingController employeeDescriptionEditController =
-      TextEditingController();
+  List<String> roles = [
+    "employee (owner)",
+    "employee (manager)",
+    "employee (cashier)",
+    "employee (staff)"
+  ];
+  RxString selectedRole = RxString("employee (manager)");
 
-  List<String> roles = ["Owner", "Manager", "Cashier", "Staff"];
-  RxString selectedRole = RxString("Manager");
-  RxString selectedEditRole = RxString("Manager");
+  final ScrollController scrollController = ScrollController();
   @override
   void onInit() {
     _subscribeCurrentUser();
@@ -48,6 +56,12 @@ class EmployeesController extends GetxController {
     _subscribeEmployeesUpdateState();
     _subscribeEmployeesDeleteState();
     fetchEmployees(0);
+    scrollController.onScrollEnd(() {
+      if (!isLoading.value) {
+        int page = empList.length ~/ 10;
+        fetchEmployees(page);
+      }
+    });
     super.onInit();
   }
 
@@ -69,6 +83,42 @@ class EmployeesController extends GetxController {
     });
   }
 
+  getFindRole(String id) {
+    selectedRole.value = roles[roles.indexWhere((element) => element == id)];
+  }
+
+  setupEmpEdit() {
+    if (isEmpEdit.value) {
+      employeeNameController.text = editEmployee.value?.name ?? "";
+      employeeDescriptionController.text =
+          editEmployee.value?.description ?? "";
+      employeeemailController.text = editEmployee.value?.email ?? "";
+      employeePhoneController.text = editEmployee.value?.phone ?? "";
+      getFindRole(editEmployee.value?.role ?? "");
+      empStatus.value = editEmployee.value?.status ?? false;
+      employeeNrcController.text = editEmployee.value?.nrc ?? "";
+      employeeDobController.text = DateFormat("dd-MM-yyyy")
+          .format((editEmployee.value?.dob ?? "").toDateTime());
+      employeeFnameController.text = editEmployee.value?.fatherName ?? "";
+      employeePercentController.text =
+          "${editEmployee.value?.dailyPercent ?? 0}";
+      employeeSalaryController.text = "${editEmployee.value?.salary ?? 0}";
+      employeePinCodeController.text = editEmployee.value?.pincode ?? "";
+    } else {
+      employeeNameController.clear();
+      employeeDescriptionController.clear();
+      employeeemailController.clear();
+      employeePhoneController.clear();
+      employeePinCodeController.clear();
+      employeeNrcController.clear();
+      employeeDobController.clear();
+      employeeFnameController.clear();
+      employeePercentController.clear();
+      employeeSalaryController.clear();
+      selectedRole.value = roles[1];
+    }
+  }
+
   Future fetchEmployees(int page) async {
     await empVM.fetchEmployees(page, currentUser.value?.id ?? "");
   }
@@ -81,8 +131,13 @@ class EmployeesController extends GetxController {
         employeeemailController.text.trim(),
         employeePhoneController.text.trim(),
         selectedRole.value,
-        "1",
-        employeePinCodeController.text.trim());
+        empStatus.value ? "1" : "0",
+        employeePinCodeController.text.trim(),
+        employeeNrcController.text.trim(),
+        employeeDobController.text.trim(),
+        employeeFnameController.text.trim(),
+        int.parse(employeePercentController.text.trim()),
+        int.parse(employeeSalaryController.text.trim()));
   }
 
   StreamSubscription<MyState<Employee>>? _addEmployeeStateSubscription;
@@ -96,7 +151,13 @@ class EmployeesController extends GetxController {
       employeeemailController.clear();
       employeePhoneController.clear();
       employeePinCodeController.clear();
+      employeeNrcController.clear();
+      employeeDobController.clear();
+      employeeFnameController.clear();
+      employeePercentController.clear();
+      employeeSalaryController.clear();
       selectedRole.value = "";
+
       Get.back();
     });
   }
@@ -105,13 +166,18 @@ class EmployeesController extends GetxController {
     empVM.editEmployee(
         editEmployee.value?.id ?? "",
         currentUser.value?.id ?? "",
-        employeeNameEditController.text.trim(),
-        employeeDescriptionEditController.text.trim(),
-        employeeemailEditController.text.trim(),
-        employeePhoneEditController.text.trim(),
-        selectedEditRole.value,
-        "1",
-        employeePinCodeEditController.text.trim());
+        employeeNameController.text.trim(),
+        employeeDescriptionController.text.trim(),
+        employeeemailController.text.trim(),
+        employeePhoneController.text.trim(),
+        selectedRole.value,
+        empStatus.value ? "1" : "0",
+        employeePinCodeController.text.trim(),
+        employeeNrcController.text.trim(),
+        employeeDobController.text.trim(),
+        employeeFnameController.text.trim(),
+        int.parse(employeePercentController.text.trim()),
+        int.parse(employeeSalaryController.text.trim()));
   }
 
   StreamSubscription<MyState<Employee>>? _updateEmployeeStateSubscription;
@@ -120,12 +186,17 @@ class EmployeesController extends GetxController {
     _updateEmployeeStateSubscription =
         showStateableDialog<Employee>(empVM.editEmployeeStream, (emp) {
       fetchEmployees(0);
-      employeeNameEditController.clear();
-      employeeDescriptionEditController.clear();
-      employeeemailEditController.clear();
-      employeePhoneEditController.clear();
-      employeePinCodeEditController.clear();
-      selectedEditRole.value = "";
+      employeeNameController.clear();
+      employeeDescriptionController.clear();
+      employeeemailController.clear();
+      employeePhoneController.clear();
+      employeePinCodeController.clear();
+      employeeNrcController.clear();
+      employeeDobController.clear();
+      employeeFnameController.clear();
+      employeePercentController.clear();
+      employeeSalaryController.clear();
+      selectedRole.value = "";
       editEmployee.value = null;
       Get.back();
     });
@@ -137,8 +208,7 @@ class EmployeesController extends GetxController {
       alignment: Alignment.center,
       contentPadding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
       content: Text(
-        "ask_delete_employee"
-            .trParams({"value": editEmployee.value?.name ?? ""}),
+        "ask_delete".trParams({"value": editEmployee.value?.name ?? ""}),
         textAlign: TextAlign.center,
       ),
       actions: [
@@ -160,12 +230,17 @@ class EmployeesController extends GetxController {
     _deleteEmployeeStateSubscription =
         showStateableDialog<bool>(empVM.deleteEmployeeStateStream, (emp) {
       fetchEmployees(0);
-      employeeNameEditController.clear();
-      employeeDescriptionEditController.clear();
-      employeeemailEditController.clear();
-      employeePhoneEditController.clear();
-      employeePinCodeEditController.clear();
-      selectedEditRole.value = "";
+      employeeNameController.clear();
+      employeeDescriptionController.clear();
+      employeeemailController.clear();
+      employeePhoneController.clear();
+      employeePinCodeController.clear();
+      employeeNrcController.clear();
+      employeeDobController.clear();
+      employeeFnameController.clear();
+      employeePercentController.clear();
+      employeeSalaryController.clear();
+      selectedRole.value = "";
       editEmployee.value = null;
       Get.back();
     });

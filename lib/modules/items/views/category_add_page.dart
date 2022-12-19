@@ -13,10 +13,24 @@ class CategoryAddPage extends GetView<ItemsController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.setUpCategoryEdit();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Category"),
+        title: Text(
+            controller.isEditCategory.value ? "Edit Category" : "Add Category"),
         centerTitle: true,
+        actions: [
+          controller.isEditCategory.value
+              ? IconButton(
+                  onPressed: () {
+                    controller.onClickDeleteCategory();
+                  },
+                  icon: const Icon(
+                    Icons.delete,
+                    color: POSColor.primaryColorDark,
+                  ))
+              : const SizedBox()
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -42,6 +56,46 @@ class CategoryAddPage extends GetView<ItemsController> {
                 cursorColor: POSColor.primaryColorDark,
               ),
               const SizedBox(
+                height: 20,
+              ),
+              const Divider(
+                color: Colors.grey,
+              ),
+              const Text(
+                "Status",
+                style: TextStyle(
+                    color: POSColor.primaryColorDark,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
+              ListTile(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                onTap: () {
+                  controller.categoryActiveStatus.value =
+                      !controller.categoryActiveStatus.value;
+                },
+                contentPadding: const EdgeInsets.only(
+                    left: 10, right: 10, top: 0, bottom: 0),
+                title: const Text(
+                  "Category Active status",
+                  style:
+                      TextStyle(fontSize: 14, color: POSColor.primaryColorDark),
+                ),
+                trailing: Obx(() => Switch(
+                    value: controller.categoryActiveStatus.value,
+                    onChanged: (v) {
+                      controller.categoryActiveStatus.value = v;
+                    })),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Divider(
+                color: Colors.grey,
+              ),
+              const SizedBox(
                 height: 30,
               ),
               const Text(
@@ -57,6 +111,7 @@ class CategoryAddPage extends GetView<ItemsController> {
                   child: GridView.builder(
                     itemCount: controller.colors.length,
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4,
@@ -75,11 +130,15 @@ class CategoryAddPage extends GetView<ItemsController> {
               GradientButton(
                   height: 40,
                   child: Text(
-                    "Add Category".toUpperCase(),
+                    "save".tr.toUpperCase(),
                     style: const TextStyle(color: Colors.white),
                   ),
                   onTap: () {
-                    controller.addNewCategory();
+                    if (controller.isEditCategory.value) {
+                      controller.updateCategory();
+                    } else {
+                      controller.addNewCategory();
+                    }
                   }),
             ],
           ),

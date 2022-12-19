@@ -32,8 +32,7 @@ class LocalEmployeeListServiceImpl implements LocalEmployeeListService {
   List<EmployeeItem> _filterAndSort() {
     var b = Hive.box<EmployeeItem>("EmployeeItem");
     var list = b.values.toList();
-    list.sort(
-        ((a, b) => a.name!.toLowerCase().compareTo(b.name!.toLowerCase())));
+    list.sort((a, b) => a.createdAt!.compareTo(b.createdAt!));
     return list;
   }
 
@@ -58,7 +57,7 @@ class LocalEmployeeListServiceImpl implements LocalEmployeeListService {
         .values
         .where((element) => element.owner?.id == ownerId)
         .toList();
-    list.sort((a, b) => a.role!.toLowerCase().compareTo(b.name!.toLowerCase()));
+    list.sort((a, b) => a.createdAt!.compareTo(b.createdAt!));
     return list;
   }
 

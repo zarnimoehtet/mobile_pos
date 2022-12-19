@@ -28,14 +28,19 @@ class EmployeeItemAdapter extends TypeAdapter<_$_EmployeeItem> {
       fields[8] as String?,
       fields[9] as String?,
       fields[10] as String?,
-      fields[11] as int?,
+      fields[11] as String?,
+      fields[12] as String?,
+      fields[13] as String?,
+      fields[14] as int?,
+      fields[15] as String?,
+      fields[16] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_EmployeeItem obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(17)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -59,6 +64,16 @@ class EmployeeItemAdapter extends TypeAdapter<_$_EmployeeItem> {
       ..writeByte(10)
       ..write(obj.updatedAt)
       ..writeByte(11)
+      ..write(obj.fatherName)
+      ..writeByte(12)
+      ..write(obj.nrc)
+      ..writeByte(13)
+      ..write(obj.salary)
+      ..writeByte(14)
+      ..write(obj.dailyPercent)
+      ..writeByte(15)
+      ..write(obj.dob)
+      ..writeByte(16)
       ..write(obj.version);
   }
 
@@ -92,6 +107,11 @@ _$_EmployeeItem _$$_EmployeeItemFromJson(Map<String, dynamic> json) =>
       json['pincode'] as String?,
       json['created_at'] as String?,
       json['updated_at'] as String?,
+      json['father_name'] as String?,
+      json['nrc'] as String?,
+      json['salary'] as String?,
+      json['daily_percent'] as int?,
+      json['dob'] as String?,
       json['__v'] as int?,
     );
 
@@ -108,5 +128,10 @@ Map<String, dynamic> _$$_EmployeeItemToJson(_$_EmployeeItem instance) =>
       'pincode': instance.pincode,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
+      'father_name': instance.fatherName,
+      'nrc': instance.nrc,
+      'salary': instance.salary,
+      'daily_percent': instance.dailyPercent,
+      'dob': instance.dob,
       '__v': instance.version,
     };
