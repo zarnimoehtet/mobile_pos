@@ -681,3 +681,718 @@ abstract class SaleResponseSuccess implements SaleResponse {
   _$$SaleResponseSuccessCopyWith<_$SaleResponseSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+SaleListResponse _$SaleListResponseFromJson(Map<String, dynamic> json) {
+  switch (json['status']) {
+    case 'FAIL':
+      return SaleListResponseFail.fromJson(json);
+    case 'ERROR':
+      return SaleListResponseError.fromJson(json);
+    case 'SUCCESS':
+      return SaleListResponseSuccess.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'status', 'SaleListResponse',
+          'Invalid union type "${json['status']}"!');
+  }
+}
+
+/// @nodoc
+mixin _$SaleListResponse {
+  String get status => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)
+        FAIL,
+    required TResult Function(String status, String? message) ERROR,
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)
+        SUCCESS,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        FAIL,
+    TResult Function(String status, String? message)? ERROR,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        SUCCESS,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        FAIL,
+    TResult Function(String status, String? message)? ERROR,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        SUCCESS,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SaleListResponseFail value) FAIL,
+    required TResult Function(SaleListResponseError value) ERROR,
+    required TResult Function(SaleListResponseSuccess value) SUCCESS,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SaleListResponseFail value)? FAIL,
+    TResult Function(SaleListResponseError value)? ERROR,
+    TResult Function(SaleListResponseSuccess value)? SUCCESS,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SaleListResponseFail value)? FAIL,
+    TResult Function(SaleListResponseError value)? ERROR,
+    TResult Function(SaleListResponseSuccess value)? SUCCESS,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SaleListResponseCopyWith<SaleListResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SaleListResponseCopyWith<$Res> {
+  factory $SaleListResponseCopyWith(
+          SaleListResponse value, $Res Function(SaleListResponse) then) =
+      _$SaleListResponseCopyWithImpl<$Res>;
+  $Res call({String status, String? message});
+}
+
+/// @nodoc
+class _$SaleListResponseCopyWithImpl<$Res>
+    implements $SaleListResponseCopyWith<$Res> {
+  _$SaleListResponseCopyWithImpl(this._value, this._then);
+
+  final SaleListResponse _value;
+  // ignore: unused_field
+  final $Res Function(SaleListResponse) _then;
+
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_value.copyWith(
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$SaleListResponseFailCopyWith<$Res>
+    implements $SaleListResponseCopyWith<$Res> {
+  factory _$$SaleListResponseFailCopyWith(_$SaleListResponseFail value,
+          $Res Function(_$SaleListResponseFail) then) =
+      __$$SaleListResponseFailCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String status,
+      String? message,
+      @JsonKey(name: "data") List<Invoice> saleList});
+}
+
+/// @nodoc
+class __$$SaleListResponseFailCopyWithImpl<$Res>
+    extends _$SaleListResponseCopyWithImpl<$Res>
+    implements _$$SaleListResponseFailCopyWith<$Res> {
+  __$$SaleListResponseFailCopyWithImpl(_$SaleListResponseFail _value,
+      $Res Function(_$SaleListResponseFail) _then)
+      : super(_value, (v) => _then(v as _$SaleListResponseFail));
+
+  @override
+  _$SaleListResponseFail get _value => super._value as _$SaleListResponseFail;
+
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? message = freezed,
+    Object? saleList = freezed,
+  }) {
+    return _then(_$SaleListResponseFail(
+      status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      saleList == freezed
+          ? _value._saleList
+          : saleList // ignore: cast_nullable_to_non_nullable
+              as List<Invoice>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SaleListResponseFail implements SaleListResponseFail {
+  const _$SaleListResponseFail(this.status, this.message,
+      @JsonKey(name: "data") final List<Invoice> saleList)
+      : _saleList = saleList;
+
+  factory _$SaleListResponseFail.fromJson(Map<String, dynamic> json) =>
+      _$$SaleListResponseFailFromJson(json);
+
+  @override
+  final String status;
+  @override
+  final String? message;
+  final List<Invoice> _saleList;
+  @override
+  @JsonKey(name: "data")
+  List<Invoice> get saleList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_saleList);
+  }
+
+  @override
+  String toString() {
+    return 'SaleListResponse.FAIL(status: $status, message: $message, saleList: $saleList)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaleListResponseFail &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other._saleList, _saleList));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(_saleList));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$SaleListResponseFailCopyWith<_$SaleListResponseFail> get copyWith =>
+      __$$SaleListResponseFailCopyWithImpl<_$SaleListResponseFail>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)
+        FAIL,
+    required TResult Function(String status, String? message) ERROR,
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)
+        SUCCESS,
+  }) {
+    return FAIL(status, message, saleList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        FAIL,
+    TResult Function(String status, String? message)? ERROR,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        SUCCESS,
+  }) {
+    return FAIL?.call(status, message, saleList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        FAIL,
+    TResult Function(String status, String? message)? ERROR,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        SUCCESS,
+    required TResult orElse(),
+  }) {
+    if (FAIL != null) {
+      return FAIL(status, message, saleList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SaleListResponseFail value) FAIL,
+    required TResult Function(SaleListResponseError value) ERROR,
+    required TResult Function(SaleListResponseSuccess value) SUCCESS,
+  }) {
+    return FAIL(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SaleListResponseFail value)? FAIL,
+    TResult Function(SaleListResponseError value)? ERROR,
+    TResult Function(SaleListResponseSuccess value)? SUCCESS,
+  }) {
+    return FAIL?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SaleListResponseFail value)? FAIL,
+    TResult Function(SaleListResponseError value)? ERROR,
+    TResult Function(SaleListResponseSuccess value)? SUCCESS,
+    required TResult orElse(),
+  }) {
+    if (FAIL != null) {
+      return FAIL(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SaleListResponseFailToJson(
+      this,
+    );
+  }
+}
+
+abstract class SaleListResponseFail implements SaleListResponse {
+  const factory SaleListResponseFail(final String status, final String? message,
+          @JsonKey(name: "data") final List<Invoice> saleList) =
+      _$SaleListResponseFail;
+
+  factory SaleListResponseFail.fromJson(Map<String, dynamic> json) =
+      _$SaleListResponseFail.fromJson;
+
+  @override
+  String get status;
+  @override
+  String? get message;
+  @JsonKey(name: "data")
+  List<Invoice> get saleList;
+  @override
+  @JsonKey(ignore: true)
+  _$$SaleListResponseFailCopyWith<_$SaleListResponseFail> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SaleListResponseErrorCopyWith<$Res>
+    implements $SaleListResponseCopyWith<$Res> {
+  factory _$$SaleListResponseErrorCopyWith(_$SaleListResponseError value,
+          $Res Function(_$SaleListResponseError) then) =
+      __$$SaleListResponseErrorCopyWithImpl<$Res>;
+  @override
+  $Res call({String status, String? message});
+}
+
+/// @nodoc
+class __$$SaleListResponseErrorCopyWithImpl<$Res>
+    extends _$SaleListResponseCopyWithImpl<$Res>
+    implements _$$SaleListResponseErrorCopyWith<$Res> {
+  __$$SaleListResponseErrorCopyWithImpl(_$SaleListResponseError _value,
+      $Res Function(_$SaleListResponseError) _then)
+      : super(_value, (v) => _then(v as _$SaleListResponseError));
+
+  @override
+  _$SaleListResponseError get _value => super._value as _$SaleListResponseError;
+
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_$SaleListResponseError(
+      status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SaleListResponseError implements SaleListResponseError {
+  const _$SaleListResponseError(this.status, this.message);
+
+  factory _$SaleListResponseError.fromJson(Map<String, dynamic> json) =>
+      _$$SaleListResponseErrorFromJson(json);
+
+  @override
+  final String status;
+  @override
+  final String? message;
+
+  @override
+  String toString() {
+    return 'SaleListResponse.ERROR(status: $status, message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaleListResponseError &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.message, message));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(message));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$SaleListResponseErrorCopyWith<_$SaleListResponseError> get copyWith =>
+      __$$SaleListResponseErrorCopyWithImpl<_$SaleListResponseError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)
+        FAIL,
+    required TResult Function(String status, String? message) ERROR,
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)
+        SUCCESS,
+  }) {
+    return ERROR(status, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        FAIL,
+    TResult Function(String status, String? message)? ERROR,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        SUCCESS,
+  }) {
+    return ERROR?.call(status, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        FAIL,
+    TResult Function(String status, String? message)? ERROR,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        SUCCESS,
+    required TResult orElse(),
+  }) {
+    if (ERROR != null) {
+      return ERROR(status, message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SaleListResponseFail value) FAIL,
+    required TResult Function(SaleListResponseError value) ERROR,
+    required TResult Function(SaleListResponseSuccess value) SUCCESS,
+  }) {
+    return ERROR(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SaleListResponseFail value)? FAIL,
+    TResult Function(SaleListResponseError value)? ERROR,
+    TResult Function(SaleListResponseSuccess value)? SUCCESS,
+  }) {
+    return ERROR?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SaleListResponseFail value)? FAIL,
+    TResult Function(SaleListResponseError value)? ERROR,
+    TResult Function(SaleListResponseSuccess value)? SUCCESS,
+    required TResult orElse(),
+  }) {
+    if (ERROR != null) {
+      return ERROR(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SaleListResponseErrorToJson(
+      this,
+    );
+  }
+}
+
+abstract class SaleListResponseError implements SaleListResponse {
+  const factory SaleListResponseError(
+      final String status, final String? message) = _$SaleListResponseError;
+
+  factory SaleListResponseError.fromJson(Map<String, dynamic> json) =
+      _$SaleListResponseError.fromJson;
+
+  @override
+  String get status;
+  @override
+  String? get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$SaleListResponseErrorCopyWith<_$SaleListResponseError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SaleListResponseSuccessCopyWith<$Res>
+    implements $SaleListResponseCopyWith<$Res> {
+  factory _$$SaleListResponseSuccessCopyWith(_$SaleListResponseSuccess value,
+          $Res Function(_$SaleListResponseSuccess) then) =
+      __$$SaleListResponseSuccessCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String status,
+      String? message,
+      @JsonKey(name: "data") List<Invoice> saleList});
+}
+
+/// @nodoc
+class __$$SaleListResponseSuccessCopyWithImpl<$Res>
+    extends _$SaleListResponseCopyWithImpl<$Res>
+    implements _$$SaleListResponseSuccessCopyWith<$Res> {
+  __$$SaleListResponseSuccessCopyWithImpl(_$SaleListResponseSuccess _value,
+      $Res Function(_$SaleListResponseSuccess) _then)
+      : super(_value, (v) => _then(v as _$SaleListResponseSuccess));
+
+  @override
+  _$SaleListResponseSuccess get _value =>
+      super._value as _$SaleListResponseSuccess;
+
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? message = freezed,
+    Object? saleList = freezed,
+  }) {
+    return _then(_$SaleListResponseSuccess(
+      status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      saleList == freezed
+          ? _value._saleList
+          : saleList // ignore: cast_nullable_to_non_nullable
+              as List<Invoice>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SaleListResponseSuccess implements SaleListResponseSuccess {
+  const _$SaleListResponseSuccess(this.status, this.message,
+      @JsonKey(name: "data") final List<Invoice> saleList)
+      : _saleList = saleList;
+
+  factory _$SaleListResponseSuccess.fromJson(Map<String, dynamic> json) =>
+      _$$SaleListResponseSuccessFromJson(json);
+
+  @override
+  final String status;
+  @override
+  final String? message;
+  final List<Invoice> _saleList;
+  @override
+  @JsonKey(name: "data")
+  List<Invoice> get saleList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_saleList);
+  }
+
+  @override
+  String toString() {
+    return 'SaleListResponse.SUCCESS(status: $status, message: $message, saleList: $saleList)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaleListResponseSuccess &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other._saleList, _saleList));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(_saleList));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$SaleListResponseSuccessCopyWith<_$SaleListResponseSuccess> get copyWith =>
+      __$$SaleListResponseSuccessCopyWithImpl<_$SaleListResponseSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)
+        FAIL,
+    required TResult Function(String status, String? message) ERROR,
+    required TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)
+        SUCCESS,
+  }) {
+    return SUCCESS(status, message, saleList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        FAIL,
+    TResult Function(String status, String? message)? ERROR,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        SUCCESS,
+  }) {
+    return SUCCESS?.call(status, message, saleList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        FAIL,
+    TResult Function(String status, String? message)? ERROR,
+    TResult Function(String status, String? message,
+            @JsonKey(name: "data") List<Invoice> saleList)?
+        SUCCESS,
+    required TResult orElse(),
+  }) {
+    if (SUCCESS != null) {
+      return SUCCESS(status, message, saleList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SaleListResponseFail value) FAIL,
+    required TResult Function(SaleListResponseError value) ERROR,
+    required TResult Function(SaleListResponseSuccess value) SUCCESS,
+  }) {
+    return SUCCESS(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SaleListResponseFail value)? FAIL,
+    TResult Function(SaleListResponseError value)? ERROR,
+    TResult Function(SaleListResponseSuccess value)? SUCCESS,
+  }) {
+    return SUCCESS?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SaleListResponseFail value)? FAIL,
+    TResult Function(SaleListResponseError value)? ERROR,
+    TResult Function(SaleListResponseSuccess value)? SUCCESS,
+    required TResult orElse(),
+  }) {
+    if (SUCCESS != null) {
+      return SUCCESS(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SaleListResponseSuccessToJson(
+      this,
+    );
+  }
+}
+
+abstract class SaleListResponseSuccess implements SaleListResponse {
+  const factory SaleListResponseSuccess(
+          final String status,
+          final String? message,
+          @JsonKey(name: "data") final List<Invoice> saleList) =
+      _$SaleListResponseSuccess;
+
+  factory SaleListResponseSuccess.fromJson(Map<String, dynamic> json) =
+      _$SaleListResponseSuccess.fromJson;
+
+  @override
+  String get status;
+  @override
+  String? get message;
+  @JsonKey(name: "data")
+  List<Invoice> get saleList;
+  @override
+  @JsonKey(ignore: true)
+  _$$SaleListResponseSuccessCopyWith<_$SaleListResponseSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}

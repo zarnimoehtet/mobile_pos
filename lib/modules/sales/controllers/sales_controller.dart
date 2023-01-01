@@ -23,6 +23,7 @@ import '../../../core/custom/gradient_button.dart';
 import '../../../core/custom/state_dialog.dart';
 import '../../../core/helpers/state.dart';
 import '../../../viewmodels/customer_vm.dart';
+import '../../../viewmodels/invoice_vm.dart';
 import '../../home/views/home_page.dart';
 import '../views/print_vouncher_page.dart';
 import '../views/sales_page.dart';
@@ -57,6 +58,7 @@ class SalesController extends GetxController {
   final ProfileViewModel profileVM = Get.find();
   final SaleViewModel saleVM = Get.find();
   final CustomerViewModel customerVM = Get.find();
+  final InvoiceViewModel invoiceVM = Get.find();
 
   @override
   void onInit() {
@@ -82,6 +84,10 @@ class SalesController extends GetxController {
 
   Future fetchItem(int page) async {
     await itemVM.fetchItem(page, currentUser.value?.id ?? "");
+  }
+
+  Future fetchInvoice(int page) async {
+    await invoiceVM.fetchInvoice(page, currentUser.value?.id ?? "");
   }
 
   void _subscribeItems() {
@@ -204,9 +210,10 @@ class SalesController extends GetxController {
   void _subscribeSale() {
     _saleStateSubscription?.cancel();
     _saleStateSubscription =
-        showStateableDialog<Sale?>(saleVM.addSaleStream, (event) {
+        showStateableDialog<Sale?>(saleVM.addSaleStream, (event) async {
       completedSale.value = event;
       fetchItem(0);
+      fetchInvoice(0);
       Get.toNamed(HomePage.route + SalesPage.route + PrintVouncherPage.route);
     });
   }
@@ -218,7 +225,7 @@ class SalesController extends GetxController {
         customerList.value = event.data;
       }
       if (event is StateError<List<Customer>>) {
-        error.value = event.error.toString();
+        //error.value = event.error.toString();
       } else {
         error.value = null;
       }

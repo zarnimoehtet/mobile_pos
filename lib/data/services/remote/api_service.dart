@@ -172,4 +172,9 @@ abstract class APIService {
 
   @retrofit.POST("/api/sale_invoice")
   Future<SaleResponse> addToSaleInvocie(@retrofit.Body() SalesRequest body);
+
+  @retrofit.GET("/api/sale_invoices")
+  Future<SaleListResponse> loadInvoiceList({
+    @retrofit.Query("ownerid") String? ownerid,
+  });
 }

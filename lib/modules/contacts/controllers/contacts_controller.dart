@@ -41,6 +41,7 @@ class ContactsController extends GetxController {
 
   RxBool isLoading = RxBool(false);
   RxnString error = RxnString();
+  RxnString superror = RxnString();
 
   final SupplierViewModel supplierVM = Get.find();
   final ProfileViewModel profileVM = Get.find();
@@ -54,7 +55,7 @@ class ContactsController extends GetxController {
   @override
   void onInit() {
     pageController =
-        PageController(initialPage: tabIndex.value, keepPage: true);
+        PageController(initialPage: tabIndex.value, keepPage: false);
 
     _subscribeCurrentUser();
     _subscribeSupplier();
@@ -99,9 +100,9 @@ class ContactsController extends GetxController {
         supplierList.value = event.data;
       }
       if (event is StateError<List<Supplier>>) {
-        error.value = event.error.toString();
+        superror.value = event.error.toString();
       } else {
-        error.value = null;
+        superror.value = null;
       }
     });
   }

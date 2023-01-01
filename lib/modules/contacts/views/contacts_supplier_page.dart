@@ -26,13 +26,13 @@ class ContactsSupplierPage extends GetView<ContactsController> {
                   AlwaysStoppedAnimation<Color>(POSColor.primaryColorDark),
             ),
           );
-        } else if (controller.error.value?.isNotEmpty ?? false) {
+        } else if (controller.superror.value?.isNotEmpty ?? false) {
           return Container(
             width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
             child: Text(
-              controller.error.value.toString(),
+              controller.superror.value.toString(),
               textAlign: TextAlign.center,
             ),
           );

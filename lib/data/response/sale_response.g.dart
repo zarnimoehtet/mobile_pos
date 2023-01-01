@@ -47,3 +47,53 @@ Map<String, dynamic> _$$SaleResponseSuccessToJson(
       'message': instance.message,
       'data': instance.saleData,
     };
+
+_$SaleListResponseFail _$$SaleListResponseFailFromJson(
+        Map<String, dynamic> json) =>
+    _$SaleListResponseFail(
+      json['status'] as String,
+      json['message'] as String?,
+      (json['data'] as List<dynamic>)
+          .map((e) => Invoice.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$SaleListResponseFailToJson(
+        _$SaleListResponseFail instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.saleList,
+    };
+
+_$SaleListResponseError _$$SaleListResponseErrorFromJson(
+        Map<String, dynamic> json) =>
+    _$SaleListResponseError(
+      json['status'] as String,
+      json['message'] as String?,
+    );
+
+Map<String, dynamic> _$$SaleListResponseErrorToJson(
+        _$SaleListResponseError instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+    };
+
+_$SaleListResponseSuccess _$$SaleListResponseSuccessFromJson(
+        Map<String, dynamic> json) =>
+    _$SaleListResponseSuccess(
+      json['status'] as String,
+      json['message'] as String?,
+      (json['data'] as List<dynamic>)
+          .map((e) => Invoice.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$SaleListResponseSuccessToJson(
+        _$SaleListResponseSuccess instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.saleList,
+    };

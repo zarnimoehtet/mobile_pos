@@ -97,8 +97,10 @@ class EmployeesController extends GetxController {
       getFindRole(editEmployee.value?.role ?? "");
       empStatus.value = editEmployee.value?.status ?? false;
       employeeNrcController.text = editEmployee.value?.nrc ?? "";
-      employeeDobController.text = DateFormat("dd-MM-yyyy")
-          .format((editEmployee.value?.dob ?? "").toDateTime());
+      employeeDobController.text = editEmployee.value?.dob != null
+          ? DateFormat("dd-MM-yyyy")
+              .format((editEmployee.value?.dob ?? "").toDateTime())
+          : "";
       employeeFnameController.text = editEmployee.value?.fatherName ?? "";
       employeePercentController.text =
           "${editEmployee.value?.dailyPercent ?? 0}";

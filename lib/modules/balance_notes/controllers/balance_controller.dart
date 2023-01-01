@@ -8,7 +8,7 @@ class BalanceNoteController extends GetxController {
   @override
   void onInit() {
     pageController =
-        PageController(initialPage: tabIndex.value, keepPage: true);
+        PageController(initialPage: tabIndex.value, keepPage: false);
     super.onInit();
   }
 

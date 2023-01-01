@@ -11,6 +11,7 @@ import 'package:mobile_pos/data/repositories/employee_repo.dart';
 import 'package:mobile_pos/data/repositories/expense_repo.dart';
 import 'package:mobile_pos/data/repositories/expense_title_repo.dart';
 import 'package:mobile_pos/data/repositories/file_repo.dart';
+import 'package:mobile_pos/data/repositories/invoice_repo.dart';
 import 'package:mobile_pos/data/repositories/item_repo.dart';
 import 'package:mobile_pos/data/repositories/profile_repo.dart';
 import 'package:mobile_pos/data/repositories/sale_repo.dart';
@@ -21,6 +22,7 @@ import 'package:mobile_pos/data/services/local/local_category_service.dart';
 import 'package:mobile_pos/data/services/local/local_employee_service.dart';
 import 'package:mobile_pos/data/services/local/local_expense_service.dart';
 import 'package:mobile_pos/data/services/local/local_expense_title_service.dart';
+import 'package:mobile_pos/data/services/local/local_invoice_service.dart';
 import 'package:mobile_pos/data/services/local/local_item_service.dart';
 import 'package:mobile_pos/data/services/local/local_supplier_service.dart';
 import 'package:mobile_pos/data/services/local/local_unit_service.dart';
@@ -30,6 +32,7 @@ import 'package:mobile_pos/viewmodels/category_vm.dart';
 import 'package:mobile_pos/viewmodels/customer_vm.dart';
 import 'package:mobile_pos/viewmodels/employee_vm.dart';
 import 'package:mobile_pos/viewmodels/expense_vm.dart';
+import 'package:mobile_pos/viewmodels/invoice_vm.dart';
 import 'package:mobile_pos/viewmodels/item_vm.dart';
 import 'package:mobile_pos/viewmodels/profile_vm.dart';
 import 'package:mobile_pos/viewmodels/sale_vm.dart';
@@ -82,6 +85,7 @@ void _injectLocalService() {
   Get.put<LocalCustomerService>(LocalCustomerServiceImpl());
   Get.put<LocalExpenseTitleService>(LocalExpenseTitleServiceImpl());
   Get.put<LocalExpenseService>(LocalExpenseServiceImpl());
+  Get.put<LocalInvoiceService>(LocalInvoiceServiceImpl());
 }
 
 void _injectRepository() {
@@ -97,6 +101,7 @@ void _injectRepository() {
   Get.put<ExpenseRepository>(ExpenseRepositoryImpl());
   Get.put<FileRepository>(FileRepositoryImpl());
   Get.put<SaleRepository>(SaleRepositoryImpl());
+  Get.put<InvoiceRepository>(InvoiceRepositoryImpl());
 }
 
 void _injectViewModels() {
@@ -111,6 +116,7 @@ void _injectViewModels() {
   Get.put(ExpenseTitleViewModel());
   Get.put(ExpenseViewModel());
   Get.put(SaleViewModel());
+  Get.put(InvoiceViewModel());
 }
 
 void _injectNotification() {

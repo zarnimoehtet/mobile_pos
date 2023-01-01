@@ -60,7 +60,7 @@ class ItemsController extends GetxController {
       Rx<Representation>(Representation.shapeAndColor);
   Rx<ShapeType> selectedShape = Rx<ShapeType>(ShapeType.Circle);
 
-  final RxList<ItemPhoto> photos = RxList();
+  final RxList<ItemPhoto?> photos = RxList();
 
   Rxn<Item> editItem = Rxn<Item>();
   RxBool isEditItem = RxBool(false);

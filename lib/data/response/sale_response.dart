@@ -20,3 +20,19 @@ class SaleResponse with _$SaleResponse {
   factory SaleResponse.fromJson(Map<String, dynamic> json) =>
       _$SaleResponseFromJson(json);
 }
+
+@Freezed(unionKey: 'status')
+class SaleListResponse with _$SaleListResponse {
+  const factory SaleListResponse.FAIL(String status, String? message,
+          @JsonKey(name: "data") List<Invoice> saleList) =
+      SaleListResponseFail;
+  const factory SaleListResponse.ERROR(
+    String status,
+    String? message,
+  ) = SaleListResponseError;
+  const factory SaleListResponse.SUCCESS(String status, String? message,
+          @JsonKey(name: "data") List<Invoice> saleList) =
+      SaleListResponseSuccess;
+  factory SaleListResponse.fromJson(Map<String, dynamic> json) =>
+      _$SaleListResponseFromJson(json);
+}

@@ -36,6 +36,9 @@ class HiveUtils {
     _register<ExpenseItem>(20, ExpenseItemAdapter());
     _register<Media>(21, MediaAdapter());
     _register<Sale>(22, SaleAdapter());
+    _register<SaleItem>(23, SaleItemAdapter());
+    _register<Invoice>(24, InvoiceAdapter());
+    _register<SaleInvoiceItem>(25, SaleInvoiceItemAdapter());
   }
 }
 
