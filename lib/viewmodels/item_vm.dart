@@ -45,10 +45,11 @@ class ItemViewModel {
       StreamController<MyState<List<Item>>>.broadcast();
   late Stream<MyState<List<Item>>> fetchItemStream;
 
-  Future fetchItem(int page, String id) async {
+  Future fetchItem(int page, String id, {String? categoryId}) async {
     try {
       _fetchItemController.sink.add(MyState.loading());
-      var list = await _itemRepository.fetchItemList(page, id);
+      var list =
+          await _itemRepository.fetchItemList(page, id, categoryid: categoryId);
       throwif(list.isEmpty, "no_item_found".tr);
       _fetchItemController.sink.add(MyState.success(list));
     } on DioError catch (e) {

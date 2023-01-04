@@ -68,7 +68,7 @@ abstract class APIService {
     @retrofit.Query("ownerid") String? ownerid,
     @retrofit.Query("limit") int? limit = 10,
     @retrofit.Query("skip") int? skip,
-    @retrofit.Query("search") String? search,
+    @retrofit.Query("categoryid") String? categoryId,
   });
 
   @retrofit.GET("/api/generatesku")

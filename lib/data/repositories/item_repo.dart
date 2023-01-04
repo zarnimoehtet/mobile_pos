@@ -11,7 +11,8 @@ abstract class ItemRepository {
   Stream<ItemRes> addItem(ItemAddRequest request);
 
   Stream<List<Item>> subscribeItem();
-  Future<List<Item>> fetchItemList(int page, String ownerId);
+  Future<List<Item>> fetchItemList(int page, String ownerId,
+      {String? categoryid});
   Stream<ItemRes> updateItem(String itemId, ItemAddRequest request);
   Future deleteItem(String id);
 
@@ -40,8 +41,10 @@ class ItemRepositoryImpl implements ItemRepository {
   }
 
   @override
-  Future<List<Item>> fetchItemList(int page, String ownerId) async {
-    var response = await remote.loadItemList(ownerid: ownerId);
+  Future<List<Item>> fetchItemList(int page, String ownerId,
+      {String? categoryid}) async {
+    var response =
+        await remote.loadItemList(ownerid: ownerId, categoryId: categoryid);
     if (response is ItemListResponseSuccess) {
       if (page == 0) {
         await local.clearItem();

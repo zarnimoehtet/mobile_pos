@@ -81,6 +81,8 @@ class ItemsController extends GetxController {
 
   Rxn<User> currentUser = Rxn<User>();
 
+  //Barcode
+
   List<String> colors = [
     "#E2E2E2",
     "#F34236",
@@ -114,7 +116,11 @@ class ItemsController extends GetxController {
     itemScrollController.onScrollEnd(() {
       if (!isLoading.value) {
         int page = itemList.length ~/ 10;
-        fetchItem(page);
+        if (selectedCategory.value != null) {
+          fetchItem(page, categoryID: selectedCategory.value?.id);
+        } else {
+          fetchItem(page);
+        }
       }
     });
     unitScrollController.onScrollEnd(() {
@@ -371,6 +377,15 @@ class ItemsController extends GetxController {
     );
   }
 
+  getSelectedCategory(String cateName) {
+    selectedCategory.value = null;
+    if (cateName != "All") {
+      var data =
+          categoryList.singleWhere((element) => element.name == cateName);
+      selectedCategory.value = data;
+    }
+  }
+
   findItemIndexOfColor(String color) {
     itemSelectedIndex.value = colors.indexWhere((element) => element == color);
   }
@@ -478,8 +493,9 @@ class ItemsController extends GetxController {
     });
   }
 
-  Future fetchItem(int page) async {
-    await itemVM.fetchItem(page, currentUser.value?.id ?? "");
+  Future fetchItem(int page, {String? categoryID}) async {
+    await itemVM.fetchItem(page, currentUser.value?.id ?? "",
+        categoryId: categoryID);
   }
 
   void _subscribeItems() {
@@ -673,7 +689,9 @@ class ItemsController extends GetxController {
   }
 
   generateItemFilter() {
-    itemFilter.clear();
+    if (itemFilter.isNotEmpty) {
+      itemFilter.clear();
+    }
     itemFilter.add("All");
     for (var c in categoryList) {
       itemFilter.add(c.name ?? "");

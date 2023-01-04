@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:mobile_pos/core/extensions/extension_collection.dart';
 import 'package:mobile_pos/data/model/customer.dart';
 import 'package:mobile_pos/data/model/sale.dart';
@@ -22,6 +23,8 @@ import '../../../core/custom/border_input_decoration.dart';
 import '../../../core/custom/gradient_button.dart';
 import '../../../core/custom/state_dialog.dart';
 import '../../../core/helpers/state.dart';
+import '../../../data/model/category.dart';
+import '../../../viewmodels/category_vm.dart';
 import '../../../viewmodels/customer_vm.dart';
 import '../../../viewmodels/invoice_vm.dart';
 import '../../home/views/home_page.dart';
@@ -42,6 +45,8 @@ class SalesController extends GetxController {
   Rxn<Sale> completedSale = Rxn<Sale>();
   RxList<Customer> customerList = RxList();
 
+  RxList<Category> categoryList = RxList();
+
   RxBool isCredit = RxBool(false);
   RxInt totalDiscount = RxInt(0);
   RxInt creditAmount = RxInt(0);
@@ -49,6 +54,9 @@ class SalesController extends GetxController {
   RxBool isLoading = RxBool(false);
   RxnString error = RxnString();
   RxBool isShowCustomerData = RxBool(false);
+
+  RxList<String> itemFilter = RxList();
+  Rxn<Category> selectedCategory = Rxn<Category>();
 
   final ScrollController itemScrollController = ScrollController();
   final TextEditingController payAmountController = TextEditingController();
@@ -59,22 +67,62 @@ class SalesController extends GetxController {
   final SaleViewModel saleVM = Get.find();
   final CustomerViewModel customerVM = Get.find();
   final InvoiceViewModel invoiceVM = Get.find();
+  final CategoryViewModel categoryViewModel = Get.find();
+  late AudioPlayer player;
 
   @override
   void onInit() {
+    player = AudioPlayer();
     _subscribeCurrentUser();
     _subscribeItems();
     _subscribeSale();
     _subscribeCustomer();
+    _subscribeCategories();
     fetchItem(0);
     fetchCustomer(0);
+    fetchCategory(0);
+    // initAudio();
     itemScrollController.onScrollEnd(() {
       if (!isLoading.value) {
         int page = itemList.length ~/ 10;
-        fetchItem(page);
+        if (selectedCategory.value != null) {
+          fetchItem(page, categoryId: selectedCategory.value?.id);
+        } else {
+          fetchItem(page);
+        }
       }
     });
+
     super.onInit();
+  }
+
+  Future initAudio() async {
+    await player.setAsset('assets/sound/beep.mp3');
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
+  }
+
+  generateItemFilter() {
+    if (itemFilter.isNotEmpty) {
+      itemFilter.clear();
+    }
+    itemFilter.add("All");
+    for (var c in categoryList) {
+      itemFilter.add(c.name ?? "");
+    }
+  }
+
+  getSelectedCategory(String cateName) {
+    selectedCategory.value = null;
+    if (cateName != "All") {
+      var data =
+          categoryList.singleWhere((element) => element.name == cateName);
+      selectedCategory.value = data;
+    }
   }
 
   _subscribeCurrentUser() {
@@ -82,8 +130,9 @@ class SalesController extends GetxController {
     currentEMP.value = profileVM.currentEMP;
   }
 
-  Future fetchItem(int page) async {
-    await itemVM.fetchItem(page, currentUser.value?.id ?? "");
+  Future fetchItem(int page, {String? categoryId}) async {
+    await itemVM.fetchItem(page, currentUser.value?.id ?? "",
+        categoryId: categoryId);
   }
 
   Future fetchInvoice(int page) async {
@@ -104,13 +153,32 @@ class SalesController extends GetxController {
     });
   }
 
+  void _subscribeCategories() {
+    categoryViewModel.fetchCategoryStream.listen((event) {
+      isLoading.value = event is StateLoading<List<Category>>;
+      if (event is StateSuccess<List<Category>>) {
+        categoryList.value = event.data;
+        generateItemFilter();
+      }
+      if (event is StateError<List<Category>>) {
+        error.value = event.error.toString();
+      } else {
+        error.value = null;
+      }
+    });
+  }
+
+  Future fetchCategory(int page) async {
+    await categoryViewModel.fetchCategories(page, currentUser.value?.id ?? "");
+  }
+
   clearCart() {
     selectedItemList.clear();
     totalCharges.value = 0;
     totalItem.value = 0;
   }
 
-  addItemtoCart(Item item) {
+  addItemtoCart(Item item) async {
     var index = selectedItemList.indexWhere((element) => element.id == item.id);
     if (index != -1) {
       var newItem = selectedItemList[index]
@@ -139,6 +207,8 @@ class SalesController extends GetxController {
       }
     }
     totalItem.value = selectedItemList.length;
+    await player.setAsset('assets/sound/beep.mp3');
+    player.play();
   }
 
   removeFromCart(Item item) {

@@ -7,6 +7,7 @@ import 'package:mobile_pos/core/enums/representation.dart';
 import 'package:mobile_pos/data/model/category.dart';
 import 'package:mobile_pos/data/model/unit.dart';
 import 'package:mobile_pos/modules/items/model/item_photo.dart';
+import 'package:mobile_pos/modules/items/views/barcode_scanner_view.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/custom/border_input_decoration.dart';
 import '../../../../core/custom/gradient_button.dart';
@@ -16,7 +17,9 @@ import '../../../core/custom/image_pick_dialog.dart';
 import '../../../core/custom/place_holder.dart';
 import '../../../core/enums/discount_type.dart';
 import '../../../core/utils/color_utils.dart';
+import '../../home/views/home_page.dart';
 import '../controllers/items_controller.dart';
+import 'items_page.dart';
 
 class ItemAddPage extends GetView<ItemsController> {
   static const String route = "/item_add";
@@ -186,7 +189,11 @@ class ItemAddPage extends GetView<ItemsController> {
                             ),
                             InkWell(
                               borderRadius: BorderRadius.circular(10),
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(HomePage.route +
+                                    ItemsPage.route +
+                                    POSBarcodeScannerView.route);
+                              },
                               child: Padding(
                                   padding: const EdgeInsets.all(10),
                                   child: Image.asset(

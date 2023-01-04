@@ -90,7 +90,11 @@ class ItemsListPage extends GetView<ItemsController> {
                           ),
                         ));
                   }).toList(),
-                  onChanged: (v) {},
+                  onChanged: (v) {
+                    controller.getSelectedCategory(v!);
+                    controller.fetchItem(0,
+                        categoryID: controller.selectedCategory.value?.id);
+                  },
                 ),
               ),
               SliverToBoxAdapter(

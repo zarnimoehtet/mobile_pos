@@ -256,7 +256,7 @@ class _APIService implements APIService {
     ownerid,
     limit = 10,
     skip,
-    search,
+    categoryId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -264,7 +264,7 @@ class _APIService implements APIService {
       r'ownerid': ownerid,
       r'limit': limit,
       r'skip': skip,
-      r'search': search,
+      r'categoryid': categoryId,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

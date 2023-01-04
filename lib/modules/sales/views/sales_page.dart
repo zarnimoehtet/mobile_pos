@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mobile_pos/core/extensions/extension_collection.dart';
-import 'package:mobile_pos/core/temp/temp_data.dart';
 import 'package:mobile_pos/modules/sales/controllers/sales_controller.dart';
 import 'package:mobile_pos/modules/sales/views/vouncher_page.dart';
 
@@ -21,6 +20,7 @@ class SalesPage extends GetView<SalesController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.generateItemFilter();
     return Scaffold(
         body: Column(
       children: [totalChargesArea(), actionPanel(), itemListArea(context)],
@@ -113,12 +113,12 @@ class SalesPage extends GetView<SalesController> {
                           decoration: normalInputDecoration(
                               padding:
                                   const EdgeInsets.only(left: 15, right: 15),
-                              hinttext: itemFilter.first,
+                              hinttext: controller.itemFilter.first,
                               color: POSColor.blackTextColorOp99,
                               alignLabelWithHint: false,
                               enableUnderLine: true),
                           isExpanded: true,
-                          items: itemFilter.map((i) {
+                          items: controller.itemFilter.map((i) {
                             return DropdownMenuItem<String>(
                                 value: i,
                                 child: Text(
@@ -128,7 +128,12 @@ class SalesPage extends GetView<SalesController> {
                                   ),
                                 ));
                           }).toList(),
-                          onChanged: (v) {},
+                          onChanged: (v) {
+                            controller.getSelectedCategory(v!);
+                            controller.fetchItem(0,
+                                categoryId:
+                                    controller.selectedCategory.value?.id);
+                          },
                         ),
                 )),
             controller.isSearch.value

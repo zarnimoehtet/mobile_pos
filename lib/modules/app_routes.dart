@@ -21,6 +21,7 @@ import 'package:mobile_pos/modules/expense/view/expense_title_add_page.dart';
 import 'package:mobile_pos/modules/expense/view/expense_title_page.dart';
 import 'package:mobile_pos/modules/home/binding/home_binding.dart';
 import 'package:mobile_pos/modules/items/binding/items_binding.dart';
+import 'package:mobile_pos/modules/items/views/barcode_scanner_view.dart';
 import 'package:mobile_pos/modules/items/views/unit_add_page.dart';
 import 'package:mobile_pos/modules/notification/binding/notification_binding.dart';
 import 'package:mobile_pos/modules/notification/ui/views/notification_page.dart';
@@ -167,6 +168,11 @@ class AppRoutes {
                       name: ItemAddPage.route,
                       binding: ItemsBinding(),
                       page: () => const ItemAddPage(),
+                    ),
+                    GetPage(
+                      name: POSBarcodeScannerView.route,
+                      binding: ItemsBinding(),
+                      page: () => const POSBarcodeScannerView(),
                     ),
                   ]),
               GetPage(
